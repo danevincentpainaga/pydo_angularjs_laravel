@@ -1,0 +1,128 @@
+<div class="row" style="height: 3em;"></div>
+<div class="container-fluid" ng-controller="editScholarCtrl as sc">
+    <div class="row">
+    <div class="col-lg-12" >
+      <h6 class="menu-header" style="color: #2aabc7; margin-bottom: .7em;">
+        <i class="fa fa-address-card" style="font-size: 30px;"></i>&nbsp;
+        Personal Information
+      </h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 " style="padding-right: 2em;">
+      <div class="card" style="margin-top: 2em;">
+        <img ng-src="{{sc.image}}" alt="Card image" style="width:100%; max-height: 230px; min-height:230px; border: 5px solid whitesmoke;padding: 3px;">
+        <div class="card-body">
+          <input type="file" id="file" custom-on-change="sc.uploadFile" class="form-control" style="background-color: whitesmoke;" />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-12" >
+    <label style="color: #2aabc7; margin-top: 2em;"><i class="fa fa-user-circle" ></i>&nbsp;Firstname</label>
+    <input type="text"  name="" ng-model="sc.firstname" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-address-book" ></i>&nbsp;Lastname</label>
+    <input type="text"  name="" ng-model="sc.lastname" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-female" ></i>&nbsp;Middle Name</label>
+    <input type="text"  name="" ng-model="sc.middlename" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-paper-plane" ></i>&nbsp;Address</label>
+    <input type="text"  name="" ng-model="sc.address" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    </div>
+
+  <div class="col-lg-4 col-md-4 " >
+
+    <label style="color: #2aabc7; margin-top:2em;"><i class="fa fa-envelope" ></i>&nbsp;Email Address</label>
+    <input type="text"  name="" ng-model="sc.email" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+      <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-phone" ></i>&nbsp;Contact no.</label>
+    <input type="text"  name="" ng-model="sc.contact_number" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Gender</label>
+    <select name="" ng-model="sc.gender" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+      <option value=""></option>
+      <option value="Officer">Male</option>
+      <option value="IT">Female</option>
+    </select>
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-calendar" ></i>&nbsp;Date of birth</label>
+    <input type="text"  name="" ng-model="sc.dateofbirth" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0;">
+    </div>
+    <div class="col-lg-1 " style="padding-right: 2em;"></div>
+  </div>
+  <div class="row">
+        <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"></h3>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12" >
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Father</label>
+    <input type="text"  name="" ng-model="sc.father" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-female" ></i>&nbsp;Mother</label>
+    <input type="text"  name="" ng-model="sc.mother" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12" >
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-building" ></i>&nbsp;School</label>
+    <select name="" ng-model="sc.school" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+      <option value=""></option>
+      <option value="Officer">University of Antique</option>
+      <option value="IT">SAC</option>
+    </select>
+        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-graduation-cap" ></i>&nbsp;College Year</label>
+    <select name="" ng-model="sc.year" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+      <option value=""></option>
+      <option value="Officer">1st year</option>
+      <option value="IT">2nd year</option>
+      <option value="IT">3rd year</option>
+      <option value="IT">4th year</option>
+      <option value="IT">5th year</option>
+    </select>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" >
+      <button class="btn btn-success btn-md" style="width: 12em;" data-toggle="modal" data-target="#update-status">Save</button>
+      <h6 class="menu-header" style="color: #2aabc7; margin-bottom: .7em;">Important Notice</h6>
+      <p>This information is certified validated by the Adminastrator</p>
+    </div>
+  </div>
+    <div class="row" style="height: 5em;"></div>
+
+</div>

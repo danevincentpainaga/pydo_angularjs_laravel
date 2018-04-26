@@ -1,0 +1,112 @@
+<div class="row" style="height: 3em;"></div>
+<div class="container-fluid" style="padding-right: 0px; padding-left: 0px;" ng-controller="scholarCtrl as sc">
+<div class="row" >
+    <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-graduation-cap" style="font-size: 37px;"></i>SCHOLARS</h3>
+        <button type="button" class="btn btn-success btn-sm" id="add" style="background-image: linear-gradient(200deg, #2685b4, #2aabc7);" ng-click="sc.goToAddScholar()"><i class="fa fa-user-plus"></i>
+        <label style="font-family: cooper;">ADD</label></button>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12" >
+    <div class="form-group" style="float: right;">
+      <select class="form-control" ng-change="uctrl.statusChange(search_user.status)" ng-model="search_user.status" style="height: 30px;">
+        <option value="">Select Municipality</option>
+        <option value="active" ng-model="search_user.status">Culasi</option>
+        <option value="disabled" ng-model="search_user.status">Sebaste</option>
+      </select>
+    </div>
+  </div>
+    <div class="col-lg-12">
+        <ul class="list-group" style="margin-top: 7px;">
+          <li class="list-group-item" style="background-color: #e3e9ef;"><label>List of Scholars</label></li>
+          <li class="list-group-item">
+            <div class="row"  style="margin-top: 1em;">
+              <div class="col-md-7 col-sm-12" >
+                <form>
+                  <div class="form-group">
+                    <select class="form-control" id="sel1">
+                      <option style="width:200px;">University of Antique</option>
+                      <option>CPU</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+               <div class="col-md-5 col-sm-12">
+                <div class="row">
+                  <div class="col-md-10 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="search_scholar" id="search-input">
+                  </div>
+                  <div class="col-md-2 col-sm-12">
+                    <button class="btn btn-primary btn-sm" id="search-student">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item" style="margin-top: .4em;">
+            <input type="checkbox"> 
+            <button class="btn btn-success btn-sm" id="delete-scholar">
+              <i class="fa fa-trash"></i>
+              <label class="cursor-pointer">Delete</label>
+            </button>
+          </li>
+          <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
+              <span ng-hide="sc.loading" style="text-align: center;">
+                  <img src="images/cube.gif" class="loading-gif" >
+              </span>
+              <table class="table table-bordered table-hover table-striped" style="color: #333; font-size: 13px; font-family: Helvetica,Arial,sans-serif;" ng-hide="sc.scholarTbl">
+                <thead style="color:#f1f1f1; background-image: linear-gradient(200deg, #155799bf, #37b4d0) ;font-family: verdana;">
+                  <tr>
+                    <th>#</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Middlename</th>
+                    <th>School</th>
+                    <th>Course</th>
+                    <!-- <th style="text-align: center;">Status</th> -->  
+                    <th style="text-align: center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="scholar in sc.scholars | filter:search_scholar:exactMatch">
+                    <td><input type="checkbox"></td>
+                    <td>{{scholar.firstname}}</td>
+                    <td>{{scholar.lastname}}</td>
+                    <td>{{scholar.middle_name}}</td>
+                    <td>{{scholar.schoolId}}</td>
+                    <td>{{scholar.courseId}}</td>
+   <!--                  <td style="text-align: center;">
+                      <label id="status" scholar-status status="{{scholar.status}}" ng-model="(scholar.status)" style="color:white; font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem; ">{{scholar.status}}</label>
+                    </td> -->
+                    <td style="min-width: 140px; max-width: 100%; text-align: center;">
+                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
+                      <button class="btn btn-success btn-sm button-edit" ng-click="sc.editScholar(scholar.student_id)">
+                        <i class="fa fa-check" style="margin-left:-5px;"></i>
+                        <label></label>
+                      </button>
+                      <button class="btn btn-danger btn-sm button-delete" ng-click="sc.deleteScholar(user)" >
+                        <i class="fa fa-times delete-icon"></i>
+                        <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li>
+        </ul>
+    </div>
+    <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana;">
+       <ul class="pagination pagination-sm">
+          <li class="page-item"><a class="page-link" id="prev" href="#">Prev</a></li>
+          <li class="page-item"><a class="page-link" href="#" ng-click="pageVal(1)">1</a></li>
+          <li class="page-item"><a class="page-link" href="#" ng-click="pageVal(2)">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" id="next" href="#">Next</a></li>
+        </ul>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,184 @@
+<div class="row height-3em" ></div>
+<div class="container-fluid" ng-controller="addscholarCtrl as addscholar">
+<div class="row" >
+    <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-graduation-cap font-37px" ></i>ADD SCHOLARS</h3>
+     </div>
+</div>
+<div class="row">
+     <div class="col-sm-8 background-white padding-left-right-0" >
+   <div class="col-lg-12" >
+   	  <li class="list-group-item padding-7px " >
+	    <div class="form-group margin-bottom-0px" >
+          <select class="form-control height-30px width-11em"  ng-model="addscholar.selectedTown" ng-options="town as town.town_name for town in addscholar.towns track by town.town_id " ng-change="addscholar.townData(addscholar.selectedTown)" >
+          <option value="">Select Municipality</option>
+          </select>
+	     </div>
+   	  </li>
+      <li class="list-group-item height-475px padding-5px overflow-y-auto-overflow-x-hidden" >
+      		   <span ng-hide="addscholar.loading" class="text-align-center">
+			   		<img src="images/cube.gif" class="loading-gif2" >
+				</span>
+              <table class="table table-hover table-striped font-14px font-family-Helvetica-Arial-sans-serif color-333"  ng-hide="addscholar.addedScholarTbl">
+                <thead class="background-image-linear-gradient-200deg-155799bf-37b4d0 color-f1f1f1 font-family-verdana;">
+                  <tr>
+                  	 <th>Image</th>
+                    <th>Student Name</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th class="text-align-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="scholar in addscholar.appliedScholars | filter:search_addeduser:exactMatch">
+                  	<td><img src="images/dane.jpg" style="height: 30px; border-radius: 15px;"></td>
+                    <td>{{scholar.firstname}}&nbsp;&nbsp;{{scholar.lastname}}</td>
+                    <td>{{scholar.address}}</td>
+                    <td>
+                      <label id="status" class="pending" style=" font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem;  ">
+                      	Pending
+                      </label>
+                    </td>
+                    <td class="text-align-center">
+                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                        View
+                      </button>&nbsp;&nbsp;
+                  	  <button class="btn btn-success btn-sm" ng-click="addscholar.addToScholar(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                       Add
+                      </button>
+<!--                       <button class="btn btn-danger btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                        Print
+                      </button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li>
+       <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana; background-color: white;">
+	       <ul class="pagination pagination-sm">
+	          <li class="page-item"><a class="page-link" id="prev" href="#">Prev</a></li>
+	          <li class="page-item"><a class="page-link" href="#">1</a></li>
+	          <li class="page-item"><a class="page-link" href="#">2</a></li>
+	          <li class="page-item"><a class="page-link" href="#">3</a></li>
+	          <li class="page-item"><a class="page-link" href="#">4</a></li>
+	          <li class="page-item"><a class="page-link" href="#">5</a></li>
+	          <li class="page-item"><a class="page-link" id="next" href="#">Next</a></li>
+	        </ul>
+  		</div>
+    </div>
+
+</div>
+    <div class="col-sm-4" style="background-color:whitesmoke;">
+    	<div class="row" style="background-color: whitesmoke;">
+    		<div class="col-md-12" style="background-color: whitesmoke;">
+    			<ul class="list-group">
+    				<li class="list-group-item"" style="background-color: #e3e9ef;"></li>
+    				<li class="list-group-item">
+    			<form>
+	    		   	<div class="form-group">
+	                   <label class="black-label"></label>
+	                   <input type="text" 
+	                  placeholder="Firstname" class="form-control" id="usr">
+	                </div>
+	                <div class="form-group" >
+	                   <label class="black-label"></label>
+	                   <input type="text" placeholder="Lastname" class="form-control" id="usr" style="margin-top: -20px;">
+	                   <button  class="btn btn-success col-md-12" style="margin-top: 1em; background: linear-gradient(90deg,#0e93c5,#172e9c 40%,#0ed6cd);">Search</button>
+	                </div>
+    			</form>
+    				</li>
+    			</ul>
+    		</div>
+    		<div class="col-md-12" style="background-color: whitesmoke;">
+    			<ul class="list-group">
+    				<li class="list-group-item"  style="background-color: white; margin-top: 1em;">
+	    		   	<div class="form-group">
+	                   <label class="black-label"></label>
+	                   <input type="text" 
+	                  placeholder="#scholar id" class="form-control" id="usr">
+	                  <button  class="btn btn-success col-md-12" style="margin-top: 1em; background-color:#37b4d0;">Search</button>
+	                </div>
+    				</li>
+    			</ul>
+    		</div>
+    		<div class="col-md-12" style=" margin-top: .5em;">
+    				<div class="row" style="background-color: white; height: 55px; margin-left: 5px; margin-right: 5px; border-bottom: 1px dashed #C3C3C3;">
+	    				<div class="col-md-6">
+	    					<!-- <label style="float: left; margin-top: 1em;">Total Failed</label> -->
+	    				</div>
+	    				<div class="col-md-6">
+	    					<!-- <label style="float: right; margin-top: 1em;">2000</label> -->
+	    				</div>
+    				</div>
+    				<div class="row" style="background-color: white; height: 70px; margin-left: 5px; margin-right: 5px;">
+	    				<div class="col-md-6">
+	    					<h5 style="float: left; margin-top: 1em;">Total</h5>
+	    				</div>
+	    				<div class="col-md-6">
+	    					<h5 style="float: right; margin-top: 1em;">2000</h5>
+	    				</div>
+    				</div>
+    			<div class="col-md-12"></div>
+    		</div>
+    	</div>
+ 	</div>
+</div>
+<div class="row" style="margin-top: 1em;">
+	<div class="col-md-12">
+	<ul class="list-group">
+     <li class="list-group-item">
+        <form> 
+          <div class="form-group col-5">
+            <label class="normal-label">Search Scholar:</label>
+            <input type="text" class="form-control form-control-sm" ng-model="search_addeduser" id="search-added" placeholder="Search" style="min-width: 230px; border: 1px solid #abadaf;">
+          </div>
+        </form>
+      </li>
+	<li class="list-group-item" style="overflow-y: scroll; height:500px;">
+	  <table class="table table-bordered table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;">
+	    <thead style="color:#f1f1f1; font-family: verdana; background-image: linear-gradient(200deg, #155799bf, #37b4d0);">
+	      <tr>
+	        <th>Student Name</th>
+	        <th>Lastname</th>
+	        <th>Gender</th>
+	        <th>username</th>
+	        <th>Address</th>
+	        <th>Position</th>
+	        <th>User Access</th>
+	        <th>status</th>
+	        <th>Action</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="pendingScholar in addscholar.addedScholar | filter:search_addeduser:exactMatch">
+	        <td>{{pendingScholar.firstname}}</td>
+	        <td>{{pendingScholar.lastname}}</td>
+	        <td>{{pendingScholar.middle_name}}</td>
+	        <td>{{pendingScholar.date_of_birth}}</td>
+	        <td>{{pendingScholar.contact_no}}</td>
+	        <td>{{pendingScholar.year}}</td>
+	        <td>{{pendingScholar.gender}}</td>
+	        <td>
+	          <label id="status" color-status stat="{{user.status}}" ng-model="(user.status)" style=" font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem;  ">{{pendingScholar.student_id}}
+	          </label>
+	        </td>
+	        <td>
+	          <button class="btn btn-danger btn-sm button-delete" ng-click="addscholar.deletePending(pendingScholar)" >
+	            <i class="fa fa-times delete-icon"></i>
+	            <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+	          </button>
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</li>
+	<li class="list-group-item" style="margin-bottom: 1em;">
+		<div class="row" style="float: right;">
+			<button class="btn btn-success btn-sm" style="margin-right:.25em; min-width: 12em; background-image: linear-gradient(200deg, #155799, #37b4d0); margin-right: " ng-click="addscholar.saveScholar()" >SAVE</button>
+			<button class="btn btn-success btn-sm" style="min-width: 12em;" ng-click="addscholar.cancel()" >Cancel</button>
+		</div>
+	</li>
+	</ul>
+</div>
+</div>
+</div>

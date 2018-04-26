@@ -1,0 +1,58 @@
+ <!-- Show if resize to small -->
+  <div class="col-md-2 col-lg-2 col-sm-12 pad onprint contents" ng-hide="smallNav" id="side-nav-small" autoresize="" style="border-color: #e7e7e7; position: fixed; z-index: 1; top: 0px;  border-right: 2px solid #dadada; min-height: 610px; max-height: 610px;" >
+  <ul class="nav nav-pills flex-column"  style="border-right: 2px solid #dadada; max-width: 4%; min-width: 4%;">
+   <li class="nav-item" >
+      <div class="nav-link " href="#" id="user-photo-holder" style="height: 2em;">
+      </div>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/')}" href="/#!/dashboard" data-toggle="tooltip" data-placement="right" title="Dasboard" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+        <i class="fa fa-home"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+        <a class="nav-link" ng-class="{activated:isActivated('/user/page/1')}" href="/#!/user/page/1" data-toggle="tooltip" data-placement="right" title="User" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+          <i class="fa fa-user" style="margin-left: 4px;"></i>
+        </a>
+    </li>
+    <li class="nav-item side-menu">
+        <a class="nav-link" ng-class="{activated:isActivated('/add_user')}" href="#!/add_user" data-toggle="tooltip" data-placement="right" title="Add User" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+          <i class="fa fa-user-plus" style="margin-left: 4px;"></i>
+        </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/scholar')}" href="#!/scholar" data-toggle="tooltip" data-placement="right" title="Scholar" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+        <i class="fa fa-graduation-cap"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/add_scholar')}" href="#!/add_scholar" data-toggle="tooltip" data-placement="right" title="Add Scholar" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+        <i class="fa fa-edit"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link cursor-pointer notePath" ng-class="{activated:isActivated('/notes')}" href="#!/notes" data-toggle="tooltip" data-placement="right" title="Notes" style="border-bottom: 1px solid #e7e7e7; color: #06799f;"><i class="fa fa-book"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/application')}" href="#!/application" data-toggle="tooltip" data-placement="right" title="Application" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+        <i class="fa fa-wpforms"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/application/applied_scholar')}" href="#!/application/applied_scholar" data-toggle="tooltip" data-placement="right" title="Applied Scholar" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+        <i class="fa fa-list-alt"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/add_subject')}" href="#!/add_subject" data-toggle="tooltip" data-placement="right" title="Add Subject" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+      <i class="fa fa-briefcase"></i>
+      </a>
+    </li>
+    <li class="nav-item side-menu">
+      <a class="nav-link" ng-class="{activated:isActivated('/add_school')}" href="#!/add_school" data-toggle="tooltip" data-placement="right" title="Add Subject" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+      <i class="fa fa-building"></i>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<!-- <div class="row onprint" >
+	<div class="col-md-12" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 3em; position: fixed; z-index: 2">
+	  <img src="images/pydo.png" id="pydo-logo">
+	  <label id="header-name">PYDO</label>
+	  <i class="fa fa-bars" id="menu-icon" ng-click="collapseNav()"></i>
+	  <i class="fa fa-bars" style="margin-left:95%; color: whitesmoke;"></i>
+	  <i class="fa fa-cog cursor-pointer" id="settings-icon"></i>
+	  <label id="user-logged">Dane Vincent Painaga</label>
+	  <img src="images/dane.jpg" id="user-profile-image">
+	</div>
+	<div class="col-md-12" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 3em;">
+
+	</div>
+</div>
+ -->
+<div class="row onprint" id="header">
+<div class="col-md-2" ng-style="hideLogo" style="background-color: #37b4d0; cursor: pointer;" ng-click="goToHome()">
+  <img src="images/pydo.png" id="pydo-logo">
+  <label id="header-name">PYDO</label>
+</div>
+<div class="col-md-10" ng-style="expand" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 3em">
+  <button class="menu-button" ng-click="collapseNav()">
+  	<i class="fa fa-bars cursor-pointer" id="menu-icon" ng-click="collapseNav()"></i>
+  </button>
+  <i class="fa fa-cog cursor-pointer" id="settings-icon"></i>
+  <label id="user-logged">Dane Vincent Painaga</label>
+  <img src="images/dane.jpg" id="user-profile-image">
+</div>
+</div>

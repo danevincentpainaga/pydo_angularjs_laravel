@@ -1,0 +1,89 @@
+<div class="row" style="height: 3em;"></div>
+<div class="row">
+  <div class="col-lg-12" >
+      <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-address-book" style="font-size: 37px;"></i>&nbsp;Notes{{message}}</h3>
+      <button type="button" class="btn btn-success btn-sm" id="add" ng-click="goTo('/edit_notes')"><i class="fa fa-plus"></i>
+      <label style="font-family: cooper;">ADD</label></button>
+  </div>
+</div>
+<div class="row" ng-controller="notesCtrl">
+      <div class="col-lg-12" >
+          <ul class="list-group" style="margin-top: 7px;">
+          </li>
+            <li class="list-group-item">
+              <div class="col-sm-12" style="margin-bottom: 18px;">
+                <input type="checkbox" id="checkbox-delete">
+                <button class="btn btn-success btn-sm" id="delete-user"><i class="fa fa-trash delete-icon"></i>&nbsp;<label class="cursor-pointer">Delete</label></button>
+              </div>
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                      <div class="input-group">
+                        <input class="form-control" placeholder="date created" style="height:30px; border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;" />
+                      </div>
+                    </datepicker>
+                  </div>
+                  <div class="col-sm-2">
+                    <datepicker date-format="MM-dd-yyyy" selector="form-control" style="margin-left: -25px; ">
+                      <div class="input-group">
+                        <input class="form-control" placeholder="date created" style="height:30px;border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;" />
+                      </div>
+                    </datepicker>
+                  </div>
+                  <div class="col-sm-7" style="padding-right: 0px;">
+                    <input type="text" class="form-control" placeholder="Search" id="pwd" ng-model="search_user" style="border-radius: 14px;">
+                  </div>
+                  <div class="col-sm-1">
+                   <button class="btn btn-success btn-sm" style="height: 30px; background-color: #37b4d0; border-radius: 14px;">Search</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
+                <table class="table table-bordered table-hover table-striped" style="color: #333; font-size: 13px; font-family: Helvetica,Arial,sans-serif;">
+                  <thead style="color:#f1f1f1; font-family: verdana; background-image: linear-gradient(200deg, #155799bf, #37b4d0);">
+                    <tr>
+                      <th></th>
+                      <th>Title</th>
+                      <th>Date Created</th>
+                      <th>Date Update</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="note in notes">
+                      <td><input type="checkbox"></td>
+                      <td>{{note.title}}</td>
+                      <td>{{note.created_at}}</td>
+                      <td>{{note.updated_at}}</td>
+                      <td style="min-width: 140px; max-width: 100%;">
+                      <button class="btn btn-success btn-sm button-edit" ng-click="edit($index)">
+                        <i class="fa fa-check" style="margin-left:-5px;"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm button-delete" ng-click="deleteUser(note)" >
+                        <i class="fa fa-times delete-icon"></i>
+                        <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+                      </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </li>
+          </ul>
+      </div>
+
+      <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana;">
+         <ul class="pagination pagination-sm pagination">
+            <li class="page-item"><a class="page-link" id="prev" href="#">Prev</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" id="next" href="#">Next</a></li>
+          </ul>
+      </div>
+  </div>

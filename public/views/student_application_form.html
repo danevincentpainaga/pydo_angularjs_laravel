@@ -1,0 +1,236 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 header-background" >
+      <img class="card-img-top2" src="images/pydo.png" >
+      <p class="pydo">Provincial Youth Development Office</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="background-color: #37b4d0; height: 30px;">
+        <i class="fa fa-home font-color-white"></i>
+        <a href="/#!/dashboard" class="font-color-white font-13px ">Dashboard</a>
+        <i class="fa fa-home font-color-white"></i>
+        <a href="/#!/home" class="font-color-white font-13px ">Home</a>
+        <i class="fa fa-folder-open font-color-white margin-left-5em"></i>
+        <a href="/#!/dashboard" class="font-color-white font-13px">About Us</a>
+        <i class="fa fa-book font-color-white margin-left-5em"></i>
+        <a href="/#!/home/updates" class="font-color-white font-13px">Updates</a>
+        <i class="fa fa-user font-color-white margin-left-5em"></i>
+        <a href="/#!/dashboard" class="font-color-white font-13px">Profile</a>
+
+        <label style="float: right; margin-right: 1em; margin-top: 5px;" class="font-color-white font-13px">
+          <i class="fa fa-globe font-15px" ></i>&nbsp;12:35 pm</label>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" ng-controller="applicationCtrl as apps">
+
+<div class="row" style="background-color: white;">
+  <div class="col-lg-12" >
+      <h3 class="menu-header" style="color: #06799f; font-family: times New Roman;margin: 7px 0 -40px;"><i class="fa fa-wpforms" style="font-size: 37px; "></i>&nbsp;Application Form</h3>
+      <button class="btn btn-primary btn-sm" style="float: right; position: relative; top:0px; width: 75px;     background-image: linear-gradient(200deg, #155799, #37b4d0); font-family: cooper;" ng-click="apps.viewPrint()">
+        Save
+      </button>
+  </div>
+</div>
+<div class="row" style="background-color: #fcfcfd;" >
+    <div class="col-lg-12" id="application-form">
+      <ul class="list-group" style="margin-top: 1em;">
+          <li class="list-group-item" hide-input style="background-color:#e3e9ef; height: 45px;"></li>
+          <li class="list-group-item" style="margin-bottom: 10px; " >
+            <div class="row">
+              <div class="col-sm-4"> 
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">Firstname:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.firstname">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Surname:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.lastname">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Middle Name:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.middlename">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Sex:</label>
+                    <select class="form-control" style="max-width: 10em;height: 2em;">
+                      <option value="Officer">male</option>
+                      <option value="IT">female</option>
+                    </select>
+                  </div> 
+                </form>    
+              </div>
+              <div class="col-sm-4" >
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">Age:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Barangay:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.barangay">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Municipality:</label><br />
+                    <select id="sel-user-access" class="form-control" ng-model="apps.appdata.municipality" style="max-width: 15em;height: 2em;">
+                      <option value="">Select...</option>
+                      <option value="caluya">Caluya</option>
+                      <option value="libertad">Libertad</option>
+                      <option value="pandan">Pandan</option>
+                      <option value="sebaste">Sebaste</option>
+                      <option value="culasi">Culasi</option>
+                      <option value="tibiao">Tibiao</option>
+                      <option value="barbaza">Barbaza</option>
+                      <option value="lauaan">Laua-an</option>
+                      <option value="bugasong">Bugasong</option>
+                      <option value="valderama">Valderama</option>
+                      <option value="patnongon">Patnongon</option>
+                      <option value="sanremegio">San Remegio</option>
+                      <option value="belison">Belison</option>
+                      <option value="sibalom">Sibalom</option>
+                      <option value="sanjose">San Jose</option>
+                      <option value="hamtic">Hamtic</option>
+                      <option value="tobiasfornier">Tobias Fornier</option>
+                      <option value="aniniy">Anini-y</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Religion:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                  </div>
+                </form>    
+              </div>
+              <div class="col-sm-4" >
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">Date of Birth:</label>
+                      <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                        <div class="input-group form-group">
+                          <input class="form-control" ng-model="apps.appdata.collegeYear" style="border-top-right-radius: 4px;
+                          border-bottom-right-radius: 4px;" />
+                        </div>
+                      </datepicker>
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Civil Status:</label>
+                    <select class="form-control" ng-model="apps.appdata.civilStatus" style="max-width: 10em;height: 2em;">
+                      <option value="">Select...</option>
+                      <option value="single">Single</option>
+                      <option value="married">Married</option>
+                      <option value="widowed">Widowed</option>
+                      <option value="seperated">Seperated</option>
+                      <option value="annulled">Annulled</option>
+                    </select>
+                  
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Contact No:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                  </div>
+                </form>    
+              </div>
+            </div>
+          </li>
+       </ul>
+    </div>
+    <div class="col-lg-6" >
+       <ul class="list-group" style="margin-top: 7px;">
+        <li class="list-group-item col-md-12" hide-input style="background-color: #e3e9ef; height: 30px;"></li>
+          <li class="list-group-item col-md-12" style="margin-bottom: 10px; ">
+            <div class="row">
+              <div class="col-md-12"> 
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">School:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.school">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Course:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.course">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Year & Section:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.applicableYear">
+                  </div>
+                </form>    
+              </div>
+            </div>
+          </li>
+       </ul>
+    </div>
+    <div class="col-lg-6" >
+       <ul class="list-group" style="margin-top: 7px;">
+        <li class="list-group-item col-md-12" hide-input style="background-color: #e3e9ef; height: 30px;"></li>
+          <li class="list-group-item col-md-12" style="margin-bottom: 10px;">
+            <div class="row">
+              <div class="col-md-12"> 
+                <form>
+                  <div class="form-group">
+                  <label class="darkblue-label">Semester:</label><br />
+                    <select class="form-control" ng-model="apps.appdata.civilStatus" style="max-width: 10em;height: 2em;">
+                      <option value="single">1st</option>
+                      <option value="married">2nd</option>
+                      <option value="widowed">3rd</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="darkblue-label">Academic Year:</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                          <div class="input-group">
+                            <input class="form-control" ng-model="apps.appdata.collegeYear" style="border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;" />
+                          </div>
+                        </datepicker>
+                      </div>
+                      <div class="col-md-1 darkblue-label" style="padding: 0px;"><label>to</label></div>
+                      <div class="col-md-5" style="padding-left: 0px;">
+                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                          <div class="input-group">
+                            <input class="form-control" style="border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;" />
+                          </div>
+                        </datepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Student ID No:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.id">
+                  </div>
+                </form>    
+              </div>
+            </div>
+          </li>
+       </ul>
+    </div>
+    <div class="col-lg-12"  >
+      <ul class="list-group" style="margin-top: 7px;">
+        <li class="list-group-item col-md-12" hide-input style="background-color: #e3e9ef; height: 30px;"></li>
+          <li class="list-group-item col-md-12" style="margin-bottom: 10px; ">
+            <div class="row">
+              <div class="col-md-12"> 
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">Father's Name:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.father">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Mother's Maiden Name:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.mother">
+                  </div>
+                </form>    
+              </div>
+            </div>
+          </li>
+       </ul>
+    </div>
+</div>
+</div>

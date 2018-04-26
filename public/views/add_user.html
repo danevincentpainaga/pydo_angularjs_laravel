@@ -1,0 +1,157 @@
+<div class="row" style="height: 3em;"></div>
+<div class="row" ng-controller="adduserCtrl as adduser">
+  <div class="alert alert-success alerts" ng-hide="adduser.loading">
+    <span style="text-align: center;"><h2 style="margin-top: 5px; margin-bottom: 5px;"><i class="fa fa-spinner fa-spin" aria-hidden="true" ></i></h2></span>
+  </div>
+    <div class="col-lg-12" >
+      <ul class="nav nav-tabs nav-justified" style="margin-top: 40px;">
+      <li class="nav-item" >
+        <a class="nav-link active not-active" id="tab-add-user" href="#" style="width:340px;">
+          <label style="color: #06799f;"><i class="fa fa-user-plus" style="font-size: 37px;"></i>&nbsp;&nbsp;ADD USERS</label>
+        </a>
+      </li>
+      <li class="nav-item">
+        <div class="addclear-btn" style="float: right;">
+          <button class="btn btn-success btn-sm" id="add-user-btn" ng-click="adduser.addUser()">ADD</button>
+          <button class="btn btn-primary btn-sm" id="clear-input" ng-click="adduser.clear()">CLEAR</button>
+        </div>
+      </li>
+    </ul>
+        <ul class="list-group" style="margin-top: 7px;">
+          <li class="list-group-item" hide-input style="background-color: #e3e9ef;">
+            <i class="fa fa-minus" style="color:red; color: #06799f; font-size: 1.5em; float:right; cursor:pointer;" ng-click="adduser.showInput()">
+            </i>
+          </li>
+          <li class="list-group-item" style="margin-bottom: 10px;" ng-hide="adduser.hides" id="adduser-input">
+            <div class="row">
+              <div class="col-sm-4"> 
+                <form>
+                  <div class="form-group">
+                    <label class="normal-label">Firstname:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.firstname">
+                  </div>
+                  <div class="form-group">
+                    <label class="normal-label">Lastname:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.lastname">
+                  </div>
+                  <div class="form-group">
+                    <label class="normal-label">Gender:</label>
+                    <br />
+                    <label style="font-size: 14px;">Male</label>
+                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.gender" value="male">&nbsp;
+                    <label style="font-size: 14px;">Female</label>
+                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.gender" value="female">
+                  </div>
+                </form>    
+              </div>
+              <div class="col-sm-4" >
+                <form>
+                  <div class="form-group">
+                    <label class="normal-label">Contact number:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.address">
+                  </div>
+                  <div class="form-group">
+                    <label class="normal-label">Username:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.username">
+                  </div>
+                  <div class="form-group">
+                    <label class="normal-label">Password</label>
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.password">
+                  </div>
+                </form>    
+              </div>
+              <div class="col-sm-4" >
+                <form>
+                  <div class="form-group col-md-8" style="padding: 0px;">
+                    <label class="normal-label">Municipality Assigned:</label><br />
+                    <select class="form-control" ng-model="adduser.position" style="height: 30px;">
+                      <option value="">Select municipality</option>
+                      <option value="Officer">Culasi</option>
+                      <option value="IT">Sebaste</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-8" style="padding: 0px;">
+                    <label class="normal-label">Position:</label><br />
+                    <select class="form-control" ng-model="adduser.position" style="height: 30px;">
+                      <option value="">Select Position</option>
+                      <option value="Officer">Officer</option>
+                      <option value="IT">IT</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-8" style="padding: 0px;">
+                    <label class="normal-label">Access Type:</label><br />
+                    <select class="form-control" ng-model="adduser.user_access" style="height: 30px;">
+                      <option value="">User Access</option>
+                      <option value="admin">Admin</option>
+                      <option value="user">User</option>
+                    </select>
+                  </div>
+                </form>    
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <form> 
+              <div class="form-group col-5">
+                <label class="normal-label">Search User:</label>
+                <input type="text" class="form-control form-control-sm search-icon" ng-model="adduser.search_addeduser" id="search-added" placeholder="Search" style="min-width: 230px; border: 1px solid #abadaf;">
+              </div>
+            </form>
+          </li>
+          <li class="list-group-item" style="overflow-y: scroll; height:250px; padding: 7px;
+">
+              <table class="table table-bordered table-hover table-striped" style="font-size: 13px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif; ">
+                <thead style="color:#f1f1f1; font-family: verdana; background-image: linear-gradient(200deg, #155799bf, #37b4d0);">
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                    <th>username</th>
+                    <th>Address</th>
+                    <th>Position</th>
+                    <th>User Access</th>
+                    <th>status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="user in adduser.users | filter:adduser.search_addeduser:exactMatch">
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.gender}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.position}}</td>
+                    <td>{{user.user_access}}</td>
+                    <td>
+                      <label id="status" color-status stat="{{user.status}}" ng-model="(user.status)" style=" font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem;  ">{{user.status}}
+                      </label>
+                    </td>
+                    <td style="min-width: 140px; max-width: 100%;">
+                      <button class="btn btn-danger btn-sm button-delete" ng-click="adduser.deleteUser(user)" >
+                        <i class="fa fa-times delete-icon"></i>
+                        <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li>
+        </ul>
+    </div>
+    <div class="col-lg-12" style="position: relative; top: 18px; font-family: verdana;">
+       <ul class="pagination pagination-sm">
+        <li>
+          <button class="btn btn-success btn-sm button-edit" disabled>
+            <i class="fa fa-check" style="margin-left:-5px;"></i> 
+          </button>        
+          <label>to Edit</label>
+          <button class="btn btn-danger btn-sm button-delete" style="margin-left: 15px;" disabled>
+            <i class="fa fa-times delete-icon"></i>
+            <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+          </button>
+          <label>to Delete</label>
+        </li>
+        </ul>
+    </div>
+</div>

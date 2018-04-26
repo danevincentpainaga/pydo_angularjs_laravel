@@ -1,0 +1,13 @@
+<div class="row fill" style="background-color: white;" >
+
+	<ng-include src="'views/large_nav.html'" ></ng-include>
+	<ng-include src="'views/small_nav.html'" ></ng-include>
+
+	<div class="col-md-2 col-lg-2 col-sm-12 pad onprint"  id="side-nav-2" ng-style="nav" style="border-color: #e7e7e7; position: relative;
+	  z-index: 0; top: 50px; min-height: 610px; max-height: 610px; border-right: 2px solid #dadada;" >
+	</div>
+
+<div class="col-md-10 col-sm-12 container-resize" ng-style="content" id="nav-view" style=" position: relative; z-index: 0; top: 0px;" ng-view>
+</div>
+  
+</div>

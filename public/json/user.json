@@ -1,0 +1,10 @@
+  {"users":[
+    {"id":"1", "Firstname": "Dane", "Lastname":"Painaga", "username":"danetest", "user_access":"admin", "status":"active"},
+    {"id":"1", "Firstname": "Dane", "Lastname":"Vincent", "username":"vincetest", "user_access":"admin", "status":"active"},
+    {"id":"1", "Firstname": "jeff", "Lastname":"Cancino", "username":"jefftest", "user_access":"user", "status":"active"},
+    {"id":"1", "Firstname": "sophia", "Lastname":"Painaga", "username":"sophiatest", "user_access":"admin", "status":"active"},
+    {"id":"1", "Firstname": "long", "Lastname":"mejia", "username":"test", "user_access":"user", "status":"disabled"},
+    {"id":"1", "Firstname": "fred", "Lastname":"theworski", "username":"tester", "user_access":"user", "status":"inactive"},
+    {"id":"1", "Firstname": "rockers", "Lastname":"ediWowie", "username":"testerMan", "user_access":"user", "status":"disabled"}
+  ]
+}

@@ -1,0 +1,87 @@
+<div class="row" style="height: 3em;"></div>
+<div class="row" >
+    <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-graduation-cap" style="font-size: 37px;"></i>APPLIED SCHOLARS</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3" >
+        <div class="form-group">
+          <select class="form-control" ng-change="uctrl.statusChange(search_user.status)" ng-model="search_user.status" style="height: 30px;">
+            <option value="">Select Municipality</option>
+            <option value="active" ng-model="search_user.status">Culasi</option>
+            <option value="disabled" ng-model="search_user.status">Sebaste</option>
+          </select>
+      </div>
+    </div>
+    <div class="col-lg-12" ng-controller="appliedScholarCtrl as applied"> 
+        <ul class="list-group" style="margin-top: 7px;">
+          <li class="list-group-item">
+            <div class="row" style="padding-bottom: 1em; padding:0px;">
+              <div class="col-md-5 col-sm-12">
+              </div>
+              <div class="col-md-3 col-sm-12">
+                  <input type="text" class="form-control" placeholder="Firstname" ng-model="search_scholar" id="">
+              </div>
+              <div class="col-md-3 col-sm-12">
+                  <input type="text" class="form-control" placeholder="Lastname" ng-model="search_scholar" id="">
+              </div>
+              <div class="col-md-1 col-sm-12">
+                   <button class="btn btn-primary btn-sm" id="search-student" style="float: left;">Search</button>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item" style="margin-top: .5em;">
+            <!-- <input type="checkbox" style="margin-left: -9px;"> -->
+            <button class="btn btn-success btn-sm" id="delete-scholar"><i class="fa fa-trash"></i>
+              <label class="cursor-pointer">Delete</label>
+            </button>
+          </li>
+          <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
+              <table class="table table-bordered table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;">
+                <thead style="background-image: linear-gradient(200deg, #155799bf, #37b4d0); color: #fff; font-family: verdana;">
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Middle Name</th>
+                    <th>School</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <td>Time</td>
+                    <th style="text-align: center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="scholar in applied.scholars | filter:search_scholar:exactMatch">
+                    <td><input type="checkbox"></td>
+                    <td>{{scholar.firstname}}</td>
+                    <td>{{scholar.lastname}}</td>
+                    <td>{{scholar.middle_name}}</td>
+                    <td>{{scholar.schoolId}}</td>
+                    <td>{{scholar.courseId}}</td>
+                    <td>01/28/2018</td>
+                    <td>04:00 pm</td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
+   <!--                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" ng-click="applied.addaGrade(scholar)" data-toggle="modal" data-backdrop="static" data-target="#myModal" >Add Grade</button> -->
+                      <button class="btn btn-primary btn-sm" ng-click="applied.addToPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >Approved</button>&nbsp;&nbsp;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li>
+        </ul>
+    </div>
+    <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana;">
+       <ul class="pagination pagination-sm">
+          <li class="page-item"><a class="page-link" id="prev" href="#">Prev</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" id="next" href="#">Next</a></li>
+        </ul>
+    </div>
+</div>

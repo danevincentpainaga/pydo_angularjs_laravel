@@ -1,0 +1,81 @@
+<div class="row" style="height: 3em;"></div>
+<div class="container-fluid" ng-controller="schoolCtrl as s">
+<div class="row" >
+    <div class="col-lg-12" >
+        <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-graduation-cap" style="font-size: 37px;"></i>ADD SCHOOL</h3>
+     </div>
+</div>
+<div class="row" style="margin-bottom: 1em;">
+    <div class="col-sm-4" style="background-color:whitesmoke;">
+  <div class="row" style="background-color: whitesmoke; margin-top: 1em;">
+    <div class="col-md-12" style="background-color: whitesmoke;">
+      <ul class="list-group">
+        <li class="list-group-item"" style="background-color: #e3e9ef;"></li>
+        <li class="list-group-item">
+      <form>
+      <div class="form-group">
+         <label class="black-label"></label>
+         <input type="text" placeholder="Subject"  ng-model="s.schoolName" class="form-control" id="usr">
+      </div>
+      <div class="form-group" >
+         <label class="black-label"></label>
+         <input type="text" placeholder="address" ng-model="s.location" class="form-control" id="usr" style="margin-top: -20px;">
+      </div>
+      </form>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12" style="background-color: whitesmoke;">
+      <ul class="list-group">
+        <li class="list-group-item"  style="background-color: white; margin-top: 1em;">
+          <div class="col-md-12">
+            <button class="btn btn-primary col-md-12" ng-click = "s.addSchool()" style="background-color: #0097ae;">ADD</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+   <div class="col-sm-8" style="background-color:white; padding-left: 0px; padding-right: 0px;">
+     <div class="col-lg-12" >
+        <li class="list-group-item" style="padding-left: 0px;">
+          <form> 
+            <div class="form-group col-md-7" style="margin-top: 0.2rem; margin-bottom: 0.2rem;">
+              <input type="text" class="form-control search-icon" ng-model="search_addeduser" placeholder="Search" style="min-width: 230px; border: 1px solid #abadaf;">
+            </div>
+            <div class="col-md-5"></div>
+          </form>
+        </li>
+        <li class="list-group-item" style="overflow-y: auto; overflow-x: hidden; height:475px; padding: 5px;">
+          <span ng-hide="s.loading">
+            <img src="images/cube.gif" class="loading-gif2" ng-hide="s.loading">
+           </span>
+              <table class="table table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;"  ng-hide="s.subTblLoading">
+                <thead style="color:#f1f1f1; font-family: verdana; background-image: linear-gradient(200deg, #155799bf, #37b4d0);">
+                  <tr>
+                     <th>School</th>
+                    <th>Address</th>
+                    <th style="text-align: center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="school in s.schoolAdded | filter:search_addeduser:exactMatch">
+                    <td>{{school.school_name}}</td>
+                    <td>{{school.location}}</td>
+                    <td style="min-width: 140px; max-width: 100%; text-align: center;">
+                      <button class="btn btn-success btn-sm button-edit" >
+                        <i class="fa fa-check" style="margin-left:-5px;"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm button-delete" ng-click="s.deleteUser(user)" >
+                        <i class="fa fa-times delete-icon"></i>
+                        <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li>
+      </div>
+  </div>
+</div>
+</div>

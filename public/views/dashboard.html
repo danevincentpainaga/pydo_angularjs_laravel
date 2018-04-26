@@ -1,0 +1,123 @@
+<div class="container-fluid container-resize"  ng-controller="dashboardCtrl" style="padding: 0px;" >
+<div class="row" style="height: 3em;"></div>
+<div class="row">
+<div class="col-lg-12 col-md-12" >
+      <h3 style="color: #2aabc7; border-bottom: 1px solid #d6d6d6; padding-bottom: 9px; margin: 18px 0 20px;"><i class="fa fa-home" style="font-size: 37px;"></i>&nbsp;Dashboard</h3>
+  </div>
+</div>
+<div class="row" style="background-color: whitesmoke;">
+  <div class="col-md-3">
+    <div class="col-md-12 info-box" >
+     <div class="" style="background-image: linear-gradient(200deg, #9dc7f1, #1effea); width:37%;">
+       <i class="fa fa-user" style="font-size: 3.5em; position: relative; top: 10px; left: 30px;"></i>
+     </div>
+     <div class="" style="width:60%; color:#2aabc7;">
+      <label style="margin-left: 2.5em; margin-top: .25em;">USERS</label><br />
+      <h2 style="margin-left: 1.3em; margin-top: -8px; font-family:cooper;">3</h2>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-3">
+    <div class="col-md-12 info-box" >
+      <div class="" style="background-image: linear-gradient(200deg, #9dc7f1, #1ec1ff); width: 40%;">
+        <i class="fa fa-graduation-cap" style="font-size: 3.5em; position: relative; top: 10px; left: 21px;"></i>
+      </div>
+      <div class="" style="width:60%; color:#2aabc7;">
+        <label style="margin-left: 1.4em; margin-top: .25em;">SCHOLARS</label><br />
+        <h2 style=" text-align: center; font-family:cooper;">1950</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="col-md-12 info-box" >
+      <div class="" style="background-image: linear-gradient(200deg, #9dc7f1, #12d067); width: 40%;">
+        <i class="fa fa-user-plus" style="font-size: 3.5em; position: relative; top: 10px; left: 28px;"></i>
+      </div>
+      <div class="" style="width:60%; color:#2aabc7;">
+        <label style="margin-left: 2em; margin-top: .25em;">APPLIED</label><br />
+        <h2 style="text-align: center; margin-top: -8px; font-family:cooper;">2000</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="col-md-12 info-box" >
+      <div class="" style="background-image: linear-gradient(200deg, #aaec80, #d7e228); width: 40%;">
+        <i class="fa fa-book" style="font-size: 3.5em; position: relative; top: 10px; left: 30px;"></i>
+      </div>
+      <div class="" style="width:60%; color:#2aabc7;">
+        <label style="margin-left: 2.3em; margin-top: .25em;">NOTES</label><br />
+        <h2 style="text-align: center; margin-top: -8px; font-family:cooper;">67</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="background-color: whitesmoke;">
+  <div class="col-md-9" style="overflow: auto;">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <highchart id="chart1" config="chartConfig2" ></highchart>
+      </li>
+    </ul>
+  </div>
+    <div class="col-md-3 col-sm-12" style="background-color: white; margin-bottom: 1em;">
+      <ul class="list-group" style="margin-bottom: .30em; margin-right: 1em;">
+        <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-9" style="padding: 0px;">
+            <select class="form-control" style="height: 30px;">
+              <option>--select year--</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>            
+            </select>
+          </div>
+          <div class="col-md-3" style="padding-left: 8px;">
+            <button class="btn btn-default btn-sm" >
+              Filter
+            </button>
+          </div>
+          </div>
+        </li>
+      </ul>
+      <div class="row" style=" overflow: auto; min-height: 363px; max-height: 363px; ">
+        <div class="col-md-12">
+          <table class="table table-striped table-hover ">
+            <thead style="background-color: white;">
+              <th></th>
+              <th>Municipality</th>
+              <th>Total</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="towns in townNames">
+                <td><img src="images/home.png" style="height: 18px;"></td>
+                <td>{{ towns.town_name }}</td>
+                <td>{{ towns.total_scholar }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="background-color: whitesmoke;">
+    <div class="col-md-5" style="overflow: auto; margin-bottom: 1em;">
+          <ul class="list-group">
+      <li class="list-group-item">
+      <highchart id="chart1" config="chartConfig" ></highchart>
+          </li>
+    </ul>
+    </div>
+
+    <div class="col-md-7" style="overflow: auto; padding-left: 0px; margin-bottom: 1em;">
+                <ul class="list-group">
+      <li class="list-group-item">
+      <highchart id="chart1" config="chartConfig3" ></highchart>
+                </li>
+    </ul>
+    </div>
+</div>
+<!--     <div class="col-md-7 col-sm-12" style="background-color: whitesmoke; overflow: auto;     min-height: 425px; max-height: 425px;">
+      test
+    </div> -->
+<!-- </div> -->
+</div>

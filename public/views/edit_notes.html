@@ -1,0 +1,40 @@
+<div class="row" style="height: 3em;"></div>
+<div class="row" ng-controller="editNoteCtrl" ng-model="messages">
+<div class="col-lg-12">
+    <ul class="navbar-nav" style="margin-top: -12px;">
+      <li>
+        <h5 class="menu-header" style="">
+          <i class="fa fa-book" style="font-size: 37px; color: #2aabc7;"></i>
+          <label>Notes Title</label>
+          <input type="text" name="" class="form-control" ng-model="messages">
+        </h5>
+      </li>
+      <li ng-hide="hideDateCreated">
+        <label style="font-size: 15px;">Date Created: </label>
+      </li>
+      <li ng-hide="hideDateUpdate">
+        <label style="font-size: 15px;">Date Updated:</label>
+      </li>
+    </ul>
+</div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="navbar-nav">
+          <li>
+            <div class="btn-group" style="float: right; margin-bottom: 5px;">
+              <button type="button" class="btn btn-success" style="background-color: #06799f; font-size: 15px; width: 100px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;" ng-click="notesMessage()">Save</button>
+              <button type="button" class="btn btn-primary" style="background-color: white; font-size: 15px; color: black; width: 100px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;" ng-click="goTo('/notes')">Cancel</button>
+            </div>
+          </li>
+          <li class="list-group-item" style="background-color: #e3e9ef; height: 42px;"></li>
+          <li >
+           <form>
+            <div class="form-group">
+                <textarea class="form-control" style="border-radius: 0rem;" rows="17" id="notes" ng-model="notesTextarea"></textarea>
+            </div>
+          </form>
+          </li>
+        </ul>
+    </div>
+</div>
