@@ -58,6 +58,16 @@ var app = angular.module('mytodoApp')
 
     }
 
+    as.deleteScholar =function(appliedData){
+      var appData = { appliedDataId: appliedData.student_id };
+      pendingScholar.removePendingScholars(appData).then(function(response){
+        as.appliedScholars.splice(as.appliedScholars.indexOf(appliedData), 1);
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });
+    }
+
     as.townData = function(data){
       as.loading = false;
       as.addedScholarTbl = true;
@@ -65,17 +75,16 @@ var app = angular.module('mytodoApp')
         as.loading = true;
         as.addedScholarTbl = false;
         as.appliedScholars = response.data;
+        as.municipalTotal = response.data.length;
       }, function(err){
         console.log(err);
         as.loading = true;
         as.appliedScholars = [];
       });
-      console.log(data.town_id);
     }
 
     function getScholar(){
       pendingScholar.getPendingScholar().then(function(response){
-        console.log(response);
         as.loading = false;
         $timeout(function(){
           as.appliedScholars = response.data;
@@ -96,7 +105,6 @@ var app = angular.module('mytodoApp')
     function getMunicipalities(){
       pendingScholar.fetchTowns().then(function(response){
         as.towns = response.data;
-        console.log(response);
       }, function(err){
         console.log(err);
       });
@@ -130,6 +138,16 @@ var app = angular.module('mytodoApp')
             method:'POST',
             url: baseUrl+'updatePendingScholars',
             data: newStatus,
+              headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+      },
+      removePendingScholars: function(removeData){
+          return $http({
+            method:'POST',
+            url: baseUrl+'removePendingScholars',
+            data: removeData,
               headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }

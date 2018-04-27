@@ -27,17 +27,11 @@ var app = angular.module('mytodoApp')
       sc.loading = true;
       sc.scholarTbl = false;
       sc.scholars = response.data;
-      console.log(sc.scholars);
     }, function(err){
       console.log(err);
     })
     
 
-    appliedData.scholarTotal(3).then(function(response){
-      console.log(response);
-    }, function(err){
-      console.log(err);
-    })
   }]);
 
   app.directive('scholarStatus', function(){
@@ -45,18 +39,14 @@ var app = angular.module('mytodoApp')
         restrict: 'A',
         scope: true,
         link: function(scope, elem, attrs) {
-          var stats = attrs.status.toLowerCase();
-            if(stats==='active'){
+          var stats = attrs.status;
+            if(stats==3){
               elem.addClass('active');
+              elem[0].innerHTML = 'active';
             }
-            else if(stats==='disabled'){
-              elem.addClass('disabled');
-            }
-            else if(stats==='pending'){
+            else if(stats==2){
               elem.addClass('pending');
-            }
-            else if(stats==='inactive'){
-              elem.addClass('inactive');
+              elem[0].innerHTML = 'pending';
             }
         }
       };
@@ -66,9 +56,6 @@ app.factory('appliedData',['$http', function($http){
   return{
     getActiveScholar: function(){
       return $http.get(baseUrl+'getActiveScholar');
-    },
-    scholarTotal: function(max){
-      return $http.get(baseUrl+'scholarCount/'+max);
-    },
+    }
   }
 }]);

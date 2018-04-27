@@ -39,16 +39,17 @@
                       	Pending
                       </label>
                     </td>
-                    <td class="text-align-center">
-                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
-                        View
-                      </button>&nbsp;&nbsp;
-                  	  <button class="btn btn-success btn-sm" ng-click="addscholar.addToScholar(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
-                       Add
-                      </button>
-<!--                       <button class="btn btn-danger btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
-                        Print
-                      </button> -->
+                    <td class="text-align-center ">
+                        <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                        	View
+                        </button>&nbsp;&nbsp;
+	                  	 <button class="btn btn-success btn-sm" ng-click="addscholar.addToScholar(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+	                       Add
+	                     </button>
+	                    <button class="btn btn-danger btn-sm button-delete" id="remove-scholar-btn" ng-click="addscholar.deleteScholar(scholar)" >
+	                      <i class="fa fa-times delete-icon"></i>
+	                      <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
+	                    </button>
                     </td>
                   </tr>
                 </tbody>
@@ -103,11 +104,8 @@
     		</div>
     		<div class="col-md-12" style=" margin-top: .5em;">
     				<div class="row" style="background-color: white; height: 55px; margin-left: 5px; margin-right: 5px; border-bottom: 1px dashed #C3C3C3;">
-	    				<div class="col-md-6">
+	    				<div class="col-md-12">
 	    					<!-- <label style="float: left; margin-top: 1em;">Total Failed</label> -->
-	    				</div>
-	    				<div class="col-md-6">
-	    					<!-- <label style="float: right; margin-top: 1em;">2000</label> -->
 	    				</div>
     				</div>
     				<div class="row" style="background-color: white; height: 70px; margin-left: 5px; margin-right: 5px;">
@@ -115,7 +113,7 @@
 	    					<h5 style="float: left; margin-top: 1em;">Total</h5>
 	    				</div>
 	    				<div class="col-md-6">
-	    					<h5 style="float: right; margin-top: 1em;">2000</h5>
+	    					<h5 style="float: right; margin-top: 1em;">{{ addscholar.municipalTotal }}</h5>
 	    				</div>
     				</div>
     			<div class="col-md-12"></div>

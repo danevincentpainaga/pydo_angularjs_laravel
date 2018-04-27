@@ -8,8 +8,8 @@
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
-  .controller('appliedScholarCtrl',['$scope', '$http', '$ngConfirm', 'appliedScholarData',
-   function ($scope, $http, $ngConfirm, appliedScholarData) {
+  .controller('appliedScholarCtrl',['$scope', '$http', '$timeout', '$ngConfirm', 'appliedScholarData',
+   function ($scope, $http, $timeout, $ngConfirm, appliedScholarData) {
 
     var sg = this;
     var subjectHolder = [];
@@ -18,14 +18,11 @@ var app = angular.module('mytodoApp')
     sg.saveStudentGrades = [];
     sg.added_grade = [];
     sg.newSubjectAdded = [];
+    sg.scholarsTbl = true;
 
-    getAllSubject();
+    appliedScholar();
+    getMunicipalities();
     
-    appliedScholarData.getAppliedAScholar().then(function(response){
-        sg.scholars = response.data;
-    }, function(err){
-        console.log(err);
-    });
 
     sg.addaGrade = function(scholar){
       $scope.$emit('applied_id', {"id":scholar.student_id});
@@ -89,6 +86,14 @@ var app = angular.module('mytodoApp')
     sg.subjectData = function(){
       console.log(sg.selectedSubject);
     }
+    
+    sg.addAllToPending =function(){
+      appliedScholarData.approveAll().then(function(response){
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });
+    }
 
     sg.addToPending = function(applied){
       var dataId = { appliedId: applied.student_id, townId: applied.townId };
@@ -107,6 +112,54 @@ var app = angular.module('mytodoApp')
       });
     }
 
+    sg.filterMunicipality = function(data){
+      sg.loading = false;
+      sg.scholarsTbl = true;
+      appliedScholarData.appliedMunicipalScholars(data.town_id).then(function(response){
+        sg.loading = true;
+        sg.scholarsTbl = false;
+        sg.scholars = response.data;
+      }, function(err){
+        console.log(err);
+        sg.loading = true;
+        sg.scholars = [];
+      });
+      console.log(data.town_id);
+    }
+
+    sg.newDate = function(startDate){
+      var date = new Date(startDate).toISOString().slice(0,10);
+      var newDate = date+' '+convertTime12to24('11:13:00 AM');
+      console.log(newDate);
+    }
+    
+    sg.testing = function(datas){
+      console.log(datas);
+    }
+
+    function appliedScholar(){
+      appliedScholarData.getAppliedScholar().then(function(response){
+        sg.loading = false;
+        $timeout(function(){
+          sg.loading = true;
+          sg.scholarsTbl = false;
+          sg.scholars = response.data;
+        },500);
+      }, function(err){
+          console.log(err);
+      });
+    }
+
+    
+    function getMunicipalities(){
+      appliedScholarData.fetchTowns().then(function(response){
+        sg.towns = response.data;
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });
+    }
+ 
     function getAllSubject(){
       appliedScholarData.getSubjects().then(function(response){
         sg.subjects = [];
@@ -116,6 +169,17 @@ var app = angular.module('mytodoApp')
       });
     }
 
+    function convertTime12to24(time12h) {
+      const [time, modifier] = time12h.split(' ');
+      let [hours, minutes] = time.split(':');
+      if (hours === '12') {
+        hours = '00';
+      }
+      if (modifier === 'PM') {
+        hours = parseInt(hours, 10) + 12;
+      }
+      return hours + ':' + minutes+':'+'00';
+    }
   }]);
 
 
@@ -147,7 +211,7 @@ var app = angular.module('mytodoApp')
 //Services
 app.factory('appliedScholarData',['$http', function($http){
   return{
-    getAppliedAScholar: function(){
+    getAppliedScholar: function(){
       return $http.get(baseUrl+'appliedScholar');
     },
     addGrade: function(grades){
@@ -183,6 +247,15 @@ app.factory('appliedScholarData',['$http', function($http){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-    }
+    },
+    approveAll: function(){
+      return $http.get(baseUrl+'approveAll');
+    },
+    appliedMunicipalScholars: function(id){
+      return $http.get(baseUrl+'appliedMunicipalScholars/'+id);
+    },
+    fetchTowns: function(){
+      return $http.get(baseUrl+'getAllTowns');
+    },
   }
 }]);

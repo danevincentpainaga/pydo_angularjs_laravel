@@ -87,6 +87,14 @@ class notesController extends Controller
 
     }
 
+    public function approveAll(){
+       $newUpdate =  DB::table('applied_scholars')
+        ->where(['statusId'=> 1, 'townId'=>1])
+        ->limit(2)
+        ->update(['statusId'=> 2]);
+        return $newUpdate;
+    }
+
     public function updatePendingData(Request $request){
         $updatedData = $request->all();
         $newUpdate = DB::table('applied_scholars')
@@ -101,6 +109,12 @@ class notesController extends Controller
     public function getMunicipalScholars($id){
         $municipalScholars = DB::table('applied_scholars')
         ->where(['statusId'=> 2, 'townId'=> $id])->get();
+        return $municipalScholars;
+    }
+
+    public function appliedMunicipalScholars($id){
+        $municipalScholars = DB::table('applied_scholars')
+        ->where(['statusId'=> 1, 'townId'=> $id])->get();
         return $municipalScholars;
     }
 
@@ -159,6 +173,14 @@ class notesController extends Controller
         return $array;
     }
 
+    public function removePendingData(Request $request){
+        $appliedData = $request->input('appliedDataId');
+        $appliedData = applied_scholar::find($appliedData);
+        $appliedData->statusId = 1;
+        $appliedData->save();
+        return $appliedData;
+    }
+
     // public function editScholar($id){
     //     $scholarData = DB::table('applied_scholars')
     //     ->join('grades', 'applied_scholars.student_id', '=', 'grades.scholarId')
@@ -166,4 +188,9 @@ class notesController extends Controller
     //     ->get();
     //     return $scholarData;
     // }
+
+// DB::table('table')
+//     ->where('field', 'value')
+//     ->limit(1)
+//     ->update(['field', 'new value']);
 }

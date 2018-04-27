@@ -131,6 +131,9 @@ p{
   margin-bottom: 0px;
 }
 /*padding*/
+.padding-0{
+  padding: 0px !important;
+}
 .padding-left-right-0{
   padding-left: 0px;
   padding-right: 0px;
@@ -139,7 +142,7 @@ p{
   padding: 7px !important;
 }
 .padding-5px{
-  padding: 5px;
+  padding: 5px !important;
 }
 
 /*text-align*/
@@ -206,6 +209,8 @@ p{
   margin-top: 8.5em;
   margin-left: 19em;
 }
+
+
 /*.white-color{
   color: white;
   text-align: center;
@@ -581,7 +586,7 @@ hr {
     color: #06799f;
   }
   .active{
-    background-color: #14b5b5;
+    background-color: #14b5b5 !important;
     color: white;
   }
   .pending{

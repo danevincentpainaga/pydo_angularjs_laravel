@@ -22,6 +22,28 @@ app.controller('notesCtrl',['$scope', '$location', '$http',  function ($scope, $
 	$http.get(baseUrl+'notes').then(function(response){
 	    $scope.notes = response.data;
 	});
+	$scope.newDate = function(startDate){
+		var	date = new Date(startDate).toISOString().slice(0,10);
+		var newDate = date+' '+convertTime12to24('11:13:00 AM');
+		console.log(newDate);
+	}
+
+	function convertTime12to24(time12h) {
+	  const [time, modifier] = time12h.split(' ');
+
+	  let [hours, minutes] = time.split(':');
+
+	  if (hours === '12') {
+	    hours = '00';
+	  }
+
+	  if (modifier === 'PM') {
+	    hours = parseInt(hours, 10) + 12;
+	  }
+
+	  return hours + ':' + minutes+':'+'00';
+	}
+
 }]);
 
 var backtoNotesList = angular.module('mytodoApp')
@@ -29,6 +51,8 @@ backtoNotesList.controller('backtoNotesListCtrl', ['$scope', '$location', functi
 	$scope.goTo = function(url){
 		$location.path(url);
 	}
+
+
 }]);
 
 var apps = angular.module('mytodoApp')

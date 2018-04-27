@@ -20,8 +20,8 @@
                   <div class="col-sm-2">
                     <datepicker date-format="MM-dd-yyyy" selector="form-control">
                       <div class="input-group">
-                        <input class="form-control" placeholder="date created" style="height:30px; border-top-right-radius: 4px;
-                        border-bottom-right-radius: 4px;" />
+                        <input class="form-control" ng-model="startdate" placeholder="date created" style="height:30px; border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;" ng-change="newDate(startdate)"/>
                       </div>
                     </datepicker>
                   </div>
