@@ -8,9 +8,20 @@
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
-  .controller('editScholarCtrl', ['$scope','$routeParams', '$location', '$window', 'scholarData',
-   function ($scope, $routeParams, $location, $window, scholarData) {
-  
+  .controller('editScholarCtrl', ['$scope', '$rootScope ', '$routeParams', '$location', '$window', 'scholarData',
+   function ($scope, $rootScope, $routeParams, $location, $window, scholarData) {
+
+  // var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   $rootScope.valid = true;
+  //   $rootScope.home = false;
+  // }
+    
   var sc = this;
   sc.scholar_data;
 

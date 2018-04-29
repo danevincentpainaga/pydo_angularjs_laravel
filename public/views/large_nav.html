@@ -16,14 +16,14 @@ window.windowHeight: {{windowHeight}}
       <a class="nav-link" ng-class="{activated:isActivated('/')}" href="/#!/dashboard" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
         <i class="fa fa-home"></i><label class="cursor-pointer font-13-verdana" >DASHBOARD</label></a>
     </li>
-    <li class="nav-item side-menu" >
+    <li class="nav-item side-menu" ng-if="admin">
       <div class="nav-link cursor-pointer" href="#add-user" data-toggle="collapse" style="border-bottom: 1px solid #e7e7e7; color: #06799f;"><i class="fa fa-users"></i>
       <label class="cursor-pointer font-13-verdana"  >Managa User</label>
       <i class="fa fa-caret-down" style="float: right; margin-top: 5px; font-size: 18px;"></i>
       </div>
     </li>
-    <li class="nav-item collapse" id="add-user" >
-      <a class="nav-link" ng-class="{activated:isActivated('/user/page/1')}" href="/#!/user/page/1" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+    <li class="nav-item collapse" id="add-user" ng-if="admin">
+      <a class="nav-link" ng-class="{activated:isActivated('/user/page/1')}" href="#!/user/page/1" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
         <i class="fa fa-angle-right" style="margin-left: 20px;"></i><i class="fa fa-user" style="margin-left: 10px;"></i>&nbsp;<label class="cursor-pointer font-13-verdana">Users</label>
       </a>
       <a class="nav-link" ng-class="{activated:isActivated('/add_user')}" href="#!/add_user"  style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
@@ -63,7 +63,7 @@ window.windowHeight: {{windowHeight}}
         <i class="fa fa-angle-right" style="margin-left: 20px;"></i><i class="fa fa-list-alt" style="margin-left: 10px;"></i>&nbsp;<label class="cursor-pointer font-13-verdana">Applied Scholar</label>
       </a>
     </li>
-    <li class="nav-item side-menu">
+    <li class="nav-item side-menu" ng-if="admin">
       <a class="nav-link" ng-class="{activated:isActivated('/municipality_limit')}" href="#!/municipality_limit" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
         <i class="fa fa-briefcase"></i>&nbsp;<label class="cursor-pointer font-13-verdana" ng-style="collapseHide">Scholar Limit</label></a>
     </li>

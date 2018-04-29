@@ -28,7 +28,7 @@ angular
     })
     .when('/login', {
       templateUrl: 'views/login.html',
-      controller: 'mainCtrl',
+      controller: 'loginCtrl',
     })
     .when('/home', {
       templateUrl: 'views/home.html',
@@ -113,76 +113,206 @@ angular
     })
     .when('/adminpydologin', {
       templateUrl: 'views/admin_login.html',
-      controller: 'userCtrl',
+      controller: 'loginCtrl',
+    })
+    .when('/test', {
+      templateUrl: 'views/tabref.html',
+      controller: 'appliedScholarCtrl',
     })
     .otherwise({
       redirectTo:'/'
     });
 })
-.run(function($rootScope,$location) {
+.run(function($rootScope,$location, $cookies, $window) {
+//  $rootScope.municipal_id = 1; //this is the sample access each municipality scholars
   $rootScope.$on('$routeChangeStart', function(event, next, prev) {
-     $rootScope.pageLoad = false; 
-     $rootScope.dashboard = true;
-     // $rootScope.valid = true;
-     // $rootScope.home = false;
-     //1 is student role 2 is admin role
-     var cookie = true; 
-     var userRole = 2;
+     $rootScope.pageLoad = false;
+     //role 1 is superadmin role 2 is admin role 3 is user role 4 is student
+     var cookie = $window.localStorage.getItem('cookies');
      if(!cookie){
-      if(next.$$route.originalPath != '/adminpydologin'){
+      if(
+        next.$$route.originalPath == '/home' ||
+        next.$$route.originalPath == '/adminpydologin' || 
+        next.$$route.originalPath == '/home/updates'){
         $rootScope.valid = false;
         $rootScope.home = true;
-        $location.path('/home');
-      }
-     }else{
-      if(next.$$route.originalPath == '/'){
-        if(userRole === 1){
-          $rootScope.valid = false;
-          $rootScope.home = true;
-          $location.path('/home');
-        }
-        else{
-          $rootScope.home = false;
-          $rootScope.valid = true;
-        }
-      }
-      else if(next.$$route.originalPath == '/home/updates' 
-        || next.$$route.originalPath == '/home/application'
-        || next.$$route.originalPath == '/home/profile'
-        || next.$$route.originalPath == '/adminpydologin')
-      {
-
-          $rootScope.valid = false;
-          $rootScope.home = true;
-
       }
       else{
-          if(userRole === 1){
-            if(next.$$route.originalPath != '/home/updates' 
-            || next.$$route.originalPath != '/home/application'
-            || next.$$route.originalPath != '/home/profile'
-            || next.$$route.originalPath != '/adminpydologin')
-          {
-            $rootScope.valid = false;
-            $rootScope.home = true;
-            $location.path('/home');
-          }
-        }
-        else if(next.$$route.originalPath == '/home'){
+        $rootScope.valid = false;
+        $rootScope.home = true;
+        $rootScope.dashboard = false;
+        $rootScope.profile = false;
+        $location.path('/home');
+      }
+     }
+    // else{
+    //   if(userRole === 4){
+    //     if(next.$$route.originalPath == '/home' ||
+    //       next.$$route.originalPath == '/home/profile' ||
+    //       next.$$route.originalPath == '/home/application' || 
+    //       next.$$route.originalPath == '/home/updates'){
+    //       $rootScope.valid = false;
+    //       $rootScope.home = true;
+    //       $rootScope.loginForm = false;
+    //       $rootScope.dashboard = false;
+    //       $rootScope.profile = true;
+    //     }
+    //     else{
+    //       $rootScope.valid = false;
+    //       $rootScope.home = true;
+    //       $rootScope.loginForm = false;
+    //       $rootScope.dashboard = false;
+    //       $rootScope.profile = true;
+    //       $location.path('/home');
+    //     }
+    //   }
+    //   else if(userRole === 1){
+    //     if(next.$$route.originalPath == '/home' ||
+    //       next.$$route.originalPath == '/home/updates'){
+    //       $rootScope.home = true;
+    //       $rootScope.valid = false;
+    //       $rootScope.dashboard = true;
+    //     }
+    //     else if(
+    //       next.$$route.originalPath == '/home/profile' ||
+    //       next.$$route.originalPath == '/home/application'){
+    //       $rootScope.home = true;
+    //       $rootScope.valid = false;
+    //       $rootScope.dashboard = true;
+    //       $location.path('/home');
+    //     }
+    //     else if(next.$$route.originalPath == '/adminpydologin'){
+    //       $rootScope.home = false;
+    //       $rootScope.valid = true;
+    //       $location.path('/');
+    //     }
+    //     else{
+    //       $rootScope.admin = true;
+    //       $rootScope.superAdmin = true;
+    //       $rootScope.home = false;
+    //       $rootScope.valid = true;          
+    //     }
+    //   }
+    //   else if(userRole === 2){
+    //     if(next.$$route.originalPath == '/home' ||
+    //       next.$$route.originalPath == '/home/profile' ||
+    //       next.$$route.originalPath == '/home/application' || 
+    //       next.$$route.originalPath == '/home/updates'){
+    //       $rootScope.home = true;
+    //       $rootScope.valid = false;
+    //       $rootScope.dashboard = true;
+    //       $rootScope.admin = false;
+    //     }
+    //     else if(next.$$route.originalPath == '/adminpydologin'){
+    //       $rootScope.home = false;
+    //       $rootScope.valid = true;
+    //       $location.path('/');
+    //     }
+    //     else{
+    //       $rootScope.admin = false;
+    //       $rootScope.superAdmin =false;
+    //       $rootScope.home = false;
+    //       $rootScope.valid = true;          
+    //     }
+    //   }
+    // }
+
+  });
+
+  $rootScope.$on('$routeChangeSuccess', function(event, next, prev) {
+    $rootScope.pageLoad = true;
+    var cookie = JSON.parse($window.localStorage.getItem('cookies') )
+    if(!cookie){
+      if(
+        next.$$route.originalPath == '/home' ||
+        next.$$route.originalPath == '/adminpydologin' || 
+        next.$$route.originalPath == '/home/updates'){
+        $rootScope.valid = false;
+        $rootScope.home = true;
+      }
+      else{
+        $rootScope.valid = false;
+        $rootScope.home = true;
+        $rootScope.dashboard = false;
+        $rootScope.profile = false;
+        $location.path('/home');
+      }
+     }
+    else{
+      if(cookie[0].userAccessId === 4){
+        if(next.$$route.originalPath == '/home' ||
+          next.$$route.originalPath == '/home/profile' ||
+          next.$$route.originalPath == '/home/application' || 
+          next.$$route.originalPath == '/home/updates'){
           $rootScope.valid = false;
           $rootScope.home = true;
+          $rootScope.loginForm = false;
+          $rootScope.dashboard = false;
+          $rootScope.profile = true;
         }
         else{
-          $rootScope.valid = true;
+          $rootScope.valid = false;
+          $rootScope.home = true;
+          $rootScope.loginForm = false;
+          $rootScope.dashboard = false;
+          $rootScope.profile = true;
+          $location.path('/home');
+        }
+      }
+      else if(cookie[0].userAccessId === 1){
+        if(next.$$route.originalPath == '/home' ||
+          next.$$route.originalPath == '/home/updates'){
+          $rootScope.home = true;
+          $rootScope.valid = false;
+          $rootScope.dashboard = true;
+          $rootScope.municipal_id = 4; 
+        }
+        else if(
+          next.$$route.originalPath == '/home/profile' ||
+          next.$$route.originalPath == '/home/application'){
+          $rootScope.home = true;
+          $rootScope.valid = false;
+          $rootScope.dashboard = true;
+          $location.path('/home');
+        }
+        else if(next.$$route.originalPath == '/adminpydologin'){
           $rootScope.home = false;
-   
+          $rootScope.valid = true;
+          $location.path('/');
+        }
+        else{
+          $rootScope.admin = true;
+          $rootScope.superAdmin = true;
+          $rootScope.home = false;
+          $rootScope.valid = true;
+          $rootScope.municipal_id = 4;         
+        }
+      }
+      else if(cookie[0].userAccessId === 2){
+        if(next.$$route.originalPath == '/home' ||
+          next.$$route.originalPath == '/home/profile' ||
+          next.$$route.originalPath == '/home/application' || 
+          next.$$route.originalPath == '/home/updates'){
+          $rootScope.home = true;
+          $rootScope.valid = false;
+          $rootScope.dashboard = true;
+          $rootScope.admin = false;
+          $rootScope.municipal_id = cookie[0].townId;
+        }
+        else if(next.$$route.originalPath == '/adminpydologin'){
+          $rootScope.home = false;
+          $rootScope.valid = true;
+          $location.path('/');
+        }
+        else{
+          $rootScope.admin = false;
+          $rootScope.superAdmin =false;
+          $rootScope.home = false;
+          $rootScope.valid = true;  
+          $rootScope.municipal_id = cookie[0].townId;      
         }
       }
     }
-  });
-
-  $rootScope.$on('$routeChangeSuccess', function() {
-    $rootScope.pageLoad = true;
   });
 });
 

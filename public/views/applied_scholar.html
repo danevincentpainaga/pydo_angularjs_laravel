@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="row" ng-controller="appliedScholarCtrl as applied">
-    <div class="col-md-3" >
+    <div class="col-md-3" ng-if="superAdmin">
         <div class="form-group">
           <select class="form-control height-30px width-11em"  ng-model="applied.selectedTown" ng-options="town as town.town_name for town in applied.towns track by town.town_id " ng-change="applied.filterMunicipality(applied.selectedTown)" >
           <option value="">Select Municipality</option>
@@ -17,36 +17,36 @@
           <li class="list-group-item">
             <div class="row" style="padding-bottom: 1em; padding:0px;">
               <div class="col-md-2 col-sm-12">
-                <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                <datepicker date-format="yyyy-MM-dd" selector="form-control">
                   <div class="input-group">
-                    <input class="form-control" ng-model="applied.startdate" placeholder="End Date" style="height:30px; border-top-right-radius: 4px;
-                    border-bottom-right-radius: 4px;" ng-change="applied.newDate(applied.startdate)"/>
+                    <input class="form-control" ng-model="applied.enddate" placeholder="End Date" style="height:30px; border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;" />
                   </div>
                 </datepicker>
               </div>
-              <div class="col-md-3 col-sm-12">
+              <div class="col-md-3 col-sm-12 padding-right-4em padding-left-0">
                 <div class="row">
                   <div class="col-md-5 padding-0">
-                    <select class="form-control" ng-model="applied.hour" >
-                      <option value="AM">01</option>
-                      <option value="AM">02</option>
-                      <option value="AM">03</option>
-                      <option value="AM">04</option>
-                      <option value="AM">05</option>
-                      <option value="AM">06</option>
-                      <option value="AM">07</option>
-                      <option value="AM">08</option>
-                      <option value="AM">09</option>
-                      <option value="AM">10</option>
-                      <option value="AM">11</option>
-                      <option value="AM">12</option>
+                    <select class="form-control height-30px" ng-model="applied.hour" >
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
                     </select>
                   </div>
                   <div class="col-md-4 padding-0">
-                    <input type="text" class="form-control" placeholder="minutes" ng-model="applied.minutes" >
+                    <input type="text" class="form-control height-30px" placeholder="minutes" ng-model="applied.minutes" >
                   </div>
                   <div class="col-md-3 padding-0">
-                    <select class="form-control" ng-model="applied.timezone" >
+                    <select class="form-control height-30px" ng-model="applied.timezone" >
                       <option value="AM">AM</option>
                       <option value="PM">PM</option>
                     </select>
@@ -54,13 +54,14 @@
                 </div>
               </div>
               <div class="col-md-3 col-sm-12">
-                  <input type="text" class="form-control" placeholder="Firstname" ng-model="search_scholar" id="">
               </div>
-              <div class="col-md-3 col-sm-12">
-                  <input type="text" class="form-control" placeholder="Lastname" ng-model="search_scholar" id="">
-              </div>
-              <div class="col-md-1 col-sm-12">
-                   <button class="btn btn-primary btn-sm" id="search-student" style="float: left;">Search</button>
+              <div class="col-md-4 col-sm-12 padding-right-0">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search"  ng-model="applied.Search_appliedscholar" style="float: left; width: 80%; border-top-right-radius: 0px; border-bottom-right-radius: 0px; ">
+                  <button class="btn btn-success" style="height: 31px !important;border-bottom-left-radius: 0px !important; border-top-left-radius: 0px  !important; background-color: #2d97bf;">
+                    <i class="fa fa-search" style="position: relative;top: -4px;"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </li>

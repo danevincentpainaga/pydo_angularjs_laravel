@@ -10,12 +10,12 @@
         <i class="fa fa-home"></i>
       </a>
     </li>
-    <li class="nav-item side-menu">
+    <li class="nav-item side-menu" ng-if="admin" ng-if="admin">
         <a class="nav-link" ng-class="{activated:isActivated('/user/page/1')}" href="/#!/user/page/1" data-toggle="tooltip" data-placement="right" title="User" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
           <i class="fa fa-user" style="margin-left: 4px;"></i>
         </a>
     </li>
-    <li class="nav-item side-menu">
+    <li class="nav-item side-menu" ng-if="admin">
         <a class="nav-link" ng-class="{activated:isActivated('/add_user')}" href="#!/add_user" data-toggle="tooltip" data-placement="right" title="Add User" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
           <i class="fa fa-user-plus" style="margin-left: 4px;"></i>
         </a>
@@ -44,8 +44,8 @@
         <i class="fa fa-list-alt"></i>
       </a>
     </li>
-    <li class="nav-item side-menu">
-      <a class="nav-link" ng-class="{activated:isActivated('/add_subject')}" href="#!/add_subject" data-toggle="tooltip" data-placement="right" title="Add Subject" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
+    <li class="nav-item side-menu" ng-if="admin">
+      <a class="nav-link" ng-class="{activated:isActivated('/municipality_limit')}" href="#!/municipality_limit" data-toggle="tooltip" data-placement="right" title="Add Subject" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
       <i class="fa fa-briefcase"></i>
       </a>
     </li>

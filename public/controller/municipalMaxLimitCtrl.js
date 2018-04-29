@@ -8,9 +8,20 @@
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
-  .controller('municipalMaxLimitCtrl',['$http', '$timeout', 'maxLimit', 
-   function ($http, $timeout, maxLimit ) {
-  	var ml = this;
+  .controller('municipalMaxLimitCtrl',['$rootScope', '$http', '$timeout', '$location', '$window', 'maxLimit', 
+  function ($rootScope, $http, $timeout, $location, $window, maxLimit ) {
+  var ml = this;
+
+  var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  if(!log){
+    $rootScope.valid = false;
+    $rootScope.home = true;
+    $location.path('/home');
+  }else{
+    $rootScope.valid = true;
+    $rootScope.home = false;
+  }
 
     maxLimit.getMunicipal().then(function(response){
       displayMaxValue(response.data);

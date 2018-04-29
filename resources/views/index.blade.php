@@ -46,6 +46,7 @@
 
     <script src="{{ asset('scripts/app.js') }}"></script>
     <script src="{{ asset('controller/mainCtrl.js') }}"></script>
+    <script src="{{ asset('controller/loginCtrl.js') }}"></script>
     <script src="{{ asset('controller/notesCtrl.js') }}"></script>
     <script src="{{ asset('controller/userCtrl.js') }}"></script>
     <script src="{{ asset('controller/scholarCtrl.js') }}"></script>
@@ -81,52 +82,46 @@
 </div>
 <!-- modal -->
 <div class="modal fade" id="update-status" style="margin-left: 20px;" >
-<div class="modal-dialog application-modal" id="application-modal">
-  <div class="modal-content" style="min-width: 200px; max-width: 350px; margin-left: 410px; margin-top: 250px;">
-  
-    <!-- Modal Header -->
-    <div class="modal-header" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" >
-      <button type="button" class="close" data-dismiss="modal" style="padding: 0px; position: relative; top: 2px; right: 12px;">&times;</button>
-    </div>
-    
-    <!-- Modal body -->
-    <div class="modal-body"  >
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12" >
-              <h5 style="color: #2aabc7; padding-bottom: 9px; margin: 10px 0 20px; border-bottom: 1px solid #d6d6d6;">
-                Update Status
-              </h5>
+  <div class="modal-dialog application-modal" id="application-modal">
+    <div class="modal-content" style="min-width: 200px; max-width: 350px; margin-left: 410px; margin-top: 250px;">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" >
+        <button type="button" class="close" data-dismiss="modal" style="padding: 0px; position: relative; top: 2px; right: 12px;">&times;</button>
+      </div>
+      <div class="modal-body"  >
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12" >
+                <h5 style="color: #2aabc7; padding-bottom: 9px; margin: 10px 0 20px; border-bottom: 1px solid #d6d6d6;">
+                  Update Status
+                </h5>
+              </div>
+            </div>
+            <div class="btn-group">
+              <label class="btn btn-default" style="width: 6rem;">
+                <input type="radio" name="optradio" style="transform: scale(1.2);" checked>
+                Active
+              </label>
+              <label class="btn btn-default" style="width: 6rem;">
+                <input type="radio" name="optradio" style="transform: scale(1.2);">
+                Pending
+              </label>
+              <label class="btn btn-default" style="width: 6rem;">
+                <input type="radio" name="optradio" style="transform: scale(1.2);">
+                Renewed
+              </label>
             </div>
           </div>
-          <div class="btn-group">
-            <label class="btn btn-default" style="width: 6rem;">
-              <input type="radio" name="optradio" style="transform: scale(1.2);" checked>
-              Active
-            </label>
-            <label class="btn btn-default" style="width: 6rem;">
-              <input type="radio" name="optradio" style="transform: scale(1.2);">
-              Pending
-            </label>
-            <label class="btn btn-default" style="width: 6rem;">
-              <input type="radio" name="optradio" style="transform: scale(1.2);">
-              Renewed
-            </label>
-          </div>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" ng-click="printForm()">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="height: 35px;">Close</button>
+      </div>
     </div>
-    
-    <!-- Modal footer -->
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" data-dismiss="modal" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" ng-click="printForm()">Save</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal" style="height: 35px;">Close</button>
-    </div>
-    
-  </div>
   </div>
 </div>
 
-<div class="modal fade" ng-controller="appliedScholarCtrl as applied" id="add-subject" style="margin-left: 20px;" >
+<div class="modal fade" ng-controller="addscholarCtrl as addscholar" id="save-addedScholar" style="margin-left: 20px;" >
 <div class="modal-dialog application-modal">
   <div class="modal-content" style="min-width: 200px; max-width: 350px; margin-left: 410px; margin-top: 210px;
    border: 1px solid rgba(0, 0, 0, 0.65);">
@@ -142,18 +137,18 @@
           <div class="row">
             <div class="col-lg-12" >
               <h5 style="color: #2aabc7; padding-bottom: 9px; margin: 10px 0 20px; border-bottom: 1px solid #d6d6d6;">
-                Add Subject
+                Confirm Account
               </h5>
             </div>
           </div>
-            <input type="text" class="form-control dark-border" placeholder="subject" ng-model="applied.subject">
-            <input type="text" class="form-control dark-border" placeholder="description" ng-model="applied.description" style="margin-top: 3px;" >
+            <input type="text" class="form-control dark-border" placeholder="subject" ng-model="addscholar.username">
+            <input type="text" class="form-control dark-border" placeholder="description" ng-model="addscholar.password" style="margin-top: 3px;" >
         </div>
     </div>
     
     <!-- Modal footer -->
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" data-dismiss="modal" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" ng-click="applied.addSubject()">Save</button>
+      <button type="button" class="btn btn-success" data-dismiss="modal" style="background-image: linear-gradient(200deg, #155799, #37b4d0); height: 35px;" ng-click="addscholar.saveToScholars(addscholar.username, addscholar.password)">Save</button>
       <button type="button" class="btn btn-danger" data-dismiss="modal" style="height: 35px;">Close</button>
     </div>
     

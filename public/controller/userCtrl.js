@@ -10,8 +10,19 @@
 
 var app = angular.module('mytodoApp')
 app.controller('userCtrl',
-  ['$scope', '$rootScope', '$location', '$http', '$routeParams', '$ngConfirm','$filter', '$timeout', 'getUsers', 
-  function ($scope, $rootScope, $location, $http, $routeParams, $ngConfirm, $filter, $timeout, getUsers) {
+  ['$scope', '$rootScope', '$location', '$http', '$routeParams', '$ngConfirm','$filter', '$timeout', '$window','getUsers', 
+  function ($scope, $rootScope, $location, $http, $routeParams, $ngConfirm, $filter, $timeout, $window, getUsers) {
+
+  // var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   $rootScope.valid = true;
+  //   $rootScope.home = false;
+  // }
 
 var hid = {
   pageSize:10,
@@ -24,9 +35,10 @@ var toBeDeletedUsers = [];
 usr.userTable = true;
 
 var page = parseInt(($routeParams.pagenum * hid.pageSize) - hid.pageSize);
-console.log(page);
+
 getUserPerPage(page);
 count();
+getMunicipalities();
 
 usr.location = function(idx, user){
   $location.path('/view/'+idx);
@@ -93,6 +105,23 @@ usr.nextPage = function(){
   console.log($routeParams.pagenum);
 }
 
+// TO DO
+// usr.filterMunicipality = function(municipalData){
+//   usr.loading = false;
+//   usr.userTable = true;
+//   getUsers.appliedScholars(municipalData.town_id).then(function(response){
+//     usr.loading = true;
+//     usr.userTable = false;
+//     usr.selectAll = false;
+//     usr.users = response.data;
+//   }, function(err){
+//     console.log(err);
+//     usr.loading = true;
+//     usr.users = [];
+//   });
+//   console.log(municipalData.town_id);
+// }
+
 function confirmDialog(message, user, content){
   $ngConfirm({
     theme:'modern',
@@ -158,11 +187,10 @@ function getUserPerPage(id){
     usr.loading = false;
     $timeout(function(){
       usr.users = response.data;
-      console.log(response.data);
       usr.loading = true;
       usr.userTable = false;
       usr.selectAll = false;
-    },2000);
+    },1000);
   }, function(err){
     console.log(err);
   });
@@ -171,9 +199,17 @@ function getUserPerPage(id){
 function count(){
   getUsers.pageCount().then(function(response){
     hid.pageLength = response.data;
-    console.log(hid.pageLength);
     }, function(err){
       console.log(err);
+  });
+}
+
+//to do
+function getMunicipalities(){
+  getUsers.fetchTowns().then(function(response){
+    usr.municipalities = response.data;
+  }, function(err){
+    console.log(err);
   });
 }
 
@@ -186,21 +222,17 @@ app.directive('colorStatus', function(){
     restrict: 'A',
     scope: true,
     link: function(scope, elem, attrs) {
-      var stats = attrs.stat.toLowerCase();
-      if(stats==='active'){
-        elem.addClass('active');
-      }
-      else if(stats==='disabled'){
-        elem.addClass('disabled');
-      }
-      else if(stats==='pending'){
-        elem.addClass('pending');
-      }
-      else if(stats==='inactive'){
-        elem.addClass('inactive');
-      }
+      var stats = attrs.status;
+        if(stats==3){
+          elem.addClass('actives');
+          elem[0].innerHTML = 'active';
+        }
+        else if(stats==2){
+          elem.addClass('pending');
+          elem[0].innerHTML = 'pending';
+        }
     }
-  };
+  }
 });
 
 //Services
@@ -217,7 +249,14 @@ app.factory('getUsers', function($http){
     },
     filterStatus: function(selectedStatus){
       return selectedStatus;
-    }
+    },
+    fetchTowns: function(){
+      return $http.get(baseUrl+'getAllTowns');
+    },
+    // TO DO
+    // appliedScholars: function(id){
+    //   return $http.get(baseUrl+'getUserMunicipality/'+id);
+    // }
   }
 });
 

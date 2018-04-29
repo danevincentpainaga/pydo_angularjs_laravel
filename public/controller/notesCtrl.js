@@ -9,7 +9,20 @@
  */
 
 var app = angular.module('mytodoApp')
-app.controller('notesCtrl',['$scope', '$location', '$http',  function ($scope, $location, $http) {
+app.controller('notesCtrl',['$scope', '$rootScope', '$location', '$http', '$window',
+	function ($scope, $rootScope, $location, $http, $window) {
+
+  var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  if(!log){
+    $rootScope.valid = false;
+    $rootScope.home = true;
+    $location.path('/home');
+  }else{
+    $rootScope.valid = true;
+    $rootScope.home = false;
+  }
+
 	$scope.editNote = function(id){
 		$scope.$emit('noteID', {"id":id});
 		$location.path('/edit_notes');

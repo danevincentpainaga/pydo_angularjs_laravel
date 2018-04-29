@@ -9,7 +9,7 @@
 </div>
 <div class="row">
   <div class="col-md-12" >
-    <div class="form-group" style="float: right;">
+    <div class="form-group" style="float: right;" ng-if="superAdmin" >
       <select class="form-control" ng-change="uctrl.statusChange(search_user.status)" ng-model="search_user.status" style="height: 30px;">
         <option value="">Select Municipality</option>
         <option value="active" ng-model="search_user.status">Culasi</option>
@@ -80,7 +80,12 @@
                       <label id="status" scholar-status status="{{scholar.statusId}}" ng-model="(scholar.statusId)" style="color:white; font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem; "></label>
                     </td>
                     <td style="min-width: 140px; max-width: 100%; text-align: center;">
-                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
+                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                        View
+                      </button>&nbsp;&nbsp;
+                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#update-status" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                        Update
+                      </button>&nbsp;&nbsp;
                       <button class="btn btn-success btn-sm button-edit" ng-click="sc.editScholar(scholar.student_id)">
                         <i class="fa fa-check" style="margin-left:-5px;"></i>
                         <label></label>

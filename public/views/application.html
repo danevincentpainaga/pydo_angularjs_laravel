@@ -30,9 +30,9 @@
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Sex:</label>
-                    <select class="form-control" style="max-width: 15em;height: 2em;">
-                      <option value="Officer">male</option>
-                      <option value="IT">female</option>
+                    <select class="form-control" ng-model="apps.appdata.gender" style="max-width: 15em;height: 2em;">
+                      <option value="male">male</option>
+                      <option value="female">female</option>
                     </select>
                   </div> 
                 </form>    
@@ -41,7 +41,7 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">Age:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.age">
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Barangay:</label>
@@ -49,30 +49,12 @@
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Municipality:</label><br />
-                    <select class="form-control" ng-model="apps.appdata.municipality" style="height: 2em;">
-                      <option value="caluya">Caluya</option>
-                      <option value="libertad">Libertad</option>
-                      <option value="pandan">Pandan</option>
-                      <option value="sebaste">Sebaste</option>
-                      <option value="culasi">Culasi</option>
-                      <option value="tibiao">Tibiao</option>
-                      <option value="barbaza">Barbaza</option>
-                      <option value="lauaan">Laua-an</option>
-                      <option value="bugasong">Bugasong</option>
-                      <option value="valderama">Valderama</option>
-                      <option value="patnongon">Patnongon</option>
-                      <option value="sanremegio">San Remegio</option>
-                      <option value="belison">Belison</option>
-                      <option value="sibalom">Sibalom</option>
-                      <option value="sanjose">San Jose</option>
-                      <option value="hamtic">Hamtic</option>
-                      <option value="tobiasfornier">Tobias Fornier</option>
-                      <option value="aniniy">Anini-y</option>
+                    <select class="form-control height-30px width-11em"  ng-model="apps.selectedMunicipality" ng-options="municipal as municipal.town_name for municipal in apps.municipality track by municipal.town_id " ng-change="apps.filtermunicipality(apps.selectedTown)" >
                     </select>
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Religion:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.religion">
                   </div>
                 </form>    
               </div>
@@ -80,9 +62,9 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">Date of Birth:</label>
-                      <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                      <datepicker date-format="yyyy-MM-dd" selector="form-control">
                         <div class="input-group form-group">
-                          <input class="form-control" ng-model="apps.appdata.collegeYear" style="border-top-right-radius: 4px;
+                          <input class="form-control" ng-model="apps.appdata.dateofbirth" style="border-top-right-radius: 4px;
                           border-bottom-right-radius: 4px;" />
                         </div>
                       </datepicker>
@@ -100,7 +82,7 @@
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Contact No:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact">
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.contact_no">
                   </div>
                 </form>    
               </div>
@@ -117,23 +99,19 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">School:</label><br />
-                    <select class="form-control" ng-model="apps.appdata.civilStatus" style="height: 2em;">
-                      <option value="single">UA</option>
-                    </select>
+                     <select class="form-control height-30px"  ng-model="apps.school" ng-options="school as school.school_name for school in apps.schools track by school.school_id ">
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Degree:</label><br />
+                      <select class="form-control height-30px"  ng-model="apps.degree" ng-options="degree as degree.degree_name for degree in apps.degrees track by degree.degree_id ">
+                      </select>
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Course:</label>
                     <input type="text" class="form-control" id="usr" ng-model="apps.appdata.course">
                   </div>
                   <div class="form-group">
-                  <div class="form-group">
-                    <label class="darkblue-label">Degree:</label><br />
-                      <select class="form-control" ng-model="apps.appdata.civilStatus" style="height: 2em;">
-                        <option value="1">master</option>
-                        <option value="2">College</option>
-                        <option value="3">Vocational</option>
-                      </select>
-                  </div>
                   </div>
                 </form>    
               </div>
@@ -150,19 +128,13 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">College Year:</label><br />
-                      <select class="form-control" ng-model="apps.appdata.civilStatus" style="height: 2em;">
-                        <option value="1">1st</option>
-                        <option value="2">2nd</option>
-                        <option value="3">3rd</option>
+                      <select class="form-control height-30px"  ng-model="apps.college_year" ng-options="college as college.college_year_name for college in apps.collegeYear track by college.college_year_id ">
                       </select>
                   </div>
                   <div class="form-group">
                   <label class="darkblue-label">Semester:</label><br />
-                    <select class="form-control" ng-model="apps.appdata.civilStatus" style="height: 2em;">
-                      <option value="single">1st</option>
-                      <option value="married">2nd</option>
-                      <option value="widowed">3rd</option>
-                    </select>
+                      <select class="form-control height-30px"  ng-model="apps.semester" ng-options="semester as semester.semesters_name for semester in apps.semesters track by semester.semester_id ">
+                      </select>
                   </div>
                   <div class="form-group">
                     <div class="row">
@@ -172,18 +144,18 @@
                     </div>
                     <div class="row">
                       <div class="col-md-5">
-                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
                           <div class="input-group">
-                            <input class="form-control" ng-model="apps.appdata.collegeYear" style="border-top-right-radius: 4px;
+                            <input class="form-control" ng-model="apps.appdata.academic_year_from" style="border-top-right-radius: 4px;
                             border-bottom-right-radius: 4px;" />
                           </div>
                         </datepicker>
                       </div>
                       <div class="col-md-1 darkblue-label" style="padding: 0px;"><label>to</label></div>
                       <div class="col-md-5" style="padding-left: 0px;">
-                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
                           <div class="input-group">
-                            <input class="form-control" style="border-top-right-radius: 4px;
+                            <input class="form-control" ng-model="apps.appdata.academic_year_to" style="border-top-right-radius: 4px;
                             border-bottom-right-radius: 4px;" />
                           </div>
                         </datepicker>
@@ -198,14 +170,30 @@
     </div>
     <div class="col-lg-12"  >
       <ul class="list-group" style="margin-top: 7px;">
+          <li class="list-group-item col-md-12" style="margin-bottom: 10px; ">
+            <div class="row">
+              <div class="col-md-12">
+                <form>
+                  <div class="form-group">
+                    <label class="darkblue-label">Student ID No:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.student_id_number">
+                  </div>
+                </form>
+              </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-12"  >
+      <ul class="list-group" style="margin-top: 7px;">
         <li class="list-group-item col-md-12" hide-input style="background-color: #e3e9ef; height: 30px;"></li>
           <li class="list-group-item col-md-12" style="margin-bottom: 10px; ">
             <div class="row">
-              <div class="col-md-12"> 
+              <div class="col-md-8"> 
                 <form>
-                <div class="form-group">
-                    <label class="darkblue-label">Student ID No:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.id">
+                  <div class="form-group">
+                    <label class="darkblue-label">Spouse:</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.spouse">
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Father's Name:</label>
@@ -216,6 +204,20 @@
                     <input type="text" class="form-control" id="usr" ng-model="apps.appdata.mother">
                   </div>
                 </form>    
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="darkblue-label">Occupation</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.spouse_occupation">
+                  </div>
+                  <div class="form-group">
+                    <label class="darkblue-label">Occupation</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.father_occupation">
+                  </div>   
+                  <div class="form-group">
+                    <label class="darkblue-label">Occupation</label>
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.mother_occupation">
+                  </div>                 
               </div>
             </div>
           </li>

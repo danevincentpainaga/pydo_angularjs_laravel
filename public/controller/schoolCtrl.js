@@ -8,8 +8,20 @@
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
-  .controller('schoolCtrl',['$http', '$timeout', 'postNewSchool', 
-   function ($http, $timeout, postNewSchool ) {
+  .controller('schoolCtrl',['$rootScope', '$http', '$timeout', 'postNewSchool', 
+   function ($rootScope, $http, $timeout, postNewSchool ) {
+ 
+  //  var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   $rootScope.valid = true;
+  //   $rootScope.home = false;
+  // }
+
   	var s = this;
   	
   	s.loading = true;

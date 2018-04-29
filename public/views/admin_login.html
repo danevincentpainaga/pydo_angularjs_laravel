@@ -1,4 +1,4 @@
-<div class="container" style="padding-left: 22em;padding-top: 7em;padding-bottom: 14.8em;"> 
+<div class="container" ng-controller="loginCtrl as login" style="padding-left: 22em;padding-top: 7em;padding-bottom: 14.8em;"> 
     <div class="row">
       <ul class="list-group">
           <li class="list-group-item" style="border-radius: 0px;height: 30px; background-color: #e7eef1;border-left: 2px solid #1da5c3;
@@ -9,10 +9,10 @@
             <div class="row">
               <div class="col-md-12">
                 <label class="normal-label">Username:</label>
-                <input type="text" class="form-control" >
+                <input type="text" class="form-control" ng-model="login.username" >
                 <label class="normal-label">Password:</label>
-                <input type="text" class="form-control" >
-                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;">
+                <input type="text" class="form-control" ng-model="login.password">
+                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;" ng-click="login.loginBtn()">
                   <img src="images/login.png" style="width: 30px; margin-top: -8px;margin-left: -23px;">
                   <label class="login-label">Login</label>
                 </button>

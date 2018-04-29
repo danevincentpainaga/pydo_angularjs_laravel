@@ -48,7 +48,7 @@
                 <form>
                   <div class="form-group">
                     <label class="normal-label">Contact number:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.address">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.contact_no">
                   </div>
                   <div class="form-group">
                     <label class="normal-label">Username:</label>
@@ -64,27 +64,18 @@
                 <form>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Municipality Assigned:</label><br />
-                    <select class="form-control" ng-model="adduser.position" style="height: 30px;">
-                      <option value="">Select municipality</option>
-                      <option value="Officer">Culasi</option>
-                      <option value="IT">Sebaste</option>
-                    </select>
+                      <select class="form-control height-30px width-11em" ng-model="adduser.selectedMunicipality" ng-options="municipality as municipality.town_name for municipality in adduser.municipalities track by municipality.town_id " >
+                      </select>
                   </div>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Position:</label><br />
-                    <select class="form-control" ng-model="adduser.position" style="height: 30px;">
-                      <option value="">Select Position</option>
-                      <option value="Officer">Officer</option>
-                      <option value="IT">IT</option>
-                    </select>
+                      <select class="form-control height-30px width-11em"  ng-model="adduser.selectedPosition" ng-options="position as position.position_level for position in adduser.positions track by position.position_id " >
+                      </select>
                   </div>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Access Type:</label><br />
-                    <select class="form-control" ng-model="adduser.user_access" style="height: 30px;">
-                      <option value="">User Access</option>
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
-                    </select>
+                      <select class="form-control height-30px width-11em"  ng-model="adduser.selectedAccessType" ng-options="accessType as accessType.access_type for accessType in adduser.access_types track by accessType.user_accesses_id " >
+                      </select>
                   </div>
                 </form>    
               </div>
@@ -136,6 +127,15 @@
                   </tr>
                 </tbody>
               </table>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 addclear-btn" >
+              <button class="btn btn-success btn-sm" style="width: 48%;" ng-click="adduser.saveUsers()">SAVE</button>
+              <button class="btn btn-primary btn-sm" style="width: 48%;" ng-click="adduser.cancel()">CANCEL</button>
+            </div>
+            </div>
           </li>
         </ul>
     </div>

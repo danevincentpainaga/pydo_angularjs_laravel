@@ -11,15 +11,15 @@
   <div class="row">
     <div class="col-md-12" style="background-color: #37b4d0; height: 30px;">
         <i class="fa fa-home font-color-white" ng-if="dashboard"></i>
-        <a href="/#!/dashboard" class="font-color-white font-13px " ng-if="dashboard">Dashboard</a>
+        <a href="#!/" class="font-color-white font-13px " ng-if="dashboard">Dashboard</a>
         <i class="fa fa-home font-color-white"></i>
-        <a href="/#!/home" class="font-color-white font-13px ">Home</a>
+        <a href="#!/home" class="font-color-white font-13px ">Home</a>
         <i class="fa fa-folder-open font-color-white margin-left-5em"></i>
-        <a href="/#!/dashboard" class="font-color-white font-13px">About Us</a>
+        <a href="#!/home/about" class="font-color-white font-13px">About Us</a>
         <i class="fa fa-book font-color-white margin-left-5em"></i>
-        <a href="/#!/home/updates" class="font-color-white font-13px">Updates</a>
-        <i class="fa fa-user font-color-white margin-left-5em"></i>
-        <a href="/#!/home/profile" class="font-color-white font-13px">Profile</a>
+        <a href="#!/home/updates" class="font-color-white font-13px">Updates</a>
+        <i class="fa fa-user font-color-white margin-left-5em" ng-if="profile"></i>
+        <a href="#!/home/profile" class="font-color-white font-13px" ng-if="profile">Profile</a>
 
         <label style="float: right; margin-right: 1em; margin-top: 5px;" class="font-color-white font-13px">
           <i class="fa fa-globe font-15px" ></i>&nbsp;12:35 pm</label>
@@ -162,19 +162,19 @@
           </li>
         </ul>
 
-        <ul class="list-group" style="margin-top: 7px; border-radius: 0px;">
+        <ul class="list-group" style="margin-top: 7px; border-radius: 0px;" ng-if="loginForm" >
           <li class="list-group-item" style="border-radius: 0px;height: 30px; background-color: #e7eef1;border-left: 2px solid #1da5c3;
     border-right: 2px solid #1da5c3;">
           </li>
-          <li class="list-group-item" style="border-radius: 0px; ">
+          <li class="list-group-item" style="border-radius: 0px; " ng-controller="loginCtrl as login" >
             <h3 class="home-h3">login</h3>
             <div class="row">
               <div class="col-md-12">
                 <label class="normal-label">Username:</label>
-                <input type="text" class="form-control" >
+                <input type="text" class="form-control" ng-model="login.username" >
                 <label class="normal-label">Password:</label>
-                <input type="text" class="form-control" >
-                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;">
+                <input type="text" class="form-control" ng-model="login.password">
+                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;" ng-click="login.loginBtn()">
                   <img src="images/login.png" style="width: 30px; margin-top: -8px;margin-left: -23px;">
                   <label class="login-label">Login</label>
                 </button>

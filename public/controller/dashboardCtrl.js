@@ -14,7 +14,8 @@
 // $(function () {
   var myapp = angular.module('mytodoApp');
 
-  myapp.controller('dashboardCtrl',['$scope', '$http', 'getTowns', function ($scope, $http, getTowns) {
+  myapp.controller('dashboardCtrl',['$scope', '$rootScope', '$http', '$window', '$location', 'getTowns',
+   function ($scope, $rootScope, $http, $window, $location, getTowns) {
 
     $scope.townArray = [];
     $scope.townTotalArray = [];
@@ -23,6 +24,30 @@
     //   var printDiv = document.getElementById('Form');
     //   window.print(printDiv);
     // }
+  // console.log(JSON.parse($window.localStorage.getItem('cookies')));
+  // var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   if(log[0].userAccessId === 1){
+  //       $rootScope.home = false;
+  //       $rootScope.valid = true;
+  //       $rootScope.admin = true;
+  //       $rootScope.superAdmin =true;
+  //       $rootScope.dashboard = true;
+  //       $rootScope.municipal_id = log[0].townId;
+  //   }
+  //   else if(log[0].userAccessId === 2){
+  //       $rootScope.admin = false;
+  //       $rootScope.superAdmin =false;
+  //       $rootScope.home = false;
+  //       $rootScope.valid = true;  
+  //       $rootScope.municipal_id = log[0].townId;
+  //   }
+  // }
 
   $scope.$on('user', function(event, obj){
     var data = angular.forEach(obj.userData, function(val, i){

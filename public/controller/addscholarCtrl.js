@@ -8,17 +8,30 @@
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
-  .controller('addscholarCtrl', ['$scope', 'pendingScholar', '$http', '$timeout',
-   function ($scope, pendingScholar, $http, $timeout) {
+  .controller('addscholarCtrl', ['$scope', '$rootScope', 'pendingScholar', '$http', '$location', 
+  '$timeout', '$ngConfirm', '$window',
+   function ($scope, $rootScope, pendingScholar, $http, $location, $timeout, $ngConfirm, $window) {
+
+  // var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   $rootScope.valid = true;
+  //   $rootScope.home = false;
+  // }
+
     var as = this;
 
     as.scholar = false;
     as.addedScholarTbl = true;
     as.addedScholar = [];
 
-    getScholar();
+    getScholar($rootScope.municipal_id);
     getMunicipalities();
-
+    console.log($rootScope.municipal_id);
     as.deleteUser = function(id){
         var userId = $scope.scholars.indexOf(id);
         $scope.scholars.splice(userId, 1);
@@ -43,18 +56,23 @@ var app = angular.module('mytodoApp')
     as.saveScholar = function(){
       var idsToUpdate = getId(as.addedScholar)
       console.log(idsToUpdate);
+      if(idsToUpdate.length > 0 ){
       pendingScholar.updatePendingScholars(idsToUpdate).then(function(response){
-        console.log(response);
+        successNotification();
         as.addedScholar = [];
       }, function(err){
         console.log(err);
       });
+      }
+      else{
+        failedNotification();
+      }
     }
 
     as.cancel = function(){
       as.addedScholarTbl = true;
       as.addedScholar = [];
-      getScholar()
+      getScholar($rootScope.municipal_id);
 
     }
 
@@ -83,9 +101,14 @@ var app = angular.module('mytodoApp')
       });
     }
 
-    function getScholar(){
-      pendingScholar.getPendingScholar().then(function(response){
+    as.saveToScholars = function(uname, pword){
+      console.log(uname+''+pword);
+    }
+
+    function getScholar(municipalId){
+      pendingScholar.getPendingScholar(municipalId).then(function(response){
         as.loading = false;
+        console.log(response);
         $timeout(function(){
           as.appliedScholars = response.data;
           as.loading = true;
@@ -110,28 +133,65 @@ var app = angular.module('mytodoApp')
       });
     }
 
+  function failedNotification(){
+    $ngConfirm({
+        icon: 'fa fa-warning',
+        backgroundDismiss: false,
+        backgroundDismissAnimation: 'shake',
+        title: 'failed! No added data',
+        theme:'modern',
+        content:'',
+        type: 'red',
+        buttons: {
+          OK: {
+              text: 'OK',
+              btnClass: 'btn-red'
+            }
+          }
+    });
+  }
+
+  function successNotification(){
+    $ngConfirm({
+        icon:'fa fa-check-circle',
+        backgroundDismiss: false,
+        backgroundDismissAnimation: 'shake',
+        title: 'Successfully Added',
+        theme:'modern',
+        content:'',
+        type: 'green',
+        buttons: {
+          OK: {
+              text: 'OK',
+              btnClass: 'btn-green'
+            }
+          }
+    });
+  }
   }]);
 
   app.directive('colorStatus', function(){
-      return {
-        restrict: 'A',
-        scope: true,
-        link: function(scope, elem, attrs) {
-          var stats = attrs.stat.toLowerCase();
-            if(stats===1){
-              elem.addClass('active');
-            }
-            else if(stats==='inactive'){
-              elem.addClass('inactive');
-            }
-        }
-      };
+    return {
+      restrict: 'A',
+      scope: true,
+      link: function(scope, elem, attrs) {
+        var stats = attrs.status;
+          if(stats==3){
+            elem.addClass('actives');
+            elem[0].innerHTML = 'active';
+          }
+          else if(stats==2){
+            elem.addClass('pending');
+            elem[0].innerHTML = 'pending';
+          }
+      }
+    }
    });
 
   app.factory('pendingScholar',function($http){
     return{
-      getPendingScholar: function(){
-        return $http.get(baseUrl+'getPendingScholar');
+      getPendingScholar: function(mid){
+        return $http.get(baseUrl+'getPendingScholar/'+mid);
       },
       updatePendingScholars: function(newStatus){
           return $http({

@@ -8,8 +8,20 @@
  * Controller of the mytodoApp
  */
 angular.module('mytodoApp')
-  .controller('viewStudentCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-  
+  .controller('viewStudentCtrl', ['$scope', '$rootScope', '$location', '$window',
+   function ($scope, $rootScope, $location, $window) {
+ 
+  var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  if(!log){
+    $rootScope.valid = false;
+    $rootScope.home = true;
+    $location.path('/home');
+  }else{
+    $rootScope.valid = true;
+    $rootScope.home = false;
+  }
+
   var view = this;
   view.viewData = JSON.parse($window.localStorage.getItem('studentData'));
     angular.forEach(view.viewData, function(val, i){

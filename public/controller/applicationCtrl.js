@@ -8,33 +8,70 @@
  * Controller of the mytodoApp
  */
 angular.module('mytodoApp')
-  .controller('applicationCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-  
+  .controller('applicationCtrl', ['$scope', '$rootScope', '$location', '$window', 'applicationData',
+   function ($scope, $rootScope, $location, $window, applicationData) {
+
+  // var log = JSON.parse($window.localStorage.getItem('cookies'));
+
+  // if(!log){
+  //   $rootScope.valid = false;
+  //   $rootScope.home = true;
+  //   $location.path('/home');
+  // }else{
+  //   $rootScope.valid = true;
+  //   $rootScope.home = false;
+  // }
+    
   var apps = this;
-  
-  var appliedStudent = [];
+  apps.municipality = [];
+  apps.schools = [];
+  apps.degrees = [];
+  apps.collegeYear = [];
+  apps.semesters = [];
+  apps.appliedStudent = [];
+
+    // getMunicipalities($rootScope.municipal_id);
+  getMunicipalities();
+  getSchools();
+  getAllDegrees();
+  CollegeYears();
+  semesters();
 
   apps.viewPrint = function(){
     console.log(apps.appdata);
-     appliedStudent.push({
+    var applied = apps.appdata.firstname+' '+apps.appdata.lastname;
+    // var academic = apps.appdata.academic_year_from+' '+apps.appdata.academic_year_to;
+    apps.appliedStudent.push({
+     applied_name: applied,
      firstname: apps.appdata.firstname,
      lastname: apps.appdata.lastname,
      middle_name: apps.appdata.middlename,
-     date_of_birth: apps.appdata.birthdate,
-     course: apps.appdata.course,
-     year: apps.appdata.year,
      gender: apps.appdata.gender,
-     fathers_name: apps.appdata.father,
-     mothers_maiden_name: apps.appdata.mother,
-     // school: apps.appdata.school,
-     year: apps.appdata.applicableYear,
-     // applicableSemester: apps.appdata.applicableSemester,
-     // barangay: apps.appdata.barangay,
-     // municipality: apps.appdata.municipality,
-     // civilStatus: apps.appdata.civilStatus,
+     age: apps.appdata.age,
+     barangay: apps.appdata.barangay,
+     townId: apps.selectedMunicipality.town_id,
+     religion: apps.appdata.religion,
+     date_of_birth: apps.appdata.dateofbirth,
+     civil_status: apps.appdata.civilStatus,
+     contact_no: apps.appdata.contact_no,
+     schoolId: apps.school.school_id,
+     degreeId: apps.degree.degree_id,
+     // course: apps.appdata.course,
+     statusId: 1,
+     collegeYearId: apps.college_year.college_year_id,
+     semesterId: apps.semester.semester_id,
+     academic_year: apps.appdata.academic_year_from,
+     student_id_number: apps.appdata.student_id_number,
+     // year: apps.appdata.spouse,
+     // year: apps.appdata.father,
+     // year: apps.appdata.mother,
+     // year: apps.appdata.spouse_occupation,
+     // year: apps.appdata.father_occupation,
+     // year: apps.appdata.mother_occupation,
     });
-    console.log(appliedStudent);
-    view();
+    console.log(apps.appliedStudent);
+    appliedScholarInfo(apps.appliedStudent);
+    // view();
   }
 
   displayStorageData();
@@ -51,5 +88,95 @@ angular.module('mytodoApp')
     $window.localStorage.setItem('studentData', JSON.stringify(appliedStudent) );
     $location.path('/application/view_print');
   }
+  
+  function getMunicipalities(){
+    applicationData.fetchTowns().then(function(response){
+      apps.municipality = response.data;
+    }, function(err){
+      console.log(err);
+    });
+  }
 
+  function appliedScholarInfo(scholarData){
+    console.log(scholarData);
+    applicationData.saveAppliedScholar(scholarData).then(function(response){
+      console.log(response);
+    }, function(err){
+        console.log(err);
+    });
+  }
+
+  function getSchools(){
+    applicationData.fetchSchools().then(function(response){
+      apps.schools = response.data;
+    }, function(err){
+      console.log(err);
+    });
+  }
+
+  function getAllDegrees(){
+    applicationData.fetchDegree().then(function(response){
+      apps.degrees = response.data;
+    }, function(err){
+      console.log(err);
+    });
+  }
+
+  function CollegeYears(){
+    applicationData.fetchCollegeYear().then(function(response){
+      apps.collegeYear = response.data;
+    }, function(err){
+      console.log(err);
+    });
+  }
+
+  function semesters(){
+    applicationData.fetchSemesters().then(function(response){
+      apps.semesters = response.data;
+    }, function(err){
+      console.log(err);
+    });
+  }
+  // function getMunicipalities(municipalId){
+  //   applicationData.fetchTowns(municipalId).then(function(response){
+  //     apps.municipality = [response.data];
+  //     console.log(response);
+  //   }, function(err){
+  //     console.log(err);
+  //   });
+  // }
+
+}]);
+
+app.factory('applicationData',['$http', function($http){
+  return{
+    // fetchTowns: function(mid){
+    //   return $http.get(baseUrl+'getMunicipalById/'+mid);
+    // }
+    saveAppliedScholar: function(scholars){
+      return $http({
+        method:'POST',
+        url: baseUrl+'postAppliedScholar',
+        data: scholars,
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+    },
+    fetchTowns: function(){
+      return $http.get(baseUrl+'getAllTowns');
+    },
+    fetchSchools: function(){
+      return $http.get(baseUrl+'getSchoolData');
+    },
+    fetchDegree: function(){
+      return $http.get(baseUrl+'getDegrees');
+    },
+    fetchCollegeYear: function(){
+      return $http.get(baseUrl+'CollegeYearData');
+    },
+    fetchSemesters: function(){
+      return $http.get(baseUrl+'semestersData');
+    }
+  }
 }]);

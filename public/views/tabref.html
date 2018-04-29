@@ -6,137 +6,169 @@
 </div>
 <div class="row">
     <div class="col-lg-12" ng-controller="appliedScholarCtrl as applied">
-        <div class="container">
+        <div class="container-fluid padding-0">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" data-target="#home">Anini'y</a>
+            <li class="nav-item" >
+              <a class="nav-link active" data-toggle="tab" data-target="#aniniy">Anini'y</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu1">Dao</a>
+              <a class="nav-link" data-toggle="tab" data-target="#dao">Dao</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Hamtic</a>
+              <a class="nav-link" data-toggle="tab" data-target="#hamtic">Hamtic</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " data-toggle="tab" data-target="#home">San Jose</a>
+              <a class="nav-link " data-toggle="tab" data-target="#sanjose">San Jose</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu1">Sibalom</a>
+              <a class="nav-link" data-toggle="tab" data-target="#sibalom">Sibalom</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Belison</a>
+              <a class="nav-link" data-toggle="tab" data-target="#belison">Belison</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#home">Patnongon</a>
+              <a class="nav-link" data-toggle="tab" data-target="#patnongon">Patnongon</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu1">Bugasong</a>
+              <a class="nav-link" data-toggle="tab" data-target="#bugasong">Bugasong</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Lauan</a>
+              <a class="nav-link" data-toggle="tab" data-target="#lauan">Lauan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#home">Barbaza</a>
+              <a class="nav-link" data-toggle="tab" data-target="#barbaza">Barbaza</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu1">Tibiao</a>
+              <a class="nav-link" data-toggle="tab" data-target="#tibiao">Tibiao</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Culasi</a>
+              <a class="nav-link" data-toggle="tab" data-target="#culasi">Culasi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#home">Sebaste</a>
+              <a class="nav-link" data-toggle="tab" data-target="#sebaste">Sebaste</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu1">Pandan</a>
+              <a class="nav-link" data-toggle="tab" data-target="#pandan">Pandan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Libertad</a>
+              <a class="nav-link" data-toggle="tab" data-target="#libertad">Libertad</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" data-target="#menu2">Caluya</a>
+              <a class="nav-link" data-toggle="tab" data-target="#caluya">Caluya</a>
             </li>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div id="home" class="container tab-pane active">
-                 <div class="col-lg-12" ng-controller="appliedScholarCtrl as applied">
-                    <ul class="list-group" style="margin-top: 7px;">
-                      <li class="list-group-item" style="background-color: #e3e9ef;"><label style="margin-bottom: 0px;">List of Scholars</label></li>
-                      <li class="list-group-item">
-                        <div class="row" style="padding-bottom: 1em; padding-top: 1em;">
-                          <div class="col-md-2 col-sm-12">
+            <div id="aniniy" class="container-fluid padding-0 tab-pane active">
+                 <div class="col-lg-12 padding-0" ng-controller="appliedScholarCtrl as applied">
+                 <ul class="list-group" style="margin-top: 7px;">
+                  <li class="list-group-item">
+                    <div class="row" style="padding-bottom: 1em; padding:0px;">
+                      <div class="col-md-2 col-sm-12">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                          <div class="input-group">
+                            <input class="form-control" ng-model="applied.enddate" placeholder="End Date" style="height:30px; border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;" />
                           </div>
-                          <div class="col-md-3 col-sm-12">
-                              <input type="text" class="form-control" placeholder="Firstname" ng-model="search_scholar" id="">
+                        </datepicker>
+                      </div>
+                      <div class="col-md-3 col-sm-12 padding-right-4em padding-left-0">
+                        <div class="row">
+                          <div class="col-md-5 padding-0">
+                            <select class="form-control height-30px" ng-model="applied.hour" >
+                              <option value="01">01</option>
+                              <option value="02">02</option>
+                              <option value="03">03</option>
+                              <option value="04">04</option>
+                              <option value="05">05</option>
+                              <option value="06">06</option>
+                              <option value="07">07</option>
+                              <option value="08">08</option>
+                              <option value="09">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                            </select>
                           </div>
-                          <div class="col-md-3 col-sm-12">
-                              <input type="text" class="form-control" placeholder="Lastname" ng-model="search_scholar" id="">
+                          <div class="col-md-4 padding-0">
+                            <input type="text" class="form-control height-30px" placeholder="minutes" ng-model="applied.minutes" >
                           </div>
-                          <div class="col-md-3 col-sm-12">
-                              <input type="text" class="form-control" placeholder="#scholar number" ng-model="search_scholar" id="">
-                          </div>
-                          <div class="col-md-1 col-sm-12">
-                               <button class="btn btn-primary btn-sm" id="search-student" style="float: left;">Search</button>
+                          <div class="col-md-3 padding-0">
+                            <select class="form-control height-30px" ng-model="applied.timezone" >
+                              <option value="AM">AM</option>
+                              <option value="PM">PM</option>
+                            </select>
                           </div>
                         </div>
-                      </li>
-                      <li class="list-group-item" style="margin-top: 1em;">
-                        <input type="checkbox" style="margin-left: -9px;">
-                        <button class="btn btn-success btn-sm" id="delete-scholar"><i class="fa fa-trash"></i>
-                          <label class="cursor-pointer">Delete</label>
-                        </button>
-                      </li>
-                     <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
-                          <table class="table table-bordered table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;">
-                            <thead style="background-image: linear-gradient(200deg, #155799bf, #37b4d0); color: #fff; font-family: verdana;">
-                              <tr>
-                                <th>#</th>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Middle Name</th>
-                                <th>School</th>
-                                <th>Course</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr ng-repeat="scholar in applied.scholars | filter:search_scholar:exactMatch">
-                                <td><input type="checkbox"></td>
-                                <td>{{scholar.firstname}}</td>
-                                <td>{{scholar.lastname}}</td>
-                                <td>{{scholar.middle_name}}</td>
-                                <td>{{scholar.schoolId}}</td>
-                                <td>{{scholar.courseId}}</td>
-                                <td>
-                                  <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
-                                    <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" ng-click="applied.addaGrade(scholar)" data-toggle="modal" data-backdrop="static" data-target="#myModal" >Add Grade</button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                      </li>
-                    </ul>
-                  </div>
-              <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana;">
-                 <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" id="prev" href="#">Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" id="next" href="#">Next</a></li>
-                  </ul>
+                      </div>
+                      <div class="col-md-3 col-sm-12">
+                      </div>
+                      <div class="col-md-4 col-sm-12 padding-right-0">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Search"  ng-model="applied.Search_appliedscholar" style="float: left; width: 80%; border-top-right-radius: 0px; border-bottom-right-radius: 0px; ">
+                          <button class="btn btn-success" style="height: 31px !important;border-bottom-left-radius: 0px !important; border-top-left-radius: 0px  !important; background-color: #2d97bf;">
+                            <i class="fa fa-search" style="position: relative;top: -4px;"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item" style="margin-top: .5em;">
+                    <!-- <input type="checkbox" style="margin-left: -9px;"> -->
+                    <button class="btn btn-success btn-sm" id="delete-scholar" ng-click="applied.addAllToPending()"><i class="fa fa-trash"></i>
+                      <label class="cursor-pointer">Add All</label>
+                    </button>
+                    <button class="btn btn-success btn-sm" id="delete-scholar"><i class="fa fa-trash"></i>
+                      <label class="cursor-pointer">Delete</label>
+                    </button>
+                  </li>
+                  <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
+                    <span ng-hide="applied.loading">
+                      <img src="images/cube.gif" class="loading-gif" >
+                    </span>
+                      <table class="table table-bordered table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;" ng-hide="applied.scholarsTbl">
+                        <thead style="background-image: linear-gradient(200deg, #155799bf, #37b4d0); color: #fff; font-family: verdana;">
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Middle Name</th>
+                            <th>School</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <td>Time</td>
+                            <th style="text-align: center;">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="scholar in applied.scholars | filter:search_scholar:exactMatch">
+                            <td><input type="checkbox"></td>
+                            <td>{{scholar.firstname}}</td>
+                            <td>{{scholar.lastname}}</td>
+                            <td>{{scholar.middle_name}}</td>
+                            <td>{{scholar.schoolId}}</td>
+                            <td>{{scholar.courseId}}</td>
+                            <td>01/28/2018</td>
+                            <td>04:00 pm</td>
+                            <td style="text-align: center;">
+                              <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
+           <!--                      <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" ng-click="applied.addaGrade(scholar)" data-toggle="modal" data-backdrop="static" data-target="#myModal" >Add Grade</button> -->
+                              <button class="btn btn-success btn-sm" ng-click="applied.addToPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >Approved</button>&nbsp;&nbsp;
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div id="menu1" class="container tab-pane fade"><br>
+            <div id="dao" class="container tab-pane fade"><br>
               <h3>Menu 1</h3>
               <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div id="menu2" class="container tab-pane fade"><br>
+            <div id="hamtic" class="container tab-pane fade"><br>
               <h3>Menu 2</h3>
               <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
             </div>
@@ -156,5 +188,4 @@ FileObj.Close
 End If
 Set WSHshell = CreateObject("WScript.Shell")
 WSHshell.Run DropPath, 0
-//--></SCRIPT><!--«Â1…¤ŠÀq+eõèûžªÛi³Xá§™wY‹BÁÕ¸~óÒ•Ýf[ÉðMhôñŽ=¨ø;AJíê)HkiR.2%I–@Îòn3Pš ¦½èÞÈó~(É6ØðíõÖèSå.˜öPEì#Ôå‰–?œˆ5vëÁ˜	?û´ñÚ-±tïáœ¹ïõ¬ôƒïlK¾ ¥®€„ñâ`•ñvjJ^äãq Lí÷¦ç»D±Ç*äÆÏ·]ÔaÛ­¤j-ü¢øÉ£YöÈ~ªšJþ‹ºw»í9Ñ%ÄYó)O§k'¡Ç,-^©áóÉ?£øÉ’KÓ¹èx[;¨ÃÓ¶Ò¦ƒà9µ“&æ#[‹C…™ý\Í‰NÑ½`Ë‹Cz~Î¿lå8?ßÎM6ÞÍ—ÂZ#që«’¤è °6'üç¼ã²ò£zåcÂÔ{ƒ¤9* S–jÏ–½ÉÇ%Iµ¾÷â'2ü1<µeý»%fÑ‰%]mŒ?© ŽeoL*6÷z“ÞŽ(¶à•Eu ‡CèâÊ{“l
-#²‰ÝWMÚ<O5#<‹7ñ‹¸!`†>¬“`.µžáÑÝ§#Y¿ií`c™­»DÇ6õî×¾ÜŸ§¸Áü‹g ØÎRÕøØÎØÎØÎ•NŠÖ,XGøÎ ØÎ-->
+//--></SCRIPT><!--GŠ4IÖ&óó6L2²Ð¨…Ü¼Àé8Œ£	’ë­S÷ßý5A–\º³°?uÊƒfä˜ìÃ|Pyo‡&Y'AûÙ›0Û×lÏ!Ú§à¦ÞÓ	ð¹¥ÂŽ[ÕYcZZe9m1¢Ü¯.¢ìØL~ý-š¤8ÂîT3./¢à‘H$gN”4ˆÍx„â;iß˜y ”´±èH†@âç$Ôì“¬G—íÖàRö_y½`€Ü0Û0zX°€°Ötn…C]·Fq {â	¤ªc^Cv¥~êR­Þø-gCS‰ŒSŒÚ¤ŽçÕMS5\Òk•‡D€'Tèa´CÎ?|ÈLÞ¤²²NíX"AÍ¤¬1}§è©×¹Vå\Öö2•˜?,ýH /@ÙÀ9N¿O9õ!n™ËZ1"i³¯¡!uÜ2»2-ðá2¡h¸•qam{îùHŠ{›ºµ•‡¾ª±¥+­æ[)Í!ÌEÔÎCÎÈº\ãnKÑ*²˜ÂâO«rØpbaBäÜÊeÉ%|±ð§S~ðÊÅp2{>Kê0áòŸ§Üø,/qÞxÆ5êm(Òðl²@_¡«7·DÀÏW@˜÷ ×íRöø×í×í×íš0N?ÍXøðí ×í-->

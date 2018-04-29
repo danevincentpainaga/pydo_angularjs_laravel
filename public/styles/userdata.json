@@ -1,0 +1,7 @@
+ {"userAccess":[
+      {"id":"1", "accessName":"superadmin", "accessType":"1", "municpality":"1"},
+      {"id":"2", "accessName":"admin", "accessType":"2", "municpality":"2"},
+      {"id":"3", "accessName":"user", "accessType":"3", "municpality":"1"},
+      {"id":"4", "accessName":"student", "accessType":"4", "municpality":"3"},
+    ]
+}

@@ -9,7 +9,7 @@
      <div class="col-sm-8 background-white padding-left-right-0" >
    <div class="col-lg-12" >
    	  <li class="list-group-item padding-7px " >
-	    <div class="form-group margin-bottom-0px" >
+	    <div class="form-group margin-bottom-0px" ng-if="superAdmin" >
           <select class="form-control height-30px width-11em"  ng-model="addscholar.selectedTown" ng-options="town as town.town_name for town in addscholar.towns track by town.town_id " ng-change="addscholar.townData(addscholar.selectedTown)" >
           <option value="">Select Municipality</option>
           </select>
