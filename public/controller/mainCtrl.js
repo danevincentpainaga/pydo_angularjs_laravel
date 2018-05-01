@@ -109,10 +109,10 @@ app.controller('mainCtrl',['$scope', '$rootScope', '$location', '$http', '$ngCon
   });
 
 
-  $scope.printForm = function(){
-    var printDiv = document.getElementById('Form');
-    window.print(printDiv);
-  }
+  // $scope.printForm = function(){
+  //   var printDiv = document.getElementById('Form');
+  //   window.print(printDiv);
+  // }
 
 
 }]);

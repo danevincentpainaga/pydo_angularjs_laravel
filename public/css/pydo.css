@@ -20,9 +20,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   width: 45px;
   margin-right: 61px;
 }
-.margin-top-1em{
-  margin-top: 1em;
-}
 .pydo{
   position: relative;
   top: -38px;
@@ -114,7 +111,21 @@ p{
   font-family: verdana;
 }
 
+/*floats*/
+.float-right{
+  float: right !important;
+}
+
+
+
+
 /*//margins*/
+.margin-top-5px{
+  margin-top: 5px !important;
+}
+.margin-top-1em{
+  margin-top: 1em !important;
+}
 .margin-left-1em{
   margin-left: 1em;
 }
@@ -159,7 +170,10 @@ p{
 
 /*text-align*/
 .text-align-center{
-  text-align: center;
+  text-align: center !important;
+}
+.text-align-right{
+  text-align: right !important;
 }
 
 /*overflow*/
@@ -225,6 +239,13 @@ p{
 .min-max-width-145px{
     min-width: 145px !important;
     max-width: 145px !important;
+}
+.min-width-145px{
+  min-width: 145px !important;
+}
+
+.onshow{
+  display: none;
 }
 /*.white-color{
   color: white;
@@ -604,6 +625,9 @@ hr {
     background-color: white !important;
     color: white;
   }
+  .tab-active{
+    border-color: #dee2e6 #dee2e6 #fff !important;
+  }
   .actives{
     background-color: #2aabc7 !important;
     color: white;
@@ -676,6 +700,10 @@ hr {
     margin-bottom: .1rem;
     padding: .2rem .5rem;
     border-radius: 15px;
+  }
+
+  #print-btn{
+    line-height: 1.2; padding: .2rem .5rem; font-size: 12px;
   }
   .delete-icon{
     margin-left: -2.7px;
@@ -833,6 +861,9 @@ hr {
   @media print{
     .onprint{
       display: none;
+    }
+    .onshow{
+      display: block !important;
     }
   }
   /*background-color: #06799f;*/

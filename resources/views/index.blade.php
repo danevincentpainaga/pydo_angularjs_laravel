@@ -46,6 +46,8 @@
 
     <script src="{{ asset('scripts/app.js') }}"></script>
     <script src="{{ asset('controller/mainCtrl.js') }}"></script>
+    <script src="{{ asset('controller/homeCtrl.js') }}"></script>
+    <script src="{{ asset('controller/registerCtrl.js') }}"></script>
     <script src="{{ asset('controller/loginCtrl.js') }}"></script>
     <script src="{{ asset('controller/notesCtrl.js') }}"></script>
     <script src="{{ asset('controller/userCtrl.js') }}"></script>

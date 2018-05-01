@@ -1,0 +1,42 @@
+  <!-- register form-->
+<div class="container" ng-controller="registerCtrl as register" style="padding-left: 22em;padding-top: 7em;padding-bottom: 14.8em;"> 
+    <div class="row">
+      <ul class="list-group" style="min-width: 390px; max-width: 390px;">
+          <div class="alert alert-danger " ng-hide="register.failed">
+            <span style="text-align: center;">
+              <label>
+                username/password already exist
+              </label>
+            </span>
+          </div>
+          <div class="alert alert-success " ng-hide="register.success">
+            <span style="text-align: center;">
+              <label>
+                Success! <a href="#!/home">Click! to login to home</a>
+              </label>
+            </span>
+          </div>
+          <li class="list-group-item" style="border-radius: 0px;height: 30px; background-color: #e7eef1;border-left: 2px solid #1da5c3;
+    border-right: 2px solid #1da5c3;">
+          </li>
+          <li class="list-group-item" style="border-radius: 0px; ">
+            <h3 class="home-h3">Register</h3>
+            <div class="row">
+              <div class="col-md-12">
+                <label class="normal-label">Username:</label>
+                <input type="text" class="form-control" ng-model="register.info.username" >
+                <label class="normal-label">Password:</label>
+                <input type="password" class="form-control" ng-model="register.info.password">
+                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;" ng-click="register.registerStudent()">
+                  <img src="images/login.png" style="width: 30px; margin-top: -8px;margin-left: -23px;">
+                  <label class="login-label">Login</label>
+                </button>
+              </div>
+            </div>
+            <br />
+          </li>
+        </ul>
+    </div>
+
+  </div>
+</div>

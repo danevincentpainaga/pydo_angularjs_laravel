@@ -47,9 +47,14 @@
                     <label class="darkblue-label">Barangay:</label>
                     <input type="text" class="form-control" id="usr" ng-model="apps.appdata.barangay">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-if="superAdmin">
                     <label class="darkblue-label">Municipality:</label><br />
                     <select class="form-control height-30px width-11em"  ng-model="apps.selectedMunicipality" ng-options="municipal as municipal.town_name for municipal in apps.municipality track by municipal.town_id " ng-change="apps.filtermunicipality(apps.selectedTown)" >
+                    </select>
+                  </div>
+                  <div class="form-group" ng-if="notSuperadmin">
+                    <label class="darkblue-label">Municipality:</label><br />
+                    <select class="form-control height-30px width-11em"  ng-model="apps.selectedMunicipality" ng-options="municipal as municipal.town_name for municipal in apps.municipalities track by municipal.town_id " ng-change="apps.filtermunicipality(apps.selectedTown)" >
                     </select>
                   </div>
                   <div class="form-group">

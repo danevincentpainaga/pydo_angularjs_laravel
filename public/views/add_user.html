@@ -28,19 +28,19 @@
                 <form>
                   <div class="form-group">
                     <label class="normal-label">Firstname:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.firstname">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.new.firstname">
                   </div>
                   <div class="form-group">
                     <label class="normal-label">Lastname:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.lastname">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.new.lastname">
                   </div>
                   <div class="form-group">
                     <label class="normal-label">Gender:</label>
                     <br />
                     <label style="font-size: 14px;">Male</label>
-                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.gender" value="male">&nbsp;
+                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.new.gender" value="male">&nbsp;
                     <label style="font-size: 14px;">Female</label>
-                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.gender" value="female">
+                    <input type="radio" class="cursor-pointer" id="rad" name="optradio" ng-model="adduser.new.gender" value="female">
                   </div>
                 </form>    
               </div>
@@ -48,15 +48,15 @@
                 <form>
                   <div class="form-group">
                     <label class="normal-label">Contact number:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.contact_no">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.new.contact_no">
                   </div>
                   <div class="form-group">
                     <label class="normal-label">Username:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.username">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.new.username">
                   </div>
                   <div class="form-group">
                     <label class="normal-label">Password</label>
-                    <input type="text" class="form-control" id="usr" ng-model="adduser.password">
+                    <input type="text" class="form-control" id="usr" ng-model="adduser.new.password">
                   </div>
                 </form>    
               </div>
@@ -64,17 +64,17 @@
                 <form>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Municipality Assigned:</label><br />
-                      <select class="form-control height-30px width-11em" ng-model="adduser.selectedMunicipality" ng-options="municipality as municipality.town_name for municipality in adduser.municipalities track by municipality.town_id " >
+                      <select class="form-control height-30px width-11em" ng-model="adduser.new.selectedMunicipality" ng-options="municipality as municipality.town_name for municipality in adduser.municipalities track by municipality.town_id " >
                       </select>
                   </div>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Position:</label><br />
-                      <select class="form-control height-30px width-11em"  ng-model="adduser.selectedPosition" ng-options="position as position.position_level for position in adduser.positions track by position.position_id " >
+                      <select class="form-control height-30px width-11em"  ng-model="adduser.new.selectedPosition" ng-options="position as position.position_level for position in adduser.positions track by position.position_id " >
                       </select>
                   </div>
                   <div class="form-group col-md-8" style="padding: 0px;">
                     <label class="normal-label">Access Type:</label><br />
-                      <select class="form-control height-30px width-11em"  ng-model="adduser.selectedAccessType" ng-options="accessType as accessType.access_type for accessType in adduser.access_types track by accessType.user_accesses_id " >
+                      <select class="form-control height-30px width-11em"  ng-model="adduser.new.selectedAccessType" ng-options="accessType as accessType.access_type for accessType in adduser.access_types track by accessType.user_accesses_id " >
                       </select>
                   </div>
                 </form>    
@@ -107,13 +107,13 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat="user in adduser.users | filter:adduser.search_addeduser:exactMatch">
-                    <td>{{user.firstname}}</td>
-                    <td>{{user.lastname}}</td>
-                    <td>{{user.gender}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.address}}</td>
-                    <td>{{user.position}}</td>
-                    <td>{{user.user_access}}</td>
+                    <td class="min-width-145px">{{user.firstname}}</td>
+                    <td class="min-width-145px">{{user.lastname}}</td>
+                    <td class="min-width-145px">{{user.gender}}</td>
+                    <td class="min-width-145px">{{user.username}}</td>
+                    <td class="min-width-145px">{{user.address}}</td>
+                    <td class="min-width-145px">{{user.position}}</td>
+                    <td class="min-width-145px">{{user.user_access}}</td>
                     <td>
                       <label id="status" color-status stat="{{user.status}}" ng-model="(user.status)" style=" font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem;  ">{{user.status}}
                       </label>

@@ -13,19 +13,8 @@ app.controller('userCtrl',
   ['$scope', '$rootScope', '$location', '$http', '$routeParams', '$ngConfirm','$filter', '$timeout', '$window','getUsers', 
   function ($scope, $rootScope, $location, $http, $routeParams, $ngConfirm, $filter, $timeout, $window, getUsers) {
 
-  // var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
-
 var hid = {
-  pageSize:10,
+  pageSize:20,
   next:2,
   pageLength:null
 } 
@@ -36,8 +25,7 @@ usr.userTable = true;
 
 var page = parseInt(($routeParams.pagenum * hid.pageSize) - hid.pageSize);
 
-getUserPerPage(page);
-count();
+getUserPerPage(page, $rootScope.municipal_id);
 getMunicipalities();
 
 usr.location = function(idx, user){
@@ -78,6 +66,12 @@ usr.deleteAll = function(){
   if(usr.selectAll){
     var title = 'Delete User?';
     confirmDialog(title, toBeDeletedUsers, '');
+    // delete all check
+    console.log(toBeDeletedUsers);
+  }
+  else{
+    //delete individually
+    console.log(toBeDeletedUsers);
   }
 }
 
@@ -106,21 +100,9 @@ usr.nextPage = function(){
 }
 
 // TO DO
-// usr.filterMunicipality = function(municipalData){
-//   usr.loading = false;
-//   usr.userTable = true;
-//   getUsers.appliedScholars(municipalData.town_id).then(function(response){
-//     usr.loading = true;
-//     usr.userTable = false;
-//     usr.selectAll = false;
-//     usr.users = response.data;
-//   }, function(err){
-//     console.log(err);
-//     usr.loading = true;
-//     usr.users = [];
-//   });
-//   console.log(municipalData.town_id);
-// }
+usr.filterMunicipality = function(municipalData){
+  getUserPerPage(page, municipalData.town_id);
+}
 
 function confirmDialog(message, user, content){
   $ngConfirm({
@@ -157,7 +139,7 @@ function deleteUserData(ids){
 
 function deleteSelectedUsers(userids){
   angular.forEach(userids, function(userVal, i){
-    console.log(userVal.id);
+    console.log(userVal.user_id);
   });
   sliceCheckedUser();
 }
@@ -167,6 +149,11 @@ function sliceCheckedUser(){
   //   return !i.selected;
   // });
   getUserData();
+}
+
+
+function deleteUserByIds(){
+
 }
 
 function getUserData(){
@@ -182,23 +169,26 @@ function getUserData(){
   });
 }
 
-function getUserPerPage(id){
-  getUsers.usersPerpage(id).then(function(response){
+function getUserPerPage(id, mid){
+  getUsers.usersPerpage(id, mid).then(function(response){
+    count($rootScope.municipal_id);
     usr.loading = false;
     $timeout(function(){
       usr.users = response.data;
       usr.loading = true;
       usr.userTable = false;
       usr.selectAll = false;
-    },1000);
+    },100);
+    console.log(response);
   }, function(err){
     console.log(err);
   });
 }
 
-function count(){
-  getUsers.pageCount().then(function(response){
+function count(mid){
+  getUsers.pageCount(mid).then(function(response){
     hid.pageLength = response.data;
+    console.log(response);
     }, function(err){
       console.log(err);
   });
@@ -241,11 +231,11 @@ app.factory('getUsers', function($http){
     fetcUsers: function(){
       return $http.get(baseUrl+'getUsers');
     },
-    usersPerpage: function(id){
-      return $http.get(baseUrl+'user/page/'+id);
+    usersPerpage: function(id, mid){
+      return $http.get(baseUrl+'user/page/'+id+'/'+mid);
     },
-    pageCount: function(){
-      return $http.get(baseUrl+'pageCount');
+    pageCount: function(mid){
+      return $http.get(baseUrl+'pageCount/'+mid);
     },
     filterStatus: function(selectedStatus){
       return selectedStatus;

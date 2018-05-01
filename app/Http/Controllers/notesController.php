@@ -13,6 +13,7 @@ use App\user_access;
 use App\degree;
 use App\college_year;
 use App\semester;
+use App\register_student;
 use Illuminate\Http\Request;
 use DB;
 
@@ -38,8 +39,8 @@ class notesController extends Controller
         ->join('towns', 'users.townId', '=', 'towns.town_id')
         ->join('positions', 'users.positionId', '=', 'positions.position_id')
         ->join('user_accesses', 'users.userAccessId', '=', 'user_accesses.user_accesses_id')
-        ->select('users.*', 'towns.town_name', 'positions.position_level', 'user_accesses.*')
-        ->offset($id)->limit(10)->get();
+        ->select('users.*', 'towns.town_name', 'positions.position_level', 'user_accesses.*')->orderBy('users.user_id')
+        ->offset($id)->limit(20)->get();
         return $scholarData;
     }
 
@@ -122,18 +123,16 @@ class notesController extends Controller
     public function updatePendingData(Request $request){
         $updatedData = $request->all();
         $newUpdate = DB::table('list_applied_scholars')
-            ->whereIn('student_id', $updatedData)->update(['statusId' => 3]);
+            ->whereIn('applied_scholar_id', $updatedData)->update(['statusId' => 3]);
         return $newUpdate;
     }
 
     public function pendingScholar($mid){
-        // $pendingScholar = applied_scholar::where('statusId', 2)->get();
         $pendingScholar = list_applied_scholar::where(['statusId'=> 2, 'townId'=>$mid])->get();
         return $pendingScholar;
     }
     public function getMunicipalScholars($id){
-        $municipalScholars = DB::table('list_applied_scholars')
-        ->where(['statusId'=> 2, 'townId'=> $id])->get();
+        $municipalScholars = list_applied_scholar::where(['statusId'=> 2, 'townId'=>$id])->get();
         return $municipalScholars;
     }
 
@@ -152,6 +151,11 @@ class notesController extends Controller
     public function getTowns(){
         $towns = towns::all();
         return $towns;
+    }
+
+    public function getByUserTown($id){
+        $town = towns::find($id);
+        return $town;
     }
 
     public function getMunicipalById($mid){
@@ -196,11 +200,9 @@ class notesController extends Controller
 
     public function storeNewSchool(Request $request){
         $schools = $request->json()->all();
-        
         foreach ($schools as $school) {
             school::create($school);
         }
- 
         return $schools;
     }
 
@@ -229,7 +231,14 @@ class notesController extends Controller
     public function loginValidations(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
-        $loginResult = User::where(['username'=> $username, 'password'=> $password])->get();
+        $loginResult = User::where(['username'=> $username, 'password'=> $password, 'userAccessId'=> 1])->get();
+        return $loginResult;
+    }
+
+    public function validateStudentLogin(Request $request){
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $loginResult = register_student::where(['username'=> $username, 'password'=> $password])->get();
         return $loginResult;
     }
 
@@ -251,6 +260,30 @@ class notesController extends Controller
         return $appliedDatas;
     }
 
+    public function getDateRange(Request $request){
+        $date = $request->input('filteredDate');
+        // $municipal_id = $request->input('municipalId');
+        $newDates = list_applied_scholar::where('created_at','<=', $date )->get();
+        // $newDates = list_applied_scholar::where(['created_at','<=', $date, 'townId','=', $municipal_id])->get();
+        return $newDates;
+    }
+
+    public function registerStudent(Request $request){
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $register = register_student::where(['username'=> $username, 'password'=> $password])->count();
+        if($register > 0 ){
+            return '404';
+        }
+        else{
+            $registerData = new register_student();
+            $registerData->username = $username;
+            $registerData->password = $password;
+            $registerData->userAccessId = 4;
+            $registerData->save();
+            return $registerData;
+        }
+    }
     
     // public function editScholar($id){
     //     $scholarData = DB::table('applied_scholars')

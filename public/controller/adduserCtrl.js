@@ -4,23 +4,12 @@
  * @ngdoc function
  * @name mytodoApp.controller:adduserCtrl
  * @description
- * # adduserCtrl
+ * #adduserCtrl
  * Controller of the mytodoApp
  */
 app = angular.module('mytodoApp')
   .controller('adduserCtrl',['$scope', '$rootScope', '$location', '$timeout', 'postNewUser', '$ngConfirm', '$window',
     function ($scope, $rootScope ,$location, $timeout, postNewUser, $ngConfirm, $window) {
-
-  // var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
 
     var au = this;
 
@@ -41,19 +30,20 @@ app = angular.module('mytodoApp')
     }
 
     au.addUser = function(){
-      console.log(au.selectedPosition);
+    console.log(au.selectedPosition);
     var arrOfAddedUser = [
-        au.firstname, 
-        au.lastname, 
-        au.gender, 
-        au.contact_no, 
-        au.username, 
-        au.password,
-        au.selectedMunicipality.town_id,
-        au.selectedPosition.position_id,
-        au.selectedAccessType.user_accesses_id
+        au.new.firstname, 
+        au.new.lastname, 
+        au.new.gender, 
+        au.new.contact_no, 
+        au.new.username, 
+        au.new.password,
+        au.new.selectedMunicipality.town_id,
+        au.new.selectedPosition.position_id,
+        au.new.selectedAccessType.user_accesses_id
       ];
       validateEmpty(arrOfAddedUser);
+      console.log(arrOfAddedUser);
     }
 
     au.saveUsers = function(){
@@ -75,15 +65,15 @@ app = angular.module('mytodoApp')
         alert('fill up all data in the form');
       }else{
         au.users.push({ 
-          firstname: au.firstname, 
-          lastname: au.lastname,
-          username: au.username, 
-          password: au.password,
-          gender: au.gender, 
-          contact_no: au.contact_no, 
-          positionId: au.selectedPosition.position_id,
-          townId: au.selectedMunicipality.town_id,
-          userAccessId: au.selectedAccessType.user_accesses_id,
+          firstname: au.new.firstname, 
+          lastname: au.new.lastname,
+          username: au.new.username, 
+          password: au.new.password,
+          gender: au.new.gender, 
+          contact_no: au.new.contact_no, 
+          positionId: au.new.selectedPosition.position_id,
+          townId: au.new.selectedMunicipality.town_id,
+          userAccessId: au.new.selectedAccessType.user_accesses_id,
           statusId: 3
         });
         clear();
@@ -93,6 +83,7 @@ app = angular.module('mytodoApp')
     function saveNewUser(user){
       postNewUser.saveUser(user).then(function(response){
         successDialog();
+        au.users = [];
         au.loading = true;
         console.log(response);
       }, function(err){
@@ -101,16 +92,17 @@ app = angular.module('mytodoApp')
     }
 
     function clear(){
-      au.firstname="";
-      au.lastname=""; 
-      au.gender=""; 
-      au.username="";
-      au.email=""; 
-      au.address=""; 
-      au.position="";
-      au.user_access=""; 
-      au.password=""; 
-      au.rePassword=""; 
+      au.new = {};
+      // au.firstname="";
+      // au.lastname=""; 
+      // au.gender=""; 
+      // au.username="";
+      // au.password="";
+      // au.contact_no=""; 
+      // au.selectedAccessType=""; 
+      // au.selectedPosition="";
+      // au.user_access=""; 
+      // au.selectedMunicipality=""; 
     }
 
     function successDialog(){

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
   <div class="row">
     <div class="col-md-12 header-background" >
       <img class="card-img-top2" src="images/pydo.png" >
@@ -27,7 +27,7 @@
   </div>
 </div>
 <br />
-<div class="container"> 
+<div class="container" ng-controller="homeCtrl as home"> 
     <div class="row">
 
     <div class="col-md-8" style="background-color: whitesmoke;">
@@ -166,15 +166,22 @@
           <li class="list-group-item" style="border-radius: 0px;height: 30px; background-color: #e7eef1;border-left: 2px solid #1da5c3;
     border-right: 2px solid #1da5c3;">
           </li>
-          <li class="list-group-item" style="border-radius: 0px; " ng-controller="loginCtrl as login" >
+          <li class="list-group-item" style="border-radius: 0px; " >
             <h3 class="home-h3">login</h3>
+            <div class="alert alert-danger " ng-hide="home.failed">
+              <span style="text-align: center;">
+                <label>
+                  username/password incorrect
+                </label>
+              </span>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <label class="normal-label">Username:</label>
-                <input type="text" class="form-control" ng-model="login.username" >
+                <input type="text" class="form-control" ng-model="home.student.username" >
                 <label class="normal-label">Password:</label>
-                <input type="text" class="form-control" ng-model="login.password">
-                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;" ng-click="login.loginBtn()">
+                <input type="password" class="form-control" ng-model="home.student.password">
+                <button class="btn btn-success btn-md max-height-2-2em" style="margin-top: 1em;margin-bottom: .1em;" ng-click="home.studentLogin()">
                   <img src="images/login.png" style="width: 30px; margin-top: -8px;margin-left: -23px;">
                   <label class="login-label">Login</label>
                 </button>
@@ -182,7 +189,7 @@
               <div class="col-md-12">
                 <br />
                 No account?
-                <a href="">Register here</a>
+                <a href="#!/home/register">Register here</a>
               </div>
             </div>
           </li>

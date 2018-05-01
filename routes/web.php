@@ -15,36 +15,73 @@ Route::get('/', function () {
     return view('index');
 });
 
+//userController
+Route::get('/getUsers', 'userController@retrieveUsers');
+Route::get('/pageCount/{municipalId}', 'userController@pageCount');
+// Route::get('/user/page/{id}', 'userController@getUserIds');
+Route::get('/getAllTowns', 'userController@getTowns');
+Route::get('/user/page/{id}/{mid}', 'userController@getUserIds');
+
+
+//addscholarController
+Route::get('/getPendingScholar/{municipalId}', 'addscholarController@pendingScholar');
+Route::post('/updatePendingScholars', 'addscholarController@updatePendingData');
+Route::post('/removePendingScholars', 'addscholarController@removePendingData');
+// Route::get('/getAllTowns', 'scholarController@getTowns');
+Route::get('/getMunicipalScholars/{id}', 'addscholarController@getMunicipalScholars');
+
+// adduserController
+Route::post('/addUser', 'adduserController@storeNewUser');
+// Route::get('/getAllTowns', 'adduserController@getTowns');
+Route::get('/getPositions', 'adduserController@getPositions');
+Route::get('/getAccessType', 'adduserController@getAccessType'); 
+
+// applicationController
+Route::post('/postAppliedScholar', 'applicationController@postAppliedScholar');
+// Route::get('/getAllTowns', 'applicationController@getTowns');
+Route::get('/getByUserTown/{id}', 'applicationController@getByUserTown');
+Route::get('/getSchoolData', 'applicationController@getSchool');
+Route::get('/CollegeYearData', 'applicationController@CollegeYearData');
+Route::get('/semestersData', 'applicationController@semestersData');
+
+// appliedScholarController
+Route::get('/appliedScholar/{municipalId}', 'appliedScholarController@getAppliedScholar');
+Route::post('/addGrades', 'appliedScholarController@addGrades');
+Route::get('/getSubjectData', 'appliedScholarController@getSubject');
+Route::post('/updateAppliedScholars', 'appliedScholarController@updateAppliedData');
+Route::get('/approveAll', 'appliedScholarController@approveAll');
+Route::get('/appliedMunicipalScholars/{id}', 'appliedScholarController@appliedMunicipalScholars');
+// Route::get('/getAllTowns', 'appliedScholarController@getTowns');
+Route::post('/getDateRange', 'appliedScholarController@getDateRange');
+
+
+// editScholarController
+Route::get('/editScholarData/{id}', 'editScholarController@editScholar');
+
+// schoolController
+Route::post('/addSchool', 'schoolController@storeNewSchool');
+// Route::get('/getSchoolData', 'schoolController@getSchool');
+
+// registerController
+Route::post('/registerStudent', 'registerController@registerStudent');
+
+
+
 Route::get('/notes', 'notesController@getNotes'); 
 Route::get('/edit_notes/{id}', 'notesController@findId'); 
 Route::get('/notes/{id}', 'notesController@getNotesById'); 
-Route::get('/getUsers', 'notesController@retrieveUsers');
-Route::get('/pageCount', 'notesController@pageCount');
-Route::get('/user/page/{id}', 'notesController@getUserIds');
-Route::post('/addUser', 'notesController@storeNewUser'); 
+
 Route::delete('/deleteUser/{id}', 'notesController@deleteUser');
-Route::get('/appliedScholar/{municipalId}', 'notesController@getAppliedScholar');
-Route::post('/addGrades', 'notesController@addGrades');
-Route::get('/getPendingScholar/{municipalId}', 'notesController@pendingScholar');
+// Route::get('/getPendingScholar/{municipalId}', 'notesController@pendingScholar');
 Route::get('/getActiveScholar/{municipalId}', 'notesController@activeScholar');
-Route::get('/editScholarData/{id}', 'notesController@editScholar');
-Route::get('/getAllTowns', 'notesController@getTowns');
 Route::get('/getMunicipalById/{municipalId}', 'notesController@getMunicipalById');
-Route::get('/getMunicipalScholars/{id}', 'notesController@getMunicipalScholars');
-Route::get('/appliedMunicipalScholars/{id}', 'notesController@appliedMunicipalScholars');
+// Route::get('/getMunicipalScholars/{id}', 'notesController@getMunicipalScholars');
 Route::post('/addSubject', 'notesController@storeNewSubject');
-Route::get('/getSubjectData', 'notesController@getSubject');
-Route::get('/getSchoolData', 'notesController@getSchool');
 Route::get('/getDegrees', 'notesController@getDegrees');
-Route::get('/CollegeYearData', 'notesController@CollegeYearData');
-Route::get('/semestersData', 'notesController@semestersData');
-Route::post('/addSchool', 'notesController@storeNewSchool');
-Route::post('/updateAppliedScholars', 'notesController@updateAppliedData');
-Route::post('/updatePendingScholars', 'notesController@updatePendingData');
+// Route::post('/updatePendingScholars', 'notesController@updatePendingData');
 Route::get('/getAllExtactedTowns', 'notesController@getExtactedTowns');
-Route::get('/approveAll', 'notesController@approveAll');
-Route::post('/removePendingScholars', 'notesController@removePendingData');
+// Route::post('/removePendingScholars', 'notesController@removePendingData');
 Route::post('/loginValidations', 'notesController@loginValidations');
-Route::get('/getPositions', 'notesController@getPositions');
-Route::get('/getAccessType', 'notesController@getAccessType');
-Route::post('/postAppliedScholar', 'notesController@postAppliedScholar');
+Route::post('/validateStudentLogin', 'notesController@validateStudentLogin');
+
+

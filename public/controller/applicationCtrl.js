@@ -8,8 +8,8 @@
  * Controller of the mytodoApp
  */
 angular.module('mytodoApp')
-  .controller('applicationCtrl', ['$scope', '$rootScope', '$location', '$window', 'applicationData',
-   function ($scope, $rootScope, $location, $window, applicationData) {
+  .controller('applicationCtrl', ['$scope', '$rootScope', '$location', '$window', '$ngConfirm', 'applicationData',
+   function ($scope, $rootScope, $location, $window, $ngConfirm, applicationData) {
 
   // var log = JSON.parse($window.localStorage.getItem('cookies'));
 
@@ -32,6 +32,7 @@ angular.module('mytodoApp')
 
     // getMunicipalities($rootScope.municipal_id);
   getMunicipalities();
+  getByTownAccess($rootScope.municipal_id);
   getSchools();
   getAllDegrees();
   CollegeYears();
@@ -97,12 +98,33 @@ angular.module('mytodoApp')
     });
   }
 
+  function getByTownAccess(id){
+    applicationData.getByUserTown(id).then(function(response){
+      apps.municipalities = [response.data];
+      console.log(apps.municipalities);
+    }, function(err){
+      console.log(err);
+    });
+  }
+
   function appliedScholarInfo(scholarData){
-    console.log(scholarData);
     applicationData.saveAppliedScholar(scholarData).then(function(response){
       console.log(response);
+      successDialog();
     }, function(err){
         console.log(err);
+        apps.appliedStudent = [];
+    });
+  }
+
+  function successDialog(){
+    $ngConfirm({
+      title: '',
+      content: 'Successfully added',
+      animation: 'right',
+      closeAnimation: 'left',
+      columnClass: 'col-md-4',
+      containerFluid: true
     });
   }
 
@@ -165,6 +187,9 @@ app.factory('applicationData',['$http', function($http){
     },
     fetchTowns: function(){
       return $http.get(baseUrl+'getAllTowns');
+    },
+    getByUserTown: function(mid){
+      return $http.get(baseUrl+'getByUserTown/'+mid);
     },
     fetchSchools: function(){
       return $http.get(baseUrl+'getSchoolData');

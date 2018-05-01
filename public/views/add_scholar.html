@@ -1,5 +1,5 @@
-<div class="row height-3em" ></div>
-<div class="container-fluid" ng-controller="addscholarCtrl as addscholar">
+<div class="row height-3em onprint" ></div>
+<div class="container-fluid onprint" ng-controller="addscholarCtrl as addscholar">
 <div class="row" >
     <div class="col-lg-12" >
         <h3 class="menu-header" style="color: #2aabc7;"><i class="fa fa-graduation-cap font-37px" ></i>ADD SCHOLARS</h3>
@@ -25,7 +25,7 @@
                   	 <th>Image</th>
                     <th>Student Name</th>
                     <th>Address</th>
-                    <th>Status</th>
+                    <th class="text-align-center">Status</th>
                     <th class="text-align-center">Action</th>
                   </tr>
                 </thead>
@@ -34,21 +34,23 @@
                   	<td><img src="images/dane.jpg" style="height: 30px; border-radius: 15px;"></td>
                     <td>{{scholar.firstname}}&nbsp;&nbsp;{{scholar.lastname}}</td>
                     <td>{{scholar.address}}</td>
-                    <td>
+                    <td class="text-align-center">
                       <label id="status" class="pending" style=" font-family: cooper; text-align: center; border-radius: 10px; margin-bottom: .0rem;  ">
                       	Pending
                       </label>
                     </td>
-                    <td class="text-align-center ">
+                    <td class="text-align-right " >
                         <button class="btn btn-default btn-sm" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
                         	View
                         </button>&nbsp;&nbsp;
 	                  	 <button class="btn btn-success btn-sm" ng-click="addscholar.addToScholar(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
 	                       Add
 	                     </button>
+                        <button class="btn btn-info btn-sm" ng-click="addscholar.printForm()" id="print-btn" >
+                        	Print
+                        </button>
 	                    <button class="btn btn-danger btn-sm button-delete" id="remove-scholar-btn" ng-click="addscholar.deleteScholar(scholar)" >
 	                      <i class="fa fa-times delete-icon"></i>
-	                      <label style="line-height: 0.1; margin-left: 3px; margin-bottom: .1rem;"></label>
 	                    </button>
                     </td>
                   </tr>
@@ -180,3 +182,5 @@
 </div>
 </div>
 </div>
+
+<!-- <ng-include src="'views/printForm.html'" class="onshow" ng-hied ></ng-include> -->

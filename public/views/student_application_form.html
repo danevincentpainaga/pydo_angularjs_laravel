@@ -124,16 +124,12 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">School:</label><br />
-                    <select class="form-control" ng-model="apps.appdata.school" style="height: 2em;">
-                      <option value="single">UA</option>
-                    </select>
+                     <select class="form-control height-30px"  ng-model="apps.school" ng-options="school as school.school_name for school in apps.schools track by school.school_id ">
+                      </select>
                   </div>
                   <div class="form-group">
                     <label class="darkblue-label">Degree:</label><br />
-                      <select class="form-control" ng-model="apps.appdata.degree" style="height: 2em;">
-                        <option value="1">master</option>
-                        <option value="2">College</option>
-                        <option value="3">Vocational</option>
+                      <select class="form-control height-30px"  ng-model="apps.degree" ng-options="degree as degree.degree_name for degree in apps.degrees track by degree.degree_id ">
                       </select>
                   </div>
                   <div class="form-group">
@@ -157,19 +153,13 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">College Year:</label><br />
-                      <select class="form-control" ng-model="apps.appdata.collegeYear" style="height: 2em;">
-                        <option value="1">1st</option>
-                        <option value="2">2nd</option>
-                        <option value="3">3rd</option>
+                      <select class="form-control height-30px"  ng-model="apps.college_year" ng-options="college as college.college_year_name for college in apps.collegeYear track by college.college_year_id ">
                       </select>
                   </div>
                   <div class="form-group">
                   <label class="darkblue-label">Semester:</label><br />
-                    <select class="form-control" ng-model="apps.appdata.semester" style="height: 2em;">
-                      <option value="single">1st</option>
-                      <option value="married">2nd</option>
-                      <option value="widowed">3rd</option>
-                    </select>
+                      <select class="form-control height-30px"  ng-model="apps.semester" ng-options="semester as semester.semesters_name for semester in apps.semesters track by semester.semester_id ">
+                      </select>
                   </div>
                   <div class="form-group">
                     <div class="row">
@@ -179,7 +169,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-5">
-                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
                           <div class="input-group">
                             <input class="form-control" ng-model="apps.appdata.academic_year_from" style="border-top-right-radius: 4px;
                             border-bottom-right-radius: 4px;" />
@@ -188,7 +178,7 @@
                       </div>
                       <div class="col-md-1 darkblue-label" style="padding: 0px;"><label>to</label></div>
                       <div class="col-md-5" style="padding-left: 0px;">
-                        <datepicker date-format="MM-dd-yyyy" selector="form-control">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
                           <div class="input-group">
                             <input class="form-control" ng-model="apps.appdata.academic_year_to" style="border-top-right-radius: 4px;
                             border-bottom-right-radius: 4px;" />
@@ -211,7 +201,7 @@
                 <form>
                   <div class="form-group">
                     <label class="darkblue-label">Student ID No:</label>
-                    <input type="text" class="form-control" id="usr" ng-model="apps.student_id_number">
+                    <input type="text" class="form-control" id="usr" ng-model="apps.appdata.student_id_number">
                   </div>
                 </form>
               </div>

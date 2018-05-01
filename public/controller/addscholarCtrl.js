@@ -12,17 +12,6 @@ var app = angular.module('mytodoApp')
   '$timeout', '$ngConfirm', '$window',
    function ($scope, $rootScope, pendingScholar, $http, $location, $timeout, $ngConfirm, $window) {
 
-  // var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
-
     var as = this;
 
     as.scholar = false;
@@ -32,6 +21,15 @@ var app = angular.module('mytodoApp')
     getScholar($rootScope.municipal_id);
     getMunicipalities();
     console.log($rootScope.municipal_id);
+
+
+    as.printForm = function(){
+      $timeout(function(){
+        var printDiv = document.getElementById('Form');
+        window.print(printDiv);
+      },500);
+    }
+
     as.deleteUser = function(id){
         var userId = $scope.scholars.indexOf(id);
         $scope.scholars.splice(userId, 1);
@@ -72,12 +70,13 @@ var app = angular.module('mytodoApp')
     as.cancel = function(){
       as.addedScholarTbl = true;
       as.addedScholar = [];
+      console.log($rootScope.municipal_id);
       getScholar($rootScope.municipal_id);
 
     }
 
     as.deleteScholar =function(appliedData){
-      var appData = { appliedDataId: appliedData.student_id };
+      var appData = { appliedDataId: appliedData.applied_scholar_id };
       pendingScholar.removePendingScholars(appData).then(function(response){
         as.appliedScholars.splice(as.appliedScholars.indexOf(appliedData), 1);
         console.log(response);
@@ -120,7 +119,7 @@ var app = angular.module('mytodoApp')
     function getId(data){
       var pendingScholarId = [];
       angular.forEach(data, function(val, i){
-        pendingScholarId.push(val.student_id)
+        pendingScholarId.push(val.applied_scholar_id)
       });
       return pendingScholarId;
     }
@@ -187,6 +186,7 @@ var app = angular.module('mytodoApp')
       }
     }
    });
+
 
   app.factory('pendingScholar',function($http){
     return{

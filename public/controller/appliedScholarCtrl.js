@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name mytodoApp.controller:scholarCtrl
+ * @name mytodoApp.controller:appliedScholarCtrl
  * @description
- * # scholarCtrl
+ * # appliedScholarCtrl
  * Controller of the mytodoApp
  */
 var app = angular.module('mytodoApp')
@@ -12,16 +12,6 @@ var app = angular.module('mytodoApp')
   '$ngConfirm', '$window', 'appliedScholarData',
    function ($scope, $rootScope, $http, $timeout, $location, $ngConfirm, $window, appliedScholarData) {
 
-  // var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
   console.log($rootScope.municipal_id);
 
     var sg = this;
@@ -36,6 +26,26 @@ var app = angular.module('mytodoApp')
     appliedScholar($rootScope.municipal_id);
     getMunicipalities();
     
+    sg.view = function(appliedData){
+      console.log(appliedData);
+      $location.path('/application/view/'+appliedData.applied_scholar_id);
+    }
+    
+    sg.selectedTown = function(id){
+      sg.loading = false;
+      sg.scholarsTbl = true;
+      appliedScholarData.appliedMunicipalScholars(id).then(function(response){
+        sg.loading = true;
+        sg.scholarsTbl = false;
+        sg.scholars = response.data;
+        console.log(response.data);
+      }, function(err){
+        console.log(err);
+        sg.loading = true;
+        sg.scholars = [];
+      });
+      console.log(id);
+    }
 
     sg.addaGrade = function(scholar){
       $scope.$emit('applied_id', {"id":scholar.student_id});
@@ -109,40 +119,44 @@ var app = angular.module('mytodoApp')
     }
 
     sg.addToPending = function(applied){
-      var dataId = { appliedId: applied.student_id, townId: applied.townId };
+      var dataId = { appliedId: applied.applied_scholar_id, townId: applied.townId };
       appliedScholarData.updateAppliedScholars(dataId).then(function(response){
-        console.log(response);
         if(response.data == 'false'){
-          alert('Scholar is Full');
+          failedNotification();
         }
         else
         {
           sg.scholars.splice(sg.scholars.indexOf(applied), 1);
-          alert('Success');
+          // alert('Success');
         }
       }, function(err){
         console.log(err);
       });
     }
 
-    sg.filterMunicipality = function(data){
-      sg.loading = false;
-      sg.scholarsTbl = true;
-      appliedScholarData.appliedMunicipalScholars(data.town_id).then(function(response){
-        sg.loading = true;
-        sg.scholarsTbl = false;
-        sg.scholars = response.data;
-      }, function(err){
-        console.log(err);
-        sg.loading = true;
-        sg.scholars = [];
-      });
-      console.log(data.town_id);
+    // sg.filterMunicipality = function(data){
+    //   sg.loading = false;
+    //   sg.scholarsTbl = true;
+    //   appliedScholarData.appliedMunicipalScholars(data.town_id).then(function(response){
+    //     sg.loading = true;
+    //     sg.scholarsTbl = false;
+    //     sg.scholars = response.data;
+    //   }, function(err){
+    //     console.log(err);
+    //     sg.loading = true;
+    //     sg.scholars = [];
+    //   });
+    //   console.log(data.town_id);
+    // }
+    
+    sg.getTime = function(municipal_id, selectedDate, h, m, t){
+     var newDate = selectedDate+' '+convertTime12to24(h+':'+m+':'+'00'+' '+t);
+      var filterDate = { filteredDate: newDate, municipalId: municipal_id.town_id };
+      filterByDate(filterDate);
     }
-
-    // sg.newDate = function(startDate){
+    // sg.getTime = function(startDate){
     //   var date = new Date(startDate).toISOString().slice(0,10);
-    //   var newDate = date+' '+convertTime12to24('11:13:00 AM');
+    //   var newDate = date+' '+convertTime12to24('11:13:00 PM');
     //   console.log(newDate);
     // }
     
@@ -159,7 +173,7 @@ var app = angular.module('mytodoApp')
           sg.loading = true;
           sg.scholarsTbl = false;
           sg.scholars = response.data;
-        },500);
+        },100);
       }, function(err){
           console.log(err);
       });
@@ -181,6 +195,34 @@ var app = angular.module('mytodoApp')
         sg.subjects = response.data;
       }, function(err){
         console.log(err);
+      });
+    }
+
+    function filterByDate(endDate){
+      appliedScholarData.filterDate(endDate).then(function(response){
+        console.log(response);
+        sg.scholars = response.data;
+      }, function(err){
+        console.log(err);
+        sg.scholars = [];
+      });
+    }
+
+    function failedNotification(){
+      $ngConfirm({
+          icon: 'fa fa-warning',
+          backgroundDismiss: false,
+          backgroundDismissAnimation: 'shake',
+          title: 'failed! Scholar is Full',
+          theme:'modern',
+          content:'',
+          type: 'red',
+          buttons: {
+            OK: {
+                text: 'OK',
+                btnClass: 'btn-red'
+              }
+            }
       });
     }
 
@@ -268,8 +310,18 @@ app.factory('appliedScholarData',['$http', function($http){
     fetchTowns: function(){
       return $http.get(baseUrl+'getAllTowns');
     },
-    getDateRange: function(){
-      return $http.get(baseUrl+'getAllTowns');
+    // getDateRange: function(){
+    //   return $http.get(baseUrl+'getAllTowns');
+    // },
+    filterDate: function(date){
+      return $http({
+        method:'POST',
+        url: baseUrl+'getDateRange',
+        data: date,
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
     },
   }
 }]);

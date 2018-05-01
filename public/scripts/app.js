@@ -115,9 +115,13 @@ angular
       templateUrl: 'views/admin_login.html',
       controller: 'loginCtrl',
     })
-    .when('/test', {
-      templateUrl: 'views/tabref.html',
+    .when('/application/view/:applied_id', {
+      templateUrl:'views/edit_scholar.html',
       controller: 'appliedScholarCtrl',
+    })
+    .when('/home/register', {
+      templateUrl:'views/registerForm.html',
+      controller: 'registerCtrl',
     })
     .otherwise({
       redirectTo:'/'
@@ -125,15 +129,18 @@ angular
 })
 .run(function($rootScope,$location, $cookies, $window) {
 //  $rootScope.municipal_id = 1; //this is the sample access each municipality scholars
+
   $rootScope.$on('$routeChangeStart', function(event, next, prev) {
      $rootScope.pageLoad = false;
+     $rootScope.loginForm = true;
      //role 1 is superadmin role 2 is admin role 3 is user role 4 is student
      var cookie = $window.localStorage.getItem('cookies');
      if(!cookie){
       if(
         next.$$route.originalPath == '/home' ||
         next.$$route.originalPath == '/adminpydologin' || 
-        next.$$route.originalPath == '/home/updates'){
+        next.$$route.originalPath == '/home/updates' ||
+        next.$$route.originalPath == '/home/register' ){
         $rootScope.valid = false;
         $rootScope.home = true;
       }
@@ -226,7 +233,8 @@ angular
       if(
         next.$$route.originalPath == '/home' ||
         next.$$route.originalPath == '/adminpydologin' || 
-        next.$$route.originalPath == '/home/updates'){
+        next.$$route.originalPath == '/home/updates' ||
+        next.$$route.originalPath == '/home/register'){
         $rootScope.valid = false;
         $rootScope.home = true;
       }
@@ -265,7 +273,7 @@ angular
           $rootScope.home = true;
           $rootScope.valid = false;
           $rootScope.dashboard = true;
-          $rootScope.municipal_id = 4; 
+          $rootScope.municipal_id = 1; 
         }
         else if(
           next.$$route.originalPath == '/home/profile' ||
@@ -283,9 +291,11 @@ angular
         else{
           $rootScope.admin = true;
           $rootScope.superAdmin = true;
+          $rootScope.notSuperadmin = false;
           $rootScope.home = false;
           $rootScope.valid = true;
-          $rootScope.municipal_id = 4;         
+          $rootScope.municipal_id = 1; 
+          $rootScope.userAccess = 1;        
         }
       }
       else if(cookie[0].userAccessId === 2){
@@ -307,6 +317,7 @@ angular
         else{
           $rootScope.admin = false;
           $rootScope.superAdmin =false;
+          $rootScope.notSuperadmin = true;
           $rootScope.home = false;
           $rootScope.valid = true;  
           $rootScope.municipal_id = cookie[0].townId;      
