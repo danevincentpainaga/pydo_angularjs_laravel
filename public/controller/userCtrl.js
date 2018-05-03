@@ -29,7 +29,7 @@ getUserPerPage(page, $rootScope.municipal_id);
 getMunicipalities();
 
 usr.location = function(idx, user){
-  $location.path('/view/'+idx);
+  $location.path('/view/'+user.user_id);
   $scope.$emit('userid', {"id":idx, "userdata": usr.users});
 }
 
@@ -89,6 +89,7 @@ usr.getDataId = function(id, useraccess){
 usr.numberOfPage = function(){
   var numOfpage = [];
   var numOfpagesLength = Math.ceil(hid.pageLength / hid.pageSize);
+  showPagination(numOfpagesLength);
   for(var i = 1; i <= numOfpagesLength; i++){
     numOfpage.push(i);
   }
@@ -127,6 +128,10 @@ function confirmDialog(message, user, content){
       }
     }
   });
+}
+
+function showPagination(pageNum){
+  pageNum <= 1? usr.paginationNum = true : usr.paginationNum = false;
 }
 
 function deleteUserData(ids){
@@ -188,7 +193,6 @@ function getUserPerPage(id, mid){
 function count(mid){
   getUsers.pageCount(mid).then(function(response){
     hid.pageLength = response.data;
-    console.log(response);
     }, function(err){
       console.log(err);
   });

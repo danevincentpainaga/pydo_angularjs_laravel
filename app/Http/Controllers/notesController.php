@@ -231,7 +231,7 @@ class notesController extends Controller
     public function loginValidations(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
-        $loginResult = User::where(['username'=> $username, 'password'=> $password, 'userAccessId'=> 1])->get();
+        $loginResult = User::where(['username'=> $username, 'password'=> $password])->get();
         return $loginResult;
     }
 
@@ -285,6 +285,45 @@ class notesController extends Controller
         }
     }
     
+    public function updateMaxLimit(Request $request){  
+        $newMax = $request->all();
+        $newMaxValue= [];
+        $idx = 0;
+        $town = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+        for ($i=0; $i <= count($newMax)-1 ; $i++) { 
+            $newMaxVal = towns::find($town[$i]);
+            $newMaxVal->total_scholar = $newMax[$i]['townName'];
+            $newMaxVal->save();
+            array_push($newMaxValue, $newMaxVal);
+        }
+        return $newMaxValue;
+    }
+
+    public function getStudentInfo($sid){
+        $studentData = DB::table('list_applied_scholars')->where('registerId', $sid)
+        ->join('towns', 'list_applied_scholars.townId', '=', 'towns.town_id')
+        ->join('schools', 'list_applied_scholars.schoolId', '=', 'schools.school_id')
+        ->join('degrees', 'list_applied_scholars.degreeId', '=', 'degrees.degree_id')
+        ->join('college_years', 'list_applied_scholars.collegeYearId', '=', 'college_years.college_year_id')
+        ->join('semesters', 'list_applied_scholars.semesterId', '=', 'semesters.semester_id')
+        // ->join('relationship_profiles', 'list_applied_scholar.rel_profile_id', '=', 'relationship_profiles.relationship_profile_id')
+        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->limit(1)->get();
+        return $studentData;
+    }
+
+
+    public function getAppliedInfo($aid){
+        $studentData = DB::table('list_applied_scholars')->where('applied_scholar_id', $aid)
+        ->join('towns', 'list_applied_scholars.townId', '=', 'towns.town_id')
+        ->join('schools', 'list_applied_scholars.schoolId', '=', 'schools.school_id')
+        ->join('degrees', 'list_applied_scholars.degreeId', '=', 'degrees.degree_id')
+        ->join('college_years', 'list_applied_scholars.collegeYearId', '=', 'college_years.college_year_id')
+        ->join('semesters', 'list_applied_scholars.semesterId', '=', 'semesters.semester_id')
+        // ->join('relationship_profiles', 'list_applied_scholar.rel_profile_id', '=', 'relationship_profiles.relationship_profile_id')
+        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->limit(1)->get();
+        return $studentData;
+    }
+
     // public function editScholar($id){
     //     $scholarData = DB::table('applied_scholars')
     //     ->join('grades', 'applied_scholars.student_id', '=', 'grades.scholarId')

@@ -27,6 +27,7 @@ class CreateListAppliedScholarsTable extends Migration
             $table->integer('contact_no');
             $table->date('date_of_birth');
             $table->string('civil_status');
+            $table->string('course');
             $table->date('academic_year');
             $table->integer('student_id_number');
             $table->unsignedInteger('schoolId')->nullable();
@@ -35,6 +36,7 @@ class CreateListAppliedScholarsTable extends Migration
             $table->unsignedInteger('semesterId')->nullable();
             $table->unsignedInteger('statusId')->nullable();
             $table->unsignedInteger('townId')->nullable();
+            $table->unsignedInteger('registerId')->nullable();
             $table->unsignedInteger('rel_profile_id')->nullable();
             $table->foreign('schoolId')->references('school_id')->on('schools');
             $table->foreign('degreeId')->references('degree_id')->on('degrees');
@@ -42,12 +44,9 @@ class CreateListAppliedScholarsTable extends Migration
             $table->foreign('semesterId')->references('semester_id')->on('semesters');
             $table->foreign('statusId')->references('status_id')->on('statuses');
             $table->foreign('townId')->references('town_id')->on('towns');
+            $table->foreign('registerId')->references('register_id')->on('register_students');
             $table->foreign('rel_profile_id')->references('relationship_profile_id')->on('relationship_profiles');
             $table->timestamps();
-        });
-
-        Schema::table('list_applied_scholars', function (Blueprint $table) {
-            $table->string('course');
         });
     }
 

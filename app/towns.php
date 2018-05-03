@@ -9,4 +9,5 @@ class towns extends Model
     //
     protected $primaryKey = 'town_id';
     public $timestamps = false;
+    // protected $fillable = 'town_name';
 }

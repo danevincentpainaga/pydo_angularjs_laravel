@@ -20,8 +20,17 @@ use DB;
 class appliedScholarController extends Controller
 {
     public function getAppliedScholar($mid){
-        $applied_scholar = list_applied_scholar::where(['statusId'=> 1, 'townId'=> $mid])->get();
-        return $applied_scholar;
+        // $applied_scholar = list_applied_scholar::where(['statusId'=> 1, 'townId'=> $mid])->get();
+        // return $applied_scholar;
+         $applied_scholar = DB::table('list_applied_scholars')->where(['statusId'=> 1, 'townId'=> $mid])
+        ->join('towns', 'list_applied_scholars.townId', '=', 'towns.town_id')
+        ->join('schools', 'list_applied_scholars.schoolId', '=', 'schools.school_id')
+        ->join('degrees', 'list_applied_scholars.degreeId', '=', 'degrees.degree_id')
+        ->join('college_years', 'list_applied_scholars.collegeYearId', '=', 'college_years.college_year_id')
+        ->join('semesters', 'list_applied_scholars.semesterId', '=', 'semesters.semester_id')
+        // ->join('relationship_profiles', 'list_applied_scholar.rel_profile_id', '=', 'relationship_profiles.relationship_profile_id')
+        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->limit(1)->get();
+        return $applied_scholar;   
     }
 
     public function addGrades(Request $request){
@@ -73,3 +82,13 @@ class appliedScholarController extends Controller
         return $newDates;
     }
 }
+
+    // public function getUserIds($id, $mid){
+    //     $scholarData = DB::table('users')->where('townId', $mid)
+    //     ->join('towns', 'users.townId', '=', 'towns.town_id')
+    //     ->join('positions', 'users.positionId', '=', 'positions.position_id')
+    //     ->join('user_accesses', 'users.userAccessId', '=', 'user_accesses.user_accesses_id')
+    //     ->select('users.*', 'towns.town_name', 'positions.position_level', 'user_accesses.*')->orderBy('users.user_id')
+    //     ->offset($id)->limit(20)->get();
+    //     return $scholarData;
+    // }

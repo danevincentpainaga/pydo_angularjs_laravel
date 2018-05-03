@@ -57,7 +57,7 @@ angular.module('mytodoApp')
      contact_no: apps.appdata.contact_no,
      schoolId: apps.school.school_id,
      degreeId: apps.degree.degree_id,
-     // course: apps.appdata.course,
+     course: apps.appdata.course,
      statusId: 1,
      collegeYearId: apps.college_year.college_year_id,
      semesterId: apps.semester.semester_id,

@@ -44,7 +44,7 @@ angular
     })
     .when('/home/profile', {
       templateUrl: 'views/student_account.html',
-      controller: 'mainCtrl',
+      controller: 'studentProfileCtrl',
     })
     .when('/user/page/:pagenum', {
       templateUrl: 'views/user.html',
@@ -97,7 +97,7 @@ angular
     })
     .when('/view/:userid', {
       templateUrl: 'views/viewUser.html',
-      controller: 'dashboardCtrl',
+      controller: 'userCtrl',
     })
     .when('/municipality_limit', {
       templateUrl: 'views/max_limit_scholar.html',
@@ -117,7 +117,7 @@ angular
     })
     .when('/application/view/:applied_id', {
       templateUrl:'views/edit_scholar.html',
-      controller: 'appliedScholarCtrl',
+      controller: 'viewAppliedCtrl',
     })
     .when('/home/register', {
       templateUrl:'views/registerForm.html',
@@ -257,6 +257,7 @@ angular
           $rootScope.loginForm = false;
           $rootScope.dashboard = false;
           $rootScope.profile = true;
+          $rootScope.register_id = cookie[0].register_id;
         }
         else{
           $rootScope.valid = false;
@@ -273,7 +274,8 @@ angular
           $rootScope.home = true;
           $rootScope.valid = false;
           $rootScope.dashboard = true;
-          $rootScope.municipal_id = 1; 
+          $rootScope.loginForm = false;
+          $rootScope.municipal_id = 1;
         }
         else if(
           next.$$route.originalPath == '/home/profile' ||

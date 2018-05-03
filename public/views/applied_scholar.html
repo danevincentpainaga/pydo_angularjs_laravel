@@ -7,58 +7,7 @@
 <div class="row">
     <div class="col-lg-12" ng-controller="appliedScholarCtrl as applied">
         <div class="container-fluid padding-0">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item cursor-pointer" >
-              <a class="nav-link tab-active cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(1)" data-target="#aniniy">Anini'y</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(2)" data-target="#dao">Dao</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(3)" data-target="#hamtic">Hamtic</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(4)" data-target="#sanjose">San Jose</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(5)" data-target="#sibalom">Sibalom</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(6)" data-target="#belison">Belison</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(7)" data-target="#patnongon">Patnongon</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(8)" data-target="#bugasong">Bugasong</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(9)" data-target="#lauan">Lauan</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(10)" data-target="#barbaza">Barbaza</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(11)" data-target="#tibiao">Tibiao</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(12)" data-target="#culasi">Culasi</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(13)" data-target="#sebaste">Sebaste</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(14)" data-target="#pandan">Pandan</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(15)" data-target="#libertad">Libertad</a>
-            </li>
-            <li class="nav-item cursor-pointer">
-              <a class="nav-link cursor-pointer" data-toggle="tab" ng-click="applied.selectedTown(16)" data-target="#caluya">Caluya</a>
-            </li>
-          </ul>
-
+        <ng-include src="'views/tabs.html'"></ng-include>
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="container-fluid padding-0 tab-pane active">
@@ -116,12 +65,16 @@
                     </div>
                   </li>
                   <li class="list-group-item" style="margin-top: .5em;">
-                    <button class="btn btn-success btn-sm" id="delete-scholar" ng-click="applied.addAllToPending()"><i class="fa fa-trash"></i>
-                      <label class="cursor-pointer">Add All</label>
-                    </button>
-                    <button class="btn btn-success btn-sm" id="delete-scholar"><i class="fa fa-trash"></i>
-                      <label class="cursor-pointer">Delete</label>
-                    </button>
+                    <div class="row float-right">
+                      <div class="col-md-12">
+                        <button class="btn btn-success btn-sm" id="add-applied" ng-click="applied.addAllToPending()"><i class="fa fa-briefcase"></i>
+                          <label class="cursor-pointer">Add All</label>
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="delete-applied"><i class="fa fa-trash"></i>
+                          <label class="cursor-pointer">Delete All</label>
+                        </button>
+                      </div>
+                    </div>
                   </li>
                   <li class="list-group-item" style="overflow-x: auto; overflow-y: hidden; padding: 5px;">
                     <span ng-hide="applied.loading">
@@ -130,30 +83,33 @@
                       <table class="table table-bordered table-hover table-striped" style="font-size: 15px; color: #333; font-size: 14px; font-family: Helvetica,Arial,sans-serif;" ng-hide="applied.scholarsTbl">
                         <thead style="background-image: linear-gradient(200deg, #155799bf, #37b4d0); color: #fff; font-family: verdana;">
                           <tr>
-                            <th><input type="checkbox"></th>
                             <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Middle Name</th>
+                            <th>Municipality</th>
                             <th>School</th>
                             <th>Course</th>
                             <th>Date</th>
-                            <td>Time</td>
                             <th style="text-align: center;">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr ng-repeat="scholar in applied.scholars | filter:search_scholar:exactMatch">
-                            <td><input type="checkbox"></td>
                             <td>{{scholar.firstname}}</td>
                             <td>{{scholar.lastname}}</td>
                             <td>{{scholar.middle_name}}</td>
-                            <td>{{scholar.schoolId}}</td>
-                            <td>{{scholar.courseId}}</td>
-                            <td>01/28/2018</td>
-                            <td>04:00 pm</td>
+                            <td>{{scholar.town_name}}</td>
+                            <td>{{scholar.school_name}}</td>
+                            <td>{{scholar.course}}</td>
+                            <td>{{scholar.created_at}}</td>
                             <td style="text-align: center;">
                               <button class="btn btn-default btn-sm" ng-click="applied.view(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
-                              <button class="btn btn-success btn-sm" ng-click="applied.addToPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >Approved</button>&nbsp;&nbsp;
+                              <button class="btn btn-success btn-sm" ng-click="applied.addToPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                                Approved
+                              </button>
+                              <button class="btn btn-danger btn-sm" ng-click="applied.deletPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                                Delete
+                              </button>
                             </td>
                           </tr>
                         </tbody>

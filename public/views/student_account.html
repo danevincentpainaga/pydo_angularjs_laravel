@@ -27,7 +27,7 @@
   </div>
 </div>
 <br />
-<div class="container" ng-controller="homeCtrl as home">
+<div class="container" ng-controller="studentProfileCtrl as profile">
     <div class="row">
 
     <div class="col-md-8" style="background-color: whitesmoke;">
@@ -42,41 +42,73 @@
             </div>
             <div class="row">
                 <div class="col-md-6 margin-top-1em" style="background-color: white;box-shadow: 4px 4px 15px -11px;padding-top: 1em;">
-                  <label class="verdana-bold">Name:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Name:</label>&nbsp;&nbsp;
+                    <label>
+                      {{ profile.firstname }}&nbsp;{{ profile.lastname}}
+                    </label>
                   <br />
-                  <label class="verdana-bold">Middle Name:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Middle Name:</label>&nbsp;&nbsp;
+                    <label>{{ profile.middle_name }}</label>
                   <br />
-                  <label class="verdana-bold">Address:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Gender:</label>&nbsp;&nbsp;
+                    <label>{{ profile.gender }}</label>
                   <br />
-                  <label class="verdana-bold">Email Address:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Age:</label>&nbsp;&nbsp;
+                    <label>{{ profile.age }}</label>
                   <br />
-                  <label class="verdana-bold">Contact no.</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Address</label>&nbsp;&nbsp;
+                    <label>{{ profile.barangay }}&nbsp;&nbsp;{{ profile.town_name }}</label>
                   <br />
-                  <label class="verdana-bold">Gender:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                  <label class="verdana-bold">Religion:</label>&nbsp;&nbsp;<label>{{ profile.religion }}</label>
                 </div>
                 <div class="col-md-6 margin-top-1em" style="background-color: white;box-shadow: 4px 4px 15px -11px;padding-top: 1em;">
-                    <label class="verdana-bold">Date of Birth:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Date of Birth:</label>&nbsp;&nbsp;
+                      <label>{{ profile.date_of_birth }}</label>
                     <br />
-                    <label class="verdana-bold">Civil Status:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Civil Status:</label>&nbsp;&nbsp;
+                      <label>{{ profile.civil_status }}</label>
                     <br />
-                    <label class="verdana-bold">Father:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Contact_no:</label>&nbsp;&nbsp;
+                      <label>{{ profile.contact_no }}</label>
                     <br />
-                    <label class="verdana-bold">Mother.</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">School.</label>&nbsp;&nbsp;
+                      <label>{{ profile.school_name }}</label>
                 </div>
+
                 <div class="col-md-12 margin-top-1em" style="background-color: white;box-shadow: 4px 4px 15px -11px;margin-bottom: 1em;">
                     <h3 class="menu-header" style="color: #2aabc7;margin: 19px 0 15px;">School</h3>
-                    <label class="verdana-bold">Name of School:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Course:</label>&nbsp;&nbsp;
+                      <label>{{ profile.course }}</label>
                     <br />
-                    <label class="verdana-bold">Course:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Year:</label>&nbsp;&nbsp;
+                      <label>{{ profile.college_year_name }}&nbsp;year</label>
                     <br />
-                    <label class="verdana-bold">Applicable SY:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Semester:</label>&nbsp;&nbsp;
+                      <label>{{ profile.semesters_name }}</label>
                     <br />
-                    <label class="verdana-bold">Applicable Semester:</label>&nbsp;&nbsp;<label>{{ name }}</label>
+                    <label class="verdana-bold">Academic Year:</label>&nbsp;&nbsp;
+                      <label>{{ profile.academic_year }}</label>
+                    <br />
+                    <label class="verdana-bold">ID Number:</label>&nbsp;&nbsp;
+                      <label>{{ profile.student_id_number }}</label>
                 </div>
+
+               <div class="col-md-12 margin-top-1em" style="background-color: white;box-shadow: 4px 4px 15px -11px;margin-bottom: 1em;">
+                    <label class="verdana-bold">Spouse:</label>&nbsp;&nbsp;
+                      <label>{{ profile.spouse }}</label>
+                    <br />
+                    <label class="verdana-bold">Father:</label>&nbsp;&nbsp;
+                      <label>{{ profile.father }}</label>
+                    <br />
+                    <label class="verdana-bold">Mother:</label>&nbsp;&nbsp;
+                      <label>{{ profile.mother }}</label>
+                    <br />
+                </div>
+
                 <div class="col-md-12 margin-top-1em" style="background-color: white;box-shadow: 4px 4px 15px -11px;margin-bottom: 1em;">
                   <ul class="list-group" style="margin-top: 1em;margin-bottom: 1em;">
                     <div class="col-md-12">
-                      <button class="btn btn-success btn-md max-height-2-2em" ng-click="home.printForm()">
+                      <button class="btn btn-success btn-md max-height-2-2em" ng-click="profile.printForm()" ng-disabled="profile.download">
                         <label class="login-label" >Download</label>
                       </button> 
                     </div>
@@ -114,8 +146,8 @@
           <div class="col-md-12" style="padding: 0;">
           <li class="list-group-item" style="border-radius: 0px; height: 65px;">
             <img src="images/dane.jpg" class="col-md-12 gallery">
-            <div class="col-md-12 font-13px">Dane Vincent Painaga</div>
-            <div class="col-md-12 font-13px">Universit of Antique</div>
+            <div class="col-md-12 font-13px">{{ profile.applied_name }}</div>
+            <div class="col-md-12 font-13px">{{ profile.school_name }}</div>
           </li>
           </div>
         </ul>

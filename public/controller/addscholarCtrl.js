@@ -79,6 +79,7 @@ var app = angular.module('mytodoApp')
       var appData = { appliedDataId: appliedData.applied_scholar_id };
       pendingScholar.removePendingScholars(appData).then(function(response){
         as.appliedScholars.splice(as.appliedScholars.indexOf(appliedData), 1);
+        as.municipalTotal = as.municipalTotal -1;
         console.log(response);
       }, function(err){
         console.log(err);
@@ -107,6 +108,7 @@ var app = angular.module('mytodoApp')
     function getScholar(municipalId){
       pendingScholar.getPendingScholar(municipalId).then(function(response){
         as.loading = false;
+        as.municipalTotal = response.data.length;
         console.log(response);
         $timeout(function(){
           as.appliedScholars = response.data;

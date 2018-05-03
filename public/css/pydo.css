@@ -82,11 +82,14 @@ p{
 .color-teal{
   color: teal;
 }
+.color-2aabc7{
+  color: #2aabc7 !important;
+}
 
 /*font-size*/
 .font-13-verdana{
-  font-size: 12px;
-  font-family: verdana;
+  font-size: 12px !important;
+  font-family: verdana !important;
 }
 .font-13px{
   font-size: 13px;
@@ -96,6 +99,12 @@ p{
 }
 .font-15px{
   font-size: 15px;
+}
+.font-17px{
+  font-size: 17px !important;
+}
+.font-23px{
+  font-size: 23px !important;
 }
 .font-color-white{
   color: white;
@@ -109,6 +118,9 @@ p{
 }
 .font-family-verdana{
   font-family: verdana;
+}
+.font-family-serif{
+  font-family: serif !important;
 }
 
 /*floats*/
@@ -126,6 +138,9 @@ p{
 .margin-top-1em{
   margin-top: 1em !important;
 }
+.margin-top-5em{
+  margin-top:5em !important;
+}
 .margin-left-1em{
   margin-left: 1em;
 }
@@ -138,12 +153,18 @@ p{
 .margin-left-42px{
   margin-left: 42px;
 }
+.margin-right-1em{
+  margin-right: 1em !important;
+}
 .margin-bottom-0px{
   margin-bottom: 0px;
 }
 /*padding*/
 .padding-0{
   padding: 0px !important;
+}
+.padding-7px{
+  padding: 7px !important; 
 }
 .padding-right-0{
   padding-right: 0px !important;
@@ -565,6 +586,24 @@ hr {
     line-height: 1.0;
     cursor: pointer;
   }
+
+  #delete-applied{
+    /*background-image: linear-gradient(200deg, #9dc7f1, #1effea);*/
+    height: 23px;
+    width: 100px;
+    line-height: 1.0;
+    cursor: pointer;
+  }
+
+  #add-applied{
+    /*background-image: linear-gradient(200deg, #9dc7f1, #1effea);*/
+    background-color: #2aabc7;
+    height: 23px;
+    width: 100px;
+    line-height: 1.0;
+    cursor: pointer;
+  }
+
   #sel1{
     max-width: 15em;
     min-width: 15em;
@@ -625,7 +664,7 @@ hr {
     background-color: white !important;
     color: white;
   }
-  .tab-active{
+  .tabActive{
     border-color: #dee2e6 #dee2e6 #fff !important;
   }
   .actives{

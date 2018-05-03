@@ -11,7 +11,6 @@
    	  <li class="list-group-item padding-7px " >
 	    <div class="form-group margin-bottom-0px" ng-if="superAdmin" >
           <select class="form-control height-30px width-11em"  ng-model="addscholar.selectedTown" ng-options="town as town.town_name for town in addscholar.towns track by town.town_id " ng-change="addscholar.townData(addscholar.selectedTown)" >
-          <option value="">Select Municipality</option>
           </select>
 	     </div>
    	  </li>
@@ -183,4 +182,4 @@
 </div>
 </div>
 
-<!-- <ng-include src="'views/printForm.html'" class="onshow" ng-hied ></ng-include> -->
+<ng-include src="'views/printForm.html'" class="onshow" ng-controller="addscholarCtrl as addscholar"  ></ng-include>

@@ -21,6 +21,9 @@ Route::get('/pageCount/{municipalId}', 'userController@pageCount');
 // Route::get('/user/page/{id}', 'userController@getUserIds');
 Route::get('/getAllTowns', 'userController@getTowns');
 Route::get('/user/page/{id}/{mid}', 'userController@getUserIds');
+Route::get('/getUserInformation/{id}', 'userController@getUserInformation');
+
+
 
 
 //addscholarController
@@ -85,3 +88,9 @@ Route::post('/loginValidations', 'notesController@loginValidations');
 Route::post('/validateStudentLogin', 'notesController@validateStudentLogin');
 
 
+//max values
+Route::post('/updateMaxLimit', 'notesController@updateMaxLimit');
+
+//studentprofile
+Route::get('/getStudentInformation/{sid}', 'notesController@getStudentInfo');
+Route::get('/getAppliedInformation/{aid}', 'notesController@getAppliedInfo'); 

@@ -25,13 +25,13 @@ class userController extends Controller
     }
 
     public function getUserIds($id, $mid){
-        $scholarData = DB::table('users')->where('townId', $mid)
+        $userData = DB::table('users')->where('townId', $mid)
         ->join('towns', 'users.townId', '=', 'towns.town_id')
         ->join('positions', 'users.positionId', '=', 'positions.position_id')
         ->join('user_accesses', 'users.userAccessId', '=', 'user_accesses.user_accesses_id')
         ->select('users.*', 'towns.town_name', 'positions.position_level', 'user_accesses.*')->orderBy('users.user_id')
         ->offset($id)->limit(20)->get();
-        return $scholarData;
+        return $userData;
     }
 
     public function pageCount($mid){
@@ -42,5 +42,17 @@ class userController extends Controller
     public function getTowns(){
         $towns = towns::all();
         return $towns;
+    }
+
+    public function getUserInformation($uid){
+        $userInfo = DB::table('users')
+        ->join('towns', 'users.townId', '=', 'towns.town_id')
+        ->join('positions', 'users.positionId', '=', 'positions.position_id')
+        ->join('statuses', 'users.statusId', '=', 'statuses.status_id')
+        ->join('user_accesses', 'users.userAccessId', '=', 'user_accesses.user_accesses_id')
+        ->select('users.*', 'towns.*', 'positions.*', 'statuses.*', 'user_accesses.*')
+        ->where('users.user_id', $uid)
+        ->limit(1)->get();
+        return $userInfo;
     }
 }

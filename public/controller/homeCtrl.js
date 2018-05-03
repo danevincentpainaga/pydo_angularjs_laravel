@@ -18,14 +18,6 @@ app.controller('homeCtrl', ['$scope', '$location', '$http', '$timeout', '$window
   	validate(hc.student);
   }
 
-	hc.printForm = function(){
-	  $timeout(function(){
-	    var printDiv = document.getElementById('Form');
-	    window.print(printDiv);
-	  },500);
-	}
-
-
 function validate(credentialsData){
 	validateStudentLoginService.validateStudentLogin(credentialsData).then(function(response){
 	  	if(response.data.length > 0){

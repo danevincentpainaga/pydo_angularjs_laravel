@@ -8,8 +8,11 @@
   </div>
   </div>
   <div class="row">
+    <div class="col-md-9">
+      <span class="font-23px font-family-serif">Selected: &nbsp;<label>{{uctrl.selectedMunicipality.town_name}}</label></span>
+    </div>
     <div class="col-md-3" >
-      <div class="form-group">
+      <div class="form-group float-right">
       <select class="form-control height-30px width-11em"  ng-model="uctrl.selectedMunicipality" ng-options="municipal as municipal.town_name for municipal in uctrl.municipalities track by municipal.town_id " ng-change="uctrl.filterMunicipality(uctrl.selectedMunicipality)" >
       </select>
       </div>
@@ -125,7 +128,7 @@
       </div>
 
       <div class="col-lg-12" style="position: relative; top: 10px; font-family: verdana;">
-         <ul class="pagination pagination-sm" >
+         <ul class="pagination pagination-sm" ng-hide="uctrl.paginationNum">
             <li class="page-item"><a class="page-link" id="prev" ng-click="uctrl.previousPage()">Prev</a></li>
             <li class="page-item"  ng-repeat="page in uctrl.numberOfPage()"><a class="page-link" href="#!/user/page/{{page}}" >{{page}}</a></li>
             <li class="page-item"><a class="page-link" id="next" ng-click="uctrl.nextPage()">Next</a></li>

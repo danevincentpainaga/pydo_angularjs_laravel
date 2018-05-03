@@ -16,6 +16,7 @@ var app = angular.module('mytodoApp')
 
     var sg = this;
     var subjectHolder = [];
+    sg.selected = 1;
     sg.idx ;
     sg.subjects = [];
     sg.saveStudentGrades = [];
@@ -32,6 +33,7 @@ var app = angular.module('mytodoApp')
     }
     
     sg.selectedTown = function(id){
+      sg.selected = id;
       sg.loading = false;
       sg.scholarsTbl = true;
       appliedScholarData.appliedMunicipalScholars(id).then(function(response){
@@ -45,6 +47,18 @@ var app = angular.module('mytodoApp')
         sg.scholars = [];
       });
       console.log(id);
+    }
+
+    sg.isSelected = function(selectedId){
+      return sg.selected === selectedId;
+    }
+
+    sg.tabSelected = function(tabSelected){
+      if($rootScope.userAccess === 1){
+        return true;
+      }else{
+        return showTab(tabSelected);
+      }
     }
 
     sg.addaGrade = function(scholar){
@@ -169,6 +183,7 @@ var app = angular.module('mytodoApp')
       console.log(municipalId);
       appliedScholarData.getAppliedScholar(municipalId).then(function(response){
         sg.loading = false;
+        console.log(response);
         $timeout(function(){
           sg.loading = true;
           sg.scholarsTbl = false;
@@ -208,12 +223,19 @@ var app = angular.module('mytodoApp')
       });
     }
 
+    function showTab(tab){
+      if($rootScope.municipal_id === tab){
+        return true;
+      }else{
+        return false;
+      }
+    }
     function failedNotification(){
       $ngConfirm({
           icon: 'fa fa-warning',
           backgroundDismiss: false,
           backgroundDismissAnimation: 'shake',
-          title: 'failed! Scholar is Full',
+          title: 'failed! Check scholar max limit',
           theme:'modern',
           content:'',
           type: 'red',
@@ -237,6 +259,7 @@ var app = angular.module('mytodoApp')
       }
       return hours + ':' + minutes+':'+'00';
     }
+    
   }]);
 
 

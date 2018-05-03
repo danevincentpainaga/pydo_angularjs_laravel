@@ -1,5 +1,5 @@
 <div class="row" style="height: 3em;"></div>
-<div class="container-fluid" ng-controller="editScholarCtrl as sc">
+<div class="container-fluid" ng-controller="viewAppliedCtrl as sc">
     <div class="row">
     <div class="col-lg-12" >
       <h6 class="menu-header" style="color: #2aabc7; margin-bottom: .7em;">
@@ -33,8 +33,8 @@
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-paper-plane" ></i>&nbsp;Address</label>
-    <input type="text"  name="" ng-model="sc.address" style="width:100%; margin: 7px 0 20px; 
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-paper-plane" ></i>&nbsp;Barangay</label>
+    <input type="text"  name="" ng-model="sc.barangay" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
@@ -42,73 +42,102 @@
 
   <div class="col-lg-4 col-md-4 " >
 
-    <label style="color: #2aabc7; margin-top:2em;"><i class="fa fa-envelope" ></i>&nbsp;Email Address</label>
-    <input type="text"  name="" ng-model="sc.email" style="width:100%; margin: 7px 0 20px; 
+    <label style="color: #2aabc7; margin-top:2em;"><i class="fa fa-envelope" ></i>&nbsp;Municipality</label>
+    <input type="text"  name="" ng-model="sc.town_name" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-      <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-phone" ></i>&nbsp;Contact no.</label>
-    <input type="text"  name="" ng-model="sc.contact_number" style="width:100%; margin: 7px 0 20px; 
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-phone" ></i>&nbsp;Contact no.</label>
+    <input type="text"  name="" ng-model="sc.contact_no" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Gender</label>
-    <select name="" ng-model="sc.gender" style="width:100%; margin: 7px 0 20px; 
-    border-top: none;
-    border-left: none;
-    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-      <option value=""></option>
-      <option value="Officer">Male</option>
-      <option value="IT">Female</option>
-    </select>
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-calendar" ></i>&nbsp;Date of birth</label>
-    <input type="text"  name="" ng-model="sc.dateofbirth" style="width:100%; margin: 7px 0 20px; 
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-calendar" ></i>&nbsp;Date of birth</label>
+    <input type="text"  name="" ng-model="sc.date_of_birth" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0;">
-    </div>
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-calendar" ></i>&nbsp;Age</label>
+    <input type="text"  name="" ng-model="sc.age" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0;">
+    </div>          
     <div class="col-lg-1 " style="padding-right: 2em;"></div>
   </div>
   <div class="row">
-        <div class="col-lg-12" >
+    <div class="col-lg-12" >
         <h3 class="menu-header" style="color: #2aabc7;"></h3>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12" >
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Father</label>
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-calendar" ></i>&nbsp;Gender</label>
+    <input type="text"  name="" ng-model="sc.gender" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Civil Status</label>
+    <input type="text"  name="" ng-model="sc.civil_status" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Religion</label>
+    <input type="text"  name="" ng-model="sc.religion" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-building" ></i>&nbsp;School</label>
+    <input type="text"  name="" ng-model="sc.school_name" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12" >
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Year</label>
+    <input type="text"  name="" ng-model="sc.college_year_name" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Semester</label>
+    <input type="text"  name="" ng-model="sc.semesters_name" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Academic Year</label>
+    <input type="text"  name="" ng-model="sc.academic_year" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Course</label>
+    <input type="text"  name="" ng-model="sc.course" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" >
+    <h3 class="menu-header" style="color: #2aabc7;"></h3>
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;ID Number:</label>
+    <input type="text"  name="" ng-model="sc.student_id_number" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-user" ></i>&nbsp;Spouse</label>
+    <input type="text"  name="" ng-model="sc.spouse" style="width:100%; margin: 7px 0 20px; 
+    border-top: none;
+    border-left: none;
+    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-female" ></i>&nbsp;Father</label>
     <input type="text"  name="" ng-model="sc.father" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-female" ></i>&nbsp;Mother</label>
+    <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-female" ></i>&nbsp;Mother</label>
     <input type="text"  name="" ng-model="sc.mother" style="width:100%; margin: 7px 0 20px; 
     border-top: none;
     border-left: none;
     border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12" >
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-building" ></i>&nbsp;School</label>
-    <select name="" ng-model="sc.school" style="width:100%; margin: 7px 0 20px; 
-    border-top: none;
-    border-left: none;
-    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-      <option value=""></option>
-      <option value="Officer">University of Antique</option>
-      <option value="IT">SAC</option>
-    </select>
-        <label style="color: #2aabc7; margin-top: 1em;"><i class="fa fa-graduation-cap" ></i>&nbsp;College Year</label>
-    <select name="" ng-model="sc.year" style="width:100%; margin: 7px 0 20px; 
-    border-top: none;
-    border-left: none;
-    border-right: none; outline-color: white; border-bottom: 1px solid #37b4d0; font-size: 14px; padding-left: 5px;">
-      <option value=""></option>
-      <option value="Officer">1st year</option>
-      <option value="IT">2nd year</option>
-      <option value="IT">3rd year</option>
-      <option value="IT">4th year</option>
-      <option value="IT">5th year</option>
-    </select>
-
     </div>
   </div>
   <div class="row">
@@ -124,5 +153,4 @@
     </div>
   </div>
     <div class="row" style="height: 5em;"></div>
-
 </div>

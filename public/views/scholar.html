@@ -10,15 +10,11 @@
 <div class="row">
   <div class="col-md-12" >
     <div class="form-group" style="float: right;" ng-if="superAdmin" >
-      <select class="form-control" ng-change="uctrl.statusChange(search_user.status)" ng-model="search_user.status" style="height: 30px;">
-        <option value="">Select Municipality</option>
-        <option value="active" ng-model="search_user.status">Culasi</option>
-        <option value="disabled" ng-model="search_user.status">Sebaste</option>
-      </select>
+      <ng-include src="'views/tabs.html'"></ng-include>
     </div>
   </div>
     <div class="col-lg-12">
-        <ul class="list-group" style="margin-top: 7px;">
+        <ul class="list-group" style="margin-top: -10px;">
           <li class="list-group-item" style="background-color: #e3e9ef;"><label>List of Scholars</label></li>
           <li class="list-group-item">
             <div class="row"  style="margin-top: 1em;">
