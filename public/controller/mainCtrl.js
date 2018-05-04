@@ -9,14 +9,18 @@
  */
 
 var app = angular.module('mytodoApp')
-app.controller('mainCtrl',['$scope', '$rootScope', '$location', '$http', '$ngConfirm','$filter', '$timeout', function ($scope, $rootScope, $location, 
- $http, $ngConfirm, $filter, $timeout) {
+app.controller('mainCtrl',['$scope', '$rootScope', '$location', '$http',
+ '$ngConfirm','$filter', '$timeout','mainCtrlService',
+ function ($scope, $rootScope, $location, $http, $ngConfirm, $filter, $timeout, mainCtrlService) {
 
   $scope.loading = true;
   $scope.navHide = false;
   $scope.smallNav = true;
   var collapse = true;
-  
+
+  getDateAndTime();
+  setInterval(getDateAndTime, 43200);
+
   var styles = {
     initStyles: function(){
       if (collapse === true) {
@@ -109,6 +113,26 @@ app.controller('mainCtrl',['$scope', '$rootScope', '$location', '$http', '$ngCon
   });
 
 
+    function getDateAndTime(){
+      var date = new Date();
+      var currentDate = date.toISOString().split('T')[0];
+        if(currentDate == '2018-05-04'){
+          updateToInactive();
+        }
+        else{
+           console.log('scholar not updated');
+        }
+    }
+
+    function updateToInactive(){
+      var status = { newStatus: 4 };
+      mainCtrlService.updateToRenewable(status).then(function(response){
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });
+    }
+
   // $scope.printForm = function(){
   //   var printDiv = document.getElementById('Form');
   //   window.print(printDiv);
@@ -134,6 +158,7 @@ app.controller('mainCtrl',['$scope', '$rootScope', '$location', '$http', '$ngCon
 //       }
 //     };
 //  }]);
+
 
 app.directive('autoresize', function ($window) {
   return function ($scope) {
@@ -161,4 +186,19 @@ app.directive('autoresize', function ($window) {
     });
   };
 });
+
+app.factory('mainCtrlService',['$http', function($http){
+  return{
+    updateToRenewable: function(updatedStatus){
+      return $http({
+        method:'POST',
+        url: baseUrl+'updateNotRenewed',
+        data: updatedStatus,
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+    },
+  }
+}]);
 

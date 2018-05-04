@@ -11,6 +11,6 @@ class list_applied_scholar extends Model
         'applied_name', 'firstname', 'lastname', 'middle_name', 'age', 'gender', 
         'barangay', 'religion', 'contact_no', 'date_of_birth', 'civil_status', 'academic_year', 
         'course', 'student_id_number', 'schoolId', 'degreeId', 'collegeYearId', 'semesterId', 'statusId', 
-        'townId'
+        'townId', 'registerId'
     ];
 }

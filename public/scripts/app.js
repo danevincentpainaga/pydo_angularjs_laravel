@@ -36,11 +36,11 @@ angular
     })
     .when('/home/updates', {
       templateUrl: 'views/updates.html',
-      controller: 'mainCtrl',
+      controller: 'studentProfileCtrl',
     })
     .when('/home/application', {
       templateUrl: 'views/student_application_form.html',
-      controller: 'mainCtrl',
+      controller: 'studentApplicationCtrl',
     })
     .when('/home/profile', {
       templateUrl: 'views/student_account.html',
@@ -109,7 +109,7 @@ angular
     })
     .when('/reports', {
       templateUrl: 'views/report.html',
-      controller: 'userCtrl',
+      controller: 'reportCtrl',
     })
     .when('/adminpydologin', {
       templateUrl: 'views/admin_login.html',
@@ -308,16 +308,19 @@ angular
           $rootScope.home = true;
           $rootScope.valid = false;
           $rootScope.dashboard = true;
+          $rootScope.loginForm = false;
           $rootScope.admin = false;
           $rootScope.municipal_id = cookie[0].townId;
         }
-        else if(next.$$route.originalPath == '/adminpydologin'){
+        else if(next.$$route.originalPath == '/adminpydologin' ||
+          next.$$route.originalPath == '/add_school' ||
+          next.$$route.originalPath == '/municipality_limit'){
           $rootScope.home = false;
           $rootScope.valid = true;
           $location.path('/');
         }
         else{
-          $rootScope.admin = false;
+          $rootScope.admin = true;
           $rootScope.superAdmin =false;
           $rootScope.notSuperadmin = true;
           $rootScope.home = false;

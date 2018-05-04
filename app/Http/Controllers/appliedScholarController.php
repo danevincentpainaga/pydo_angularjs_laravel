@@ -29,7 +29,7 @@ class appliedScholarController extends Controller
         ->join('college_years', 'list_applied_scholars.collegeYearId', '=', 'college_years.college_year_id')
         ->join('semesters', 'list_applied_scholars.semesterId', '=', 'semesters.semester_id')
         // ->join('relationship_profiles', 'list_applied_scholar.rel_profile_id', '=', 'relationship_profiles.relationship_profile_id')
-        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->limit(1)->get();
+        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->orderBy('applied_scholar_id')->get();
         return $applied_scholar;   
     }
 
@@ -80,6 +80,16 @@ class appliedScholarController extends Controller
         $newDates = list_applied_scholar::where('created_at','<=', $date )->get();
         // $newDates = list_applied_scholar::where(['created_at','<=', $date, 'townId','=', $municipal_id])->get();
         return $newDates;
+    }
+
+    public function updateNotRenewed(Request $request){
+        $scholarcount = list_applied_scholar::where('statusId','=', 3)->count();
+        if($scholarcount > 0){
+            $newStatus = $request->input('newStatus');
+            $newUpdate =  DB::table('list_applied_scholars')
+            ->where('statusId','=', 3)
+            ->update(['statusId'=> $newStatus]);
+        }
     }
 }
 

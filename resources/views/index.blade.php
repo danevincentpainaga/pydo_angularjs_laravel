@@ -65,6 +65,10 @@
     <script src="{{ asset('controller/viewUserCtrl.js') }}"></script>
     <script src="{{ asset('controller/studentProfileCtrl.js') }}"></script>
     <script src="{{ asset('controller/viewAppliedCtrl.js') }}"></script>
+    <script src="{{ asset('controller/reportCtrl.js') }}"></script>
+    <script src="{{ asset('controller/studentApplicationCtrl.js') }}"></script>
+
+    <script src="{{ asset('services/mainService.js') }}"></script>
 
     <script src="{{ asset('controller/subjectCtrl.js') }}"></script>
     <script>var baseUrl = "{{url('/')}}/";</script>

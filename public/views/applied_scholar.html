@@ -67,7 +67,7 @@
                   <li class="list-group-item" style="margin-top: .5em;">
                     <div class="row float-right">
                       <div class="col-md-12">
-                        <button class="btn btn-success btn-sm" id="add-applied" ng-click="applied.addAllToPending()"><i class="fa fa-briefcase"></i>
+                        <button class="btn btn-success btn-sm" id="add-applied" ng-click="applied.addAllToPending()" ng-if="superAdmin"><i class="fa fa-briefcase"></i>
                           <label class="cursor-pointer">Add All</label>
                         </button>
                         <button class="btn btn-primary btn-sm" id="delete-applied"><i class="fa fa-trash"></i>
@@ -103,8 +103,10 @@
                             <td>{{scholar.course}}</td>
                             <td>{{scholar.created_at}}</td>
                             <td style="text-align: center;">
-                              <button class="btn btn-default btn-sm" ng-click="applied.view(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >View</button>&nbsp;&nbsp;
-                              <button class="btn btn-success btn-sm" ng-click="applied.addToPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                              <button class="btn btn-default btn-sm" ng-click="applied.view(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
+                                View
+                              </button>&nbsp;&nbsp;
+                              <button class="btn btn-success btn-sm" ng-click="applied.addToPending(scholar)" ng-if="superAdmin" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >
                                 Approved
                               </button>
                               <button class="btn btn-danger btn-sm" ng-click="applied.deletPending(scholar)" style="line-height: 1.2; padding: .2rem .5rem; font-size: 12px;" >

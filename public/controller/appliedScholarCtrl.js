@@ -16,13 +16,15 @@ var app = angular.module('mytodoApp')
 
     var sg = this;
     var subjectHolder = [];
-    sg.selected = 1;
+    sg.selected = $rootScope.municipal_id;
     sg.idx ;
     sg.subjects = [];
     sg.saveStudentGrades = [];
     sg.added_grade = [];
     sg.newSubjectAdded = [];
     sg.scholarsTbl = true;
+
+    sg.minutesData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
     appliedScholar($rootScope.municipal_id);
     getMunicipalities();
@@ -333,9 +335,6 @@ app.factory('appliedScholarData',['$http', function($http){
     fetchTowns: function(){
       return $http.get(baseUrl+'getAllTowns');
     },
-    // getDateRange: function(){
-    //   return $http.get(baseUrl+'getAllTowns');
-    // },
     filterDate: function(date){
       return $http({
         method:'POST',

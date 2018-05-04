@@ -57,6 +57,7 @@ var app = angular.module('mytodoApp')
 
   maxLimitService.getMunicipal().then(function(response){
     displayMaxValue(response.data);
+    extractData(response.data);
   }, function(err){
     console.log(err);
   });
@@ -71,13 +72,14 @@ var app = angular.module('mytodoApp')
   }
 
   function extractData(arrData){
-    var newMunicipalArray = [];
-    var row ={};
-      angular.forEach(arrData, function(val, i){
-          row[val.town_name] = val.total_scholar;
-      });
-    newMunicipalArray.push(row);
-    return newMunicipalArray;
+    // var newMunicipalArray = [];
+    // var row ={};
+    //   angular.forEach(arrData, function(val, i){
+    //       row[val.town_name] = val.total_scholar;
+    //   });
+    // newMunicipalArray.push(row);
+    // return newMunicipalArray;
+    console.log(arrData);
   }
 
   function displayMaxValue(max){

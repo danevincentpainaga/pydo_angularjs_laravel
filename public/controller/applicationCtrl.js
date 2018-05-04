@@ -10,17 +10,6 @@
 angular.module('mytodoApp')
   .controller('applicationCtrl', ['$scope', '$rootScope', '$location', '$window', '$ngConfirm', 'applicationData',
    function ($scope, $rootScope, $location, $window, $ngConfirm, applicationData) {
-
-  // var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
     
   var apps = this;
   apps.municipality = [];

@@ -144,7 +144,11 @@ class notesController extends Controller
 
 
     public function activeScholar($mid){
-        $activeScholar = list_applied_scholar::where(['statusId'=> 3, 'townId'=>$mid])->get();
+        // $statusIdArray = [4, 3];
+        // $activeScholar = list_applied_scholar::where(['statusId'=> 3, 'townId'=>$mid])->get();
+        $activeScholar = list_applied_scholar::where(['statusId'=> 3], ['townId'=>$mid])
+        ->orWhere(['statusId'=> 4])
+        ->get();
         return $activeScholar;
     }
 
@@ -324,6 +328,21 @@ class notesController extends Controller
         return $studentData;
     }
 
+
+    public function getScholarReports($mid){
+         $scholars = DB::table('list_applied_scholars')->where(['statusId'=> 3, 'townId'=> $mid])
+        ->join('towns', 'list_applied_scholars.townId', '=', 'towns.town_id')
+        ->join('schools', 'list_applied_scholars.schoolId', '=', 'schools.school_id')
+        ->join('degrees', 'list_applied_scholars.degreeId', '=', 'degrees.degree_id')
+        ->join('college_years', 'list_applied_scholars.collegeYearId', '=', 'college_years.college_year_id')
+        ->join('semesters', 'list_applied_scholars.semesterId', '=', 'semesters.semester_id')
+        // ->join('relationship_profiles', 'list_applied_scholar.rel_profile_id', '=', 'relationship_profiles.relationship_profile_id')
+        ->select('list_applied_scholars.*', 'towns.town_name', 'schools.school_name', 'degrees.degree_name', 'college_years.college_year_name', 'semesters.semesters_name')->get();
+        return $scholars;   
+    }
+
+
+
     // public function editScholar($id){
     //     $scholarData = DB::table('applied_scholars')
     //     ->join('grades', 'applied_scholars.student_id', '=', 'grades.scholarId')
@@ -337,3 +356,16 @@ class notesController extends Controller
 //     ->limit(1)
 //     ->update(['field', 'new value']);
 }
+
+
+// down vote
+// You can use subqueries in anonymous function like this:
+
+//  $results = User::where('this', '=', 1)
+//             ->where('that', '=', 1)
+//             ->where(function($query) {
+//                 * @var $query Illuminate\Database\Query\Builder  
+//                 return $query->where('this_too', 'LIKE', '%fake%')
+//                     ->orWhere('that_too', '=', 1);
+//             })
+//             ->get();

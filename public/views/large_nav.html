@@ -30,13 +30,13 @@ window.windowHeight: {{windowHeight}}
         <i class="fa fa-angle-right" style="margin-left: 20px;"></i><i class="fa fa-user-plus" style="margin-left: 1"></i>&nbsp;<label class="cursor-pointer font-13-verdana">Add User</label>
       </a>
     </li>
-    <li class="nav-item side-menu">
+    <li class="nav-item side-menu" ng-if="superAdmin">
       <div class="nav-link cursor-pointer" href="#add-scholar" data-toggle="collapse" style="border-bottom: 1px solid #e7e7e7; color: #06799f;"><i class="fa fa-folder-open"></i>
         <label class="cursor-pointer font-13-verdana" >Manage Scholar</label>
         <i class="fa fa-caret-down"  style="float: right; margin-top: 5px;font-size: 18px;"></i>
       </div>
     </li>
-    <li class="nav-item collapse" id="add-scholar" >
+    <li class="nav-item collapse" id="add-scholar" ng-if="superAdmin">
       <a class="nav-link" ng-class="{activated:isActivated('/scholar')}" href="#!/scholar" style="border-bottom: 1px solid #e7e7e7; color: #06799f; ">
         <i class="fa fa-angle-right" style="margin-left: 20px;"></i><i class="fa fa-graduation-cap" style="margin-left: 10px;"></i>&nbsp;<label class="cursor-pointer font-13-verdana">Scholars</label>
       </a>
@@ -63,11 +63,11 @@ window.windowHeight: {{windowHeight}}
         <i class="fa fa-angle-right" style="margin-left: 20px;"></i><i class="fa fa-list-alt" style="margin-left: 10px;"></i>&nbsp;<label class="cursor-pointer font-13-verdana">Applied Scholar</label>
       </a>
     </li>
-    <li class="nav-item side-menu" ng-if="admin">
+    <li class="nav-item side-menu" ng-if="superAdmin">
       <a class="nav-link" ng-class="{activated:isActivated('/municipality_limit')}" href="#!/municipality_limit" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
         <i class="fa fa-briefcase"></i>&nbsp;<label class="cursor-pointer font-13-verdana" ng-style="collapseHide">Scholar Limit</label></a>
     </li>
-    <li class="nav-item side-menu">
+    <li class="nav-item side-menu" ng-if="superAdmin">
       <a class="nav-link" ng-class="{activated:isActivated('/add_school')}" href="#!/add_school" style="border-bottom: 1px solid #e7e7e7; color: #06799f;">
         <i class="fa fa-building"></i>&nbsp;<label class="cursor-pointer font-13-verdana" ng-style="collapseHide">Add School</label></a>
     </li>

@@ -10,17 +10,6 @@
 var app = angular.module('mytodoApp')
   app.controller('scholarCtrl',['$scope', '$rootScope', '$routeParams','$location', '$window', 'appliedData',
    function ($scope, $rootScope, $routeParams, $location, $window, appliedData) {
-    
-  //  var log = JSON.parse($window.localStorage.getItem('cookies'));
-
-  // if(!log){
-  //   $rootScope.valid = false;
-  //   $rootScope.home = true;
-  //   $location.path('/home');
-  // }else{
-  //   $rootScope.valid = true;
-  //   $rootScope.home = false;
-  // }
 
     var sc = this;
     sc.scholars = [];
@@ -60,9 +49,9 @@ var app = angular.module('mytodoApp')
               elem.addClass('active');
               elem[0].innerHTML = 'active';
             }
-            else if(stats==2){
-              elem.addClass('pending');
-              elem[0].innerHTML = 'pending';
+            else if(stats==4){
+              elem.addClass('inactive');
+              elem[0].innerHTML = 'Not Renewed';
             }
         }
       };

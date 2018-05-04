@@ -56,6 +56,8 @@ Route::get('/approveAll', 'appliedScholarController@approveAll');
 Route::get('/appliedMunicipalScholars/{id}', 'appliedScholarController@appliedMunicipalScholars');
 // Route::get('/getAllTowns', 'appliedScholarController@getTowns');
 Route::post('/getDateRange', 'appliedScholarController@getDateRange');
+Route::post('/updateNotRenewed', 'appliedScholarController@updateNotRenewed');
+
 
 
 // editScholarController
@@ -94,3 +96,7 @@ Route::post('/updateMaxLimit', 'notesController@updateMaxLimit');
 //studentprofile
 Route::get('/getStudentInformation/{sid}', 'notesController@getStudentInfo');
 Route::get('/getAppliedInformation/{aid}', 'notesController@getAppliedInfo'); 
+
+
+// report
+Route::get('/getScholarReports/{mid}', 'notesController@getScholarReports'); 

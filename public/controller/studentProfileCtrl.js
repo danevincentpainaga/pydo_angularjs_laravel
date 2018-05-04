@@ -57,8 +57,7 @@ function displayInfo(info){
   sp.course = info[0].course;
   sp.college_year_name = info[0].college_year_name;
   sp.semesters_name = info[0].semesters_name;
-
-  // info[0].statusId === 1? sp.download = true : sp.download = false; 
+  
   if(info[0].statusId === 1){
     sp.download = true
   }
@@ -74,7 +73,7 @@ function successNotification(){
       backgroundDismiss: false,
       backgroundDismissAnimation: 'shake',
       title: 'Congratulations!',
-      content:'Your application has been approved',
+      content:'Your application has been approved. Application Form can be downloaded',
       theme:'supervan',
       type:'blue',
       buttons: {
